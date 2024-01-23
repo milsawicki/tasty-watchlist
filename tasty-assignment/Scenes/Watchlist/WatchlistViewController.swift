@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  WatchlistViewController.swift
 //  tasty-assignment
 //
 //  Created by Milan Sawicki on 22/01/2024.
@@ -7,13 +7,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class WatchlistViewController: TypedViewController<WatchlistTableView> {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-
-
 }
 
