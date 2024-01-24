@@ -7,6 +7,19 @@
 
 import Foundation
 
-class WatchlistViewModel {
+struct WatchlistItem {
+    let symbol: String
+}
+
+class WatchlistViewModel: ObservableObject {
     
+    private let service: QuoutesServiceProtocol
+    
+    var title: String {
+        "My Watchlist"
+    }
+
+    init(service: QuoutesServiceProtocol) {
+        self.service = service
+    }
 }
