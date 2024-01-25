@@ -13,13 +13,7 @@ struct WatchlistItem {
 
 class WatchlistViewModel: ObservableObject {
     
-    private let service: QuoutesServiceProtocol
-    
     var title: String {
         "My Watchlist"
-    }
-
-    init(service: QuoutesServiceProtocol) {
-        self.service = service
     }
 }
