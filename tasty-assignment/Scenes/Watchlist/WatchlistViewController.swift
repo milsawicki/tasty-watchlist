@@ -16,18 +16,22 @@ class WatchlistViewController: TypedViewController<WatchlistTableView> {
         super.init(customView: WatchlistTableView())
         customView.dataSource = self
         customView.delegate = self
-        customView.register(WatchlistItemTableViewCell.self, forCellReuseIdentifier: String(describing: WatchlistItemTableViewCell.self))
+        customView.register(
+            WatchlistItemTableViewCell.self,
+            forCellReuseIdentifier: String(describing: WatchlistItemTableViewCell.self)
+        )
     }
 
     @available(*, unavailable, message: "You should use init(viewModel:) method.")
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = viewModel.title
+        title = viewModel.title
         navigationController?.navigationBar.isHidden = false
+        viewModel.fetchQuotes()
     }
 }
 
@@ -36,11 +40,11 @@ extension WatchlistViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = customView.dequeueReusableCell(withIdentifier: String(describing: WatchlistItemTableViewCell.self)) as? WatchlistItemTableViewCell else {
             return UITableViewCell()
         }
-        cell.decorate(with: WatchlistItem(symbol: "GOOG"))
+        cell.decorate(with: viewModel.items[indexPath.row])
         return cell
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return viewModel.items.count
     }
 }

@@ -11,9 +11,9 @@
 		010D09942B6015B600763897 /* WatchlistTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010D09932B6015B600763897 /* WatchlistTableView.swift */; };
 		010D09962B601AA700763897 /* WatchlistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010D09952B601AA700763897 /* WatchlistViewModel.swift */; };
 		010D099B2B601C9600763897 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010D099A2B601C9600763897 /* APIClient.swift */; };
-		012055862B61DE0D00FD95AA /* WatchlistItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012055852B61DE0D00FD95AA /* WatchlistItemTableViewCell.swift */; };
 		012055892B61DEDF00FD95AA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 012055882B61DEDF00FD95AA /* SnapKit */; };
 		0120558B2B61DEDF00FD95AA /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 0120558A2B61DEDF00FD95AA /* SnapKit-Dynamic */; };
+		0120558C2B61E55F00FD95AA /* WatchlistItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012055852B61DE0D00FD95AA /* WatchlistItemTableViewCell.swift */; };
 		015B51F02B5EE122000F7071 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B51EF2B5EE122000F7071 /* AppDelegate.swift */; };
 		015B51F22B5EE122000F7071 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B51F12B5EE122000F7071 /* SceneDelegate.swift */; };
 		015B51F42B5EE122000F7071 /* WatchlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B51F32B5EE122000F7071 /* WatchlistViewController.swift */; };
@@ -344,7 +344,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				012055862B61DE0D00FD95AA /* WatchlistItemTableViewCell.swift in Sources */,
+				0120558C2B61E55F00FD95AA /* WatchlistItemTableViewCell.swift in Sources */,
 				010D09942B6015B600763897 /* WatchlistTableView.swift in Sources */,
 				010D099B2B601C9600763897 /* APIClient.swift in Sources */,
 				015B51F42B5EE122000F7071 /* WatchlistViewController.swift in Sources */,

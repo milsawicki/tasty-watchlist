@@ -11,7 +11,6 @@ class WatchlistTableView: UITableView {
   
     init() {
         super.init(frame: .zero, style: .plain)
-        self.backgroundColor = .red
     }
     
     @available(*, unavailable, message: "Use init() instead")

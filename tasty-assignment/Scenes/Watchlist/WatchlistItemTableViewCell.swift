@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class WatchlistItemTableViewCell: UITableViewCell {
     private let symbolNameLabel: UILabel = {
@@ -15,21 +16,31 @@ class WatchlistItemTableViewCell: UITableViewCell {
 
     private let bidPriceLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .center
         return label
     }()
 
     private let askPriceLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .center
         return label
     }()
 
     private let lastPriceLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .center
         return label
     }()
 
+    private lazy var wrapperStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [symbolNameLabel, priceStackView])
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.spacing = 4
+        return stackView
+    }()
     private lazy var priceStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [bidPriceLabel, askPriceLabel, lastPriceLabel])
+        let stackView = UIStackView(arrangedSubviews: [bidPriceLabel, lastPriceLabel, askPriceLabel])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 4
@@ -48,51 +59,27 @@ class WatchlistItemTableViewCell: UITableViewCell {
         setupView()
     }
 
-    private func addStackView() {
-        priceStackView.backgroundColor = .orange
-    }
 
     func setupView() {
-        [
-            symbolNameLabel,
-            priceStackView,
-        ]
-        .forEach { addSubview($0) }
-
-        addStackView()
-        bidPriceLabel.textAlignment = .center
-        askPriceLabel.textAlignment = .center
-        lastPriceLabel.textAlignment = .center
-
-        [bidPriceLabel, askPriceLabel, lastPriceLabel]
-            .forEach {
-                $0.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-                $0.textColor = .black
-            }
+        addSubview(wrapperStackView)
         setupConstraints()
     }
 
     func decorate(with item: WatchlistItem) {
         symbolNameLabel.text = item.symbol
-        bidPriceLabel.text = "120"
-        askPriceLabel.text = "120"
-        lastPriceLabel.text = "120"
+        bidPriceLabel.text = "BID 120"
+        askPriceLabel.text = "ASK 121"
+        lastPriceLabel.text = "LAST 120.4"
     }
 }
 
 private extension WatchlistItemTableViewCell {
     func setupConstraints() {
-        symbolNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            symbolNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            symbolNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-        ])
-        priceStackView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            priceStackView.topAnchor.constraint(equalTo: topAnchor),
-            priceStackView.leadingAnchor.constraint(equalTo: symbolNameLabel.trailingAnchor, constant: 8),
-            priceStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            priceStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-        ])
+        wrapperStackView.snp.makeConstraints({ make in
+            make.leading.equalTo(self).offset(8)
+            make.trailing.equalTo(self)
+            make.top.equalTo(self)
+            make.bottom.equalTo(self)
+        })
     }
 }
