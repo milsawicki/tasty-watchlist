@@ -119,10 +119,10 @@ class WatchlistItemTableViewCell: UITableViewCell {
     }
 
     func decorate(with item: WatchlistItem) {
-        symbolNameLabel.text = item.symbol
-        bidPriceLabel.text = "120"
-        askPriceLabel.text = "121"
-        lastPriceLabel.text = "120.4"
+        symbolNameLabel.text = "\(item.symbol)"
+        bidPriceLabel.text = "\(item.bidPrice)"
+        askPriceLabel.text = "\(item.askPrice)"
+        lastPriceLabel.text = "\(item.lastPrice)"
     }
 }
 
