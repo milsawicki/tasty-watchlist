@@ -8,12 +8,12 @@
 import Combine
 import UIKit
 
-class WatchlistViewController: TypedViewController<WatchlistTableView> {
+class WatchlistViewController: TypedViewController<UITableView> {
     var viewModel: WatchlistViewModel
 
     init(viewModel: WatchlistViewModel) {
         self.viewModel = viewModel
-        super.init(customView: WatchlistTableView())
+        super.init(customView: UITableView())
         customView.dataSource = self
         customView.delegate = self
         customView.register(
@@ -45,6 +45,6 @@ extension WatchlistViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.items.count
+        viewModel.items.count
     }
 }

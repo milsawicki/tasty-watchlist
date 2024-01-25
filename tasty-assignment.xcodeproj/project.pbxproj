@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		010D09922B60155100763897 /* TypedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010D09912B60155100763897 /* TypedViewController.swift */; };
-		010D09942B6015B600763897 /* WatchlistTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010D09932B6015B600763897 /* WatchlistTableView.swift */; };
 		010D09962B601AA700763897 /* WatchlistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010D09952B601AA700763897 /* WatchlistViewModel.swift */; };
 		010D099B2B601C9600763897 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010D099A2B601C9600763897 /* APIClient.swift */; };
 		012055892B61DEDF00FD95AA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 012055882B61DEDF00FD95AA /* SnapKit */; };
@@ -22,6 +21,7 @@
 		015B52072B5EE124000F7071 /* tasty_assignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B52062B5EE124000F7071 /* tasty_assignmentTests.swift */; };
 		015B52112B5EE124000F7071 /* tasty_assignmentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B52102B5EE124000F7071 /* tasty_assignmentUITests.swift */; };
 		015B52132B5EE124000F7071 /* tasty_assignmentUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B52122B5EE124000F7071 /* tasty_assignmentUITestsLaunchTests.swift */; };
+		01D41D922B61ED7C004B6789 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D41D912B61ED7C004B6789 /* Typography.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +43,6 @@
 
 /* Begin PBXFileReference section */
 		010D09912B60155100763897 /* TypedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedViewController.swift; sourceTree = "<group>"; };
-		010D09932B6015B600763897 /* WatchlistTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistTableView.swift; sourceTree = "<group>"; };
 		010D09952B601AA700763897 /* WatchlistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistViewModel.swift; sourceTree = "<group>"; };
 		010D099A2B601C9600763897 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		012055852B61DE0D00FD95AA /* WatchlistItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistItemTableViewCell.swift; sourceTree = "<group>"; };
@@ -59,6 +58,7 @@
 		015B520C2B5EE124000F7071 /* tasty-assignmentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "tasty-assignmentUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		015B52102B5EE124000F7071 /* tasty_assignmentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tasty_assignmentUITests.swift; sourceTree = "<group>"; };
 		015B52122B5EE124000F7071 /* tasty_assignmentUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tasty_assignmentUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		01D41D912B61ED7C004B6789 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +101,6 @@
 			children = (
 				012055852B61DE0D00FD95AA /* WatchlistItemTableViewCell.swift */,
 				015B51F32B5EE122000F7071 /* WatchlistViewController.swift */,
-				010D09932B6015B600763897 /* WatchlistTableView.swift */,
 				010D09952B601AA700763897 /* WatchlistViewModel.swift */,
 			);
 			path = Watchlist;
@@ -110,6 +109,7 @@
 		010D098E2B600E4200763897 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				01D41D902B61ED6C004B6789 /* Typography */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -205,6 +205,14 @@
 				015B52122B5EE124000F7071 /* tasty_assignmentUITestsLaunchTests.swift */,
 			);
 			path = "tasty-assignmentUITests";
+			sourceTree = "<group>";
+		};
+		01D41D902B61ED6C004B6789 /* Typography */ = {
+			isa = PBXGroup;
+			children = (
+				01D41D912B61ED7C004B6789 /* Typography.swift */,
+			);
+			path = Typography;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,12 +353,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0120558C2B61E55F00FD95AA /* WatchlistItemTableViewCell.swift in Sources */,
-				010D09942B6015B600763897 /* WatchlistTableView.swift in Sources */,
 				010D099B2B601C9600763897 /* APIClient.swift in Sources */,
 				015B51F42B5EE122000F7071 /* WatchlistViewController.swift in Sources */,
 				010D09962B601AA700763897 /* WatchlistViewModel.swift in Sources */,
 				010D09922B60155100763897 /* TypedViewController.swift in Sources */,
 				015B51F02B5EE122000F7071 /* AppDelegate.swift in Sources */,
+				01D41D922B61ED7C004B6789 /* Typography.swift in Sources */,
 				015B51F22B5EE122000F7071 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
