@@ -33,22 +33,47 @@ extension Watchlist {
 }
 
 class WatchlistViewModel: ObservableObject {
-    private var activeWatchlist: Watchlist = Watchlist.mocked
-
-    private var cancellables: [AnyCancellable] = []
-    var title: String {
+    var currentWatchlistName: String {
         activeWatchlist.name
     }
 
+    private var activeWatchlist: Watchlist = Watchlist.mocked
+    private let service: WatchlistService
+    private var cancellables: [AnyCancellable] = []
+
     @Published var items: [WatchlistItem] = []
+
+    init(service: WatchlistService) {
+        self.service = service
+    }
 
     func fetchQuotes() {
         activeWatchlist
             .items
             .publisher
-            .map { $0 } // TODO: Implement fetching quotes here
+            .flatMap { item in
+                self.service.fetchQuotes(for: item.symbol)
+            }
             .collect()
-            .sink { [weak self] in self?.items = $0 }
+            
+            .eraseToAnyPublisher()
+
+            .sink(receiveCompletion: { error in
+                print(error)
+            }, receiveValue: { response in
+                
+                self.items = response
+                    .map { quoteItem in
+                    WatchlistItem(
+                        symbol: quoteItem.companyName,
+                        companyName: quoteItem.symbol,
+                        bidPrice: quoteItem.bidPrice,
+                        askPrice: quoteItem.askPrice,
+                        lastPrice: quoteItem.latestPrice
+                    )
+                }
+            })
+
             .store(in: &cancellables)
     }
 }

@@ -7,12 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01037B4D2B62B7B4005FEFC2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 01037B4C2B62B7B4005FEFC2 /* SnapKit */; };
+		01037B4F2B62B7B4005FEFC2 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 01037B4E2B62B7B4005FEFC2 /* SnapKit-Dynamic */; };
+		01037B522B633148005FEFC2 /* AddWatchlistItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01037B512B633148005FEFC2 /* AddWatchlistItemViewController.swift */; };
+		01037B542B63316C005FEFC2 /* SymbolSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01037B532B63316C005FEFC2 /* SymbolSearchView.swift */; };
+		01037B562B633B6C005FEFC2 /* SearchSymbolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01037B552B633B6C005FEFC2 /* SearchSymbolViewModel.swift */; };
+		01037B592B63ADA8005FEFC2 /* UITextField+Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01037B582B63ADA8005FEFC2 /* UITextField+Publisher.swift */; };
+		01037B5B2B63AFC8005FEFC2 /* SearchSymbolRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01037B5A2B63AFC8005FEFC2 /* SearchSymbolRequest.swift */; };
+		01037B5D2B63B3BD005FEFC2 /* SearchSymbolResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01037B5C2B63B3BD005FEFC2 /* SearchSymbolResponse.swift */; };
+		01037B612B63BC24005FEFC2 /* DataJSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01037B602B63BC24005FEFC2 /* DataJSONDecoder.swift */; };
+		01037B632B63E32F005FEFC2 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01037B622B63E32F005FEFC2 /* APIError.swift */; };
 		010D09922B60155100763897 /* TypedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010D09912B60155100763897 /* TypedViewController.swift */; };
 		010D09962B601AA700763897 /* WatchlistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010D09952B601AA700763897 /* WatchlistViewModel.swift */; };
 		010D099B2B601C9600763897 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010D099A2B601C9600763897 /* APIClient.swift */; };
-		012055892B61DEDF00FD95AA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 012055882B61DEDF00FD95AA /* SnapKit */; };
-		0120558B2B61DEDF00FD95AA /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 0120558A2B61DEDF00FD95AA /* SnapKit-Dynamic */; };
-		0120558C2B61E55F00FD95AA /* WatchlistItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012055852B61DE0D00FD95AA /* WatchlistItemTableViewCell.swift */; };
+		010D099E2B6028D200763897 /* StockQuoteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010D099D2B6028D200763897 /* StockQuoteResponse.swift */; };
+		010D09A02B602B9A00763897 /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010D099F2B602B9A00763897 /* HttpMethod.swift */; };
+		010D09A22B602F0F00763897 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010D09A12B602F0F00763897 /* Request.swift */; };
+		012055802B608A8200FD95AA /* WatchlistService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0120557F2B608A8200FD95AA /* WatchlistService.swift */; };
+		012055822B60971300FD95AA /* WatchlistItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012055812B60971300FD95AA /* WatchlistItemTableViewCell.swift */; };
+		012055842B615AB300FD95AA /* QuotesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012055832B615AB300FD95AA /* QuotesRequest.swift */; };
 		015B51F02B5EE122000F7071 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B51EF2B5EE122000F7071 /* AppDelegate.swift */; };
 		015B51F22B5EE122000F7071 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B51F12B5EE122000F7071 /* SceneDelegate.swift */; };
 		015B51F42B5EE122000F7071 /* WatchlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B51F32B5EE122000F7071 /* WatchlistViewController.swift */; };
@@ -21,7 +34,9 @@
 		015B52072B5EE124000F7071 /* tasty_assignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B52062B5EE124000F7071 /* tasty_assignmentTests.swift */; };
 		015B52112B5EE124000F7071 /* tasty_assignmentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B52102B5EE124000F7071 /* tasty_assignmentUITests.swift */; };
 		015B52132B5EE124000F7071 /* tasty_assignmentUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B52122B5EE124000F7071 /* tasty_assignmentUITestsLaunchTests.swift */; };
-		01D41D922B61ED7C004B6789 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D41D912B61ED7C004B6789 /* Typography.swift */; };
+		01B602312B649B0F00E6B7BB /* CombineDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 01B602302B649B0F00E6B7BB /* CombineDataSources */; };
+		01B602332B649C0900E6B7BB /* SymbolSearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B602322B649C0900E6B7BB /* SymbolSearchResultTableViewCell.swift */; };
+		01D41D952B62B731004B6789 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D41D942B62B731004B6789 /* Typography.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,10 +57,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01037B512B633148005FEFC2 /* AddWatchlistItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWatchlistItemViewController.swift; sourceTree = "<group>"; };
+		01037B532B63316C005FEFC2 /* SymbolSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolSearchView.swift; sourceTree = "<group>"; };
+		01037B552B633B6C005FEFC2 /* SearchSymbolViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSymbolViewModel.swift; sourceTree = "<group>"; };
+		01037B582B63ADA8005FEFC2 /* UITextField+Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Publisher.swift"; sourceTree = "<group>"; };
+		01037B5A2B63AFC8005FEFC2 /* SearchSymbolRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSymbolRequest.swift; sourceTree = "<group>"; };
+		01037B5C2B63B3BD005FEFC2 /* SearchSymbolResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSymbolResponse.swift; sourceTree = "<group>"; };
+		01037B602B63BC24005FEFC2 /* DataJSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataJSONDecoder.swift; sourceTree = "<group>"; };
+		01037B622B63E32F005FEFC2 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		010D09912B60155100763897 /* TypedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedViewController.swift; sourceTree = "<group>"; };
 		010D09952B601AA700763897 /* WatchlistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistViewModel.swift; sourceTree = "<group>"; };
 		010D099A2B601C9600763897 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
-		012055852B61DE0D00FD95AA /* WatchlistItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistItemTableViewCell.swift; sourceTree = "<group>"; };
+		010D099D2B6028D200763897 /* StockQuoteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockQuoteResponse.swift; sourceTree = "<group>"; };
+		010D099F2B602B9A00763897 /* HttpMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
+		010D09A12B602F0F00763897 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		0120557F2B608A8200FD95AA /* WatchlistService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistService.swift; sourceTree = "<group>"; };
+		012055812B60971300FD95AA /* WatchlistItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistItemTableViewCell.swift; sourceTree = "<group>"; };
+		012055832B615AB300FD95AA /* QuotesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotesRequest.swift; sourceTree = "<group>"; };
 		015B51EC2B5EE122000F7071 /* tasty-assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tasty-assignment.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		015B51EF2B5EE122000F7071 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		015B51F12B5EE122000F7071 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,7 +86,8 @@
 		015B520C2B5EE124000F7071 /* tasty-assignmentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "tasty-assignmentUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		015B52102B5EE124000F7071 /* tasty_assignmentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tasty_assignmentUITests.swift; sourceTree = "<group>"; };
 		015B52122B5EE124000F7071 /* tasty_assignmentUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tasty_assignmentUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		01D41D912B61ED7C004B6789 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
+		01B602322B649C0900E6B7BB /* SymbolSearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolSearchResultTableViewCell.swift; sourceTree = "<group>"; };
+		01D41D942B62B731004B6789 /* Typography.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,8 +95,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				012055892B61DEDF00FD95AA /* SnapKit in Frameworks */,
-				0120558B2B61DEDF00FD95AA /* SnapKit-Dynamic in Frameworks */,
+				01037B4D2B62B7B4005FEFC2 /* SnapKit in Frameworks */,
+				01037B4F2B62B7B4005FEFC2 /* SnapKit-Dynamic in Frameworks */,
+				01B602312B649B0F00E6B7BB /* CombineDataSources in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,9 +118,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01037B502B633130005FEFC2 /* AddWachlistItem */ = {
+			isa = PBXGroup;
+			children = (
+				01037B512B633148005FEFC2 /* AddWatchlistItemViewController.swift */,
+				01037B532B63316C005FEFC2 /* SymbolSearchView.swift */,
+				01037B552B633B6C005FEFC2 /* SearchSymbolViewModel.swift */,
+				01B602322B649C0900E6B7BB /* SymbolSearchResultTableViewCell.swift */,
+			);
+			path = AddWachlistItem;
+			sourceTree = "<group>";
+		};
+		01037B572B63AD93005FEFC2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				01037B582B63ADA8005FEFC2 /* UITextField+Publisher.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		010D098C2B600B2B00763897 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				01037B502B633130005FEFC2 /* AddWachlistItem */,
 				010D098D2B600B3000763897 /* Watchlist */,
 			);
 			path = Scenes;
@@ -99,9 +149,9 @@
 		010D098D2B600B3000763897 /* Watchlist */ = {
 			isa = PBXGroup;
 			children = (
-				012055852B61DE0D00FD95AA /* WatchlistItemTableViewCell.swift */,
 				015B51F32B5EE122000F7071 /* WatchlistViewController.swift */,
 				010D09952B601AA700763897 /* WatchlistViewModel.swift */,
+				012055812B60971300FD95AA /* WatchlistItemTableViewCell.swift */,
 			);
 			path = Watchlist;
 			sourceTree = "<group>";
@@ -109,7 +159,7 @@
 		010D098E2B600E4200763897 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				01D41D902B61ED6C004B6789 /* Typography */,
+				01D41D932B62B731004B6789 /* Typography */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -117,6 +167,7 @@
 		010D098F2B600FAA00763897 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				01037B572B63AD93005FEFC2 /* Extensions */,
 				010D09902B600FBF00763897 /* UI */,
 			);
 			path = Common;
@@ -130,19 +181,24 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
-		010D09972B601C5800763897 /* Services */ = {
+		010D09972B601C5800763897 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				01B602342B649D6000E6B7BB /* Watchlist */,
 				010D09992B601C7300763897 /* Database */,
 				010D09982B601C6000763897 /* APIClient */,
 			);
-			path = Services;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		010D09982B601C6000763897 /* APIClient */ = {
 			isa = PBXGroup;
 			children = (
 				010D099A2B601C9600763897 /* APIClient.swift */,
+				010D099F2B602B9A00763897 /* HttpMethod.swift */,
+				010D09A12B602F0F00763897 /* Request.swift */,
+				01037B602B63BC24005FEFC2 /* DataJSONDecoder.swift */,
+				01037B622B63E32F005FEFC2 /* APIError.swift */,
 			);
 			path = APIClient;
 			sourceTree = "<group>";
@@ -152,6 +208,15 @@
 			children = (
 			);
 			path = Database;
+			sourceTree = "<group>";
+		};
+		010D099C2B6028C600763897 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				01037B5A2B63AFC8005FEFC2 /* SearchSymbolRequest.swift */,
+				01037B5C2B63B3BD005FEFC2 /* SearchSymbolResponse.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		015B51E32B5EE122000F7071 = {
@@ -177,7 +242,8 @@
 		015B51EE2B5EE122000F7071 /* tasty-assignment */ = {
 			isa = PBXGroup;
 			children = (
-				010D09972B601C5800763897 /* Services */,
+				010D099C2B6028C600763897 /* Model */,
+				010D09972B601C5800763897 /* Network */,
 				010D098F2B600FAA00763897 /* Common */,
 				010D098E2B600E4200763897 /* Resources */,
 				010D098C2B600B2B00763897 /* Scenes */,
@@ -207,10 +273,28 @@
 			path = "tasty-assignmentUITests";
 			sourceTree = "<group>";
 		};
-		01D41D902B61ED6C004B6789 /* Typography */ = {
+		01B602342B649D6000E6B7BB /* Watchlist */ = {
 			isa = PBXGroup;
 			children = (
-				01D41D912B61ED7C004B6789 /* Typography.swift */,
+				0120557F2B608A8200FD95AA /* WatchlistService.swift */,
+				01B602352B649D6E00E6B7BB /* Quotes */,
+			);
+			path = Watchlist;
+			sourceTree = "<group>";
+		};
+		01B602352B649D6E00E6B7BB /* Quotes */ = {
+			isa = PBXGroup;
+			children = (
+				010D099D2B6028D200763897 /* StockQuoteResponse.swift */,
+				012055832B615AB300FD95AA /* QuotesRequest.swift */,
+			);
+			path = Quotes;
+			sourceTree = "<group>";
+		};
+		01D41D932B62B731004B6789 /* Typography */ = {
+			isa = PBXGroup;
+			children = (
+				01D41D942B62B731004B6789 /* Typography.swift */,
 			);
 			path = Typography;
 			sourceTree = "<group>";
@@ -232,8 +316,9 @@
 			);
 			name = "tasty-assignment";
 			packageProductDependencies = (
-				012055882B61DEDF00FD95AA /* SnapKit */,
-				0120558A2B61DEDF00FD95AA /* SnapKit-Dynamic */,
+				01037B4C2B62B7B4005FEFC2 /* SnapKit */,
+				01037B4E2B62B7B4005FEFC2 /* SnapKit-Dynamic */,
+				01B602302B649B0F00E6B7BB /* CombineDataSources */,
 			);
 			productName = "tasty-assignment";
 			productReference = 015B51EC2B5EE122000F7071 /* tasty-assignment.app */;
@@ -308,7 +393,8 @@
 			);
 			mainGroup = 015B51E32B5EE122000F7071;
 			packageReferences = (
-				012055872B61DEDF00FD95AA /* XCRemoteSwiftPackageReference "SnapKit" */,
+				01037B4B2B62B7B4005FEFC2 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				01B6022F2B649B0F00E6B7BB /* XCRemoteSwiftPackageReference "CombineDataSources" */,
 			);
 			productRefGroup = 015B51ED2B5EE122000F7071 /* Products */;
 			projectDirPath = "";
@@ -352,14 +438,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0120558C2B61E55F00FD95AA /* WatchlistItemTableViewCell.swift in Sources */,
+				012055822B60971300FD95AA /* WatchlistItemTableViewCell.swift in Sources */,
+				01037B562B633B6C005FEFC2 /* SearchSymbolViewModel.swift in Sources */,
+				01037B592B63ADA8005FEFC2 /* UITextField+Publisher.swift in Sources */,
+				01037B522B633148005FEFC2 /* AddWatchlistItemViewController.swift in Sources */,
 				010D099B2B601C9600763897 /* APIClient.swift in Sources */,
 				015B51F42B5EE122000F7071 /* WatchlistViewController.swift in Sources */,
+				012055802B608A8200FD95AA /* WatchlistService.swift in Sources */,
+				01037B5D2B63B3BD005FEFC2 /* SearchSymbolResponse.swift in Sources */,
+				01037B5B2B63AFC8005FEFC2 /* SearchSymbolRequest.swift in Sources */,
 				010D09962B601AA700763897 /* WatchlistViewModel.swift in Sources */,
+				010D09A02B602B9A00763897 /* HttpMethod.swift in Sources */,
 				010D09922B60155100763897 /* TypedViewController.swift in Sources */,
+				01B602332B649C0900E6B7BB /* SymbolSearchResultTableViewCell.swift in Sources */,
+				01037B542B63316C005FEFC2 /* SymbolSearchView.swift in Sources */,
+				010D099E2B6028D200763897 /* StockQuoteResponse.swift in Sources */,
+				010D09A22B602F0F00763897 /* Request.swift in Sources */,
 				015B51F02B5EE122000F7071 /* AppDelegate.swift in Sources */,
-				01D41D922B61ED7C004B6789 /* Typography.swift in Sources */,
 				015B51F22B5EE122000F7071 /* SceneDelegate.swift in Sources */,
+				01D41D952B62B731004B6789 /* Typography.swift in Sources */,
+				012055842B615AB300FD95AA /* QuotesRequest.swift in Sources */,
+				01037B612B63BC24005FEFC2 /* DataJSONDecoder.swift in Sources */,
+				01037B632B63E32F005FEFC2 /* APIError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -704,7 +804,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		012055872B61DEDF00FD95AA /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		01037B4B2B62B7B4005FEFC2 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -712,18 +812,31 @@
 				minimumVersion = 5.7.0;
 			};
 		};
+		01B6022F2B649B0F00E6B7BB /* XCRemoteSwiftPackageReference "CombineDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CombineCommunity/CombineDataSources.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.5;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		012055882B61DEDF00FD95AA /* SnapKit */ = {
+		01037B4C2B62B7B4005FEFC2 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 012055872B61DEDF00FD95AA /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = 01037B4B2B62B7B4005FEFC2 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
-		0120558A2B61DEDF00FD95AA /* SnapKit-Dynamic */ = {
+		01037B4E2B62B7B4005FEFC2 /* SnapKit-Dynamic */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 012055872B61DEDF00FD95AA /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = 01037B4B2B62B7B4005FEFC2 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = "SnapKit-Dynamic";
+		};
+		01B602302B649B0F00E6B7BB /* CombineDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01B6022F2B649B0F00E6B7BB /* XCRemoteSwiftPackageReference "CombineDataSources" */;
+			productName = CombineDataSources;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
