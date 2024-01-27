@@ -51,19 +51,18 @@ class WatchlistViewModel: ObservableObject {
         activeWatchlist
             .items
             .publisher
-            .flatMap { item in
-                self.service.fetchQuotes(for: item.symbol)
+            .flatMap { [weak self] in
+                guard let self = self else {
+                    return AnyPublisher<StockQuoteResponse, Error>(Empty())
+                }
+                return self.service.fetchQuotes(for: $0.symbol)
             }
             .collect()
-            
             .eraseToAnyPublisher()
-
             .sink(receiveCompletion: { error in
-                print(error)
-            }, receiveValue: { response in
-                
-                self.items = response
-                    .map { quoteItem in
+                print(error) // TODO: Handle error
+            }, receiveValue: { [weak self] in
+                self?.items = $0.map { quoteItem in
                     WatchlistItem(
                         symbol: quoteItem.companyName,
                         companyName: quoteItem.symbol,
@@ -73,7 +72,6 @@ class WatchlistViewModel: ObservableObject {
                     )
                 }
             })
-
             .store(in: &cancellables)
     }
 }
