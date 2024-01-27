@@ -36,6 +36,7 @@ class SymbolSearchView: UIView {
         addSubview(resultTableView)
         addSubview(cancelButton)
         resultTableView.delegate = self
+        resultTableView.showsVerticalScrollIndicator = false
         resultTableView.register(SymbolSearchResultTableViewCell.self, forCellReuseIdentifier: String(describing: SymbolSearchResultTableViewCell.self))
         setupConstraints()
     }
