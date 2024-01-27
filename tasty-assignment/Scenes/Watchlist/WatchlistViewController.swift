@@ -30,18 +30,33 @@ class WatchlistViewController: TypedViewController<UITableView> {
 
     private var cancellables: [AnyCancellable] = []
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = viewModel.currentWatchlistName
-        navigationController?.navigationBar.isHidden = false
+        setupNavigationController()
+        setupBindings()
+        viewModel.fetchQuotes()
+    }
 
+    @objc func addButtonTapped() {
+        navigationController?.present(AddWatchlistItemViewController(viewModel: SearchSymbolViewModel())    , animated: true)
+    }
+    
+    private func setupNavigationController() {
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        addButton.tintColor = .red
+        navigationItem.rightBarButtonItem = addButton
+        navigationController?.navigationBar.isHidden = false
+    }
+    
+    private func setupBindings() {
         viewModel.$items
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] _ in
                 self?.customView.reloadData()
             })
             .store(in: &cancellables)
-        viewModel.fetchQuotes()
     }
 }
 
@@ -56,5 +71,9 @@ extension WatchlistViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.items.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        navigationController?.pushViewController(UIViewController(), animated: true)
     }
 }

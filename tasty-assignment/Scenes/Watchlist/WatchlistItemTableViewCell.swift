@@ -112,12 +112,6 @@ class WatchlistItemTableViewCell: UITableViewCell {
         setupView()
     }
 
-    func setupView() {
-        selectionStyle = .none
-        addSubview(wrapperStackView)
-        setupConstraints()
-    }
-
     func decorate(with item: WatchlistItem) {
         symbolNameLabel.text = "\(item.symbol)"
         bidPriceLabel.text = "\(item.bidPrice)"
@@ -127,6 +121,12 @@ class WatchlistItemTableViewCell: UITableViewCell {
 }
 
 private extension WatchlistItemTableViewCell {
+    private func setupView() {
+        selectionStyle = .none
+        addSubview(wrapperStackView)
+        setupConstraints()
+    }
+
     func setupConstraints() {
         wrapperStackView.snp.makeConstraints({ make in
             make.leading.equalTo(self).offset(8)

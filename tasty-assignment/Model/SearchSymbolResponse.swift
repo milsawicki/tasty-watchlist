@@ -26,7 +26,7 @@ struct SearchSymbolResponse: Codable, Hashable {
         case instrumentType = "instrument-type"
     }
 }
-struct ItemsContainer: Codable {
+struct SearchSymbolItemsResponse: Codable {
     let items: [SearchSymbolResponse]
     
     init() {
