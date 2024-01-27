@@ -14,6 +14,7 @@ class WatchlistViewController: TypedViewController<UITableView> {
     init(viewModel: WatchlistViewModel) {
         self.viewModel = viewModel
         super.init(customView: UITableView())
+        customView.separatorStyle = .none
         customView.dataSource = self
         customView.delegate = self
         customView.register(
@@ -27,10 +28,19 @@ class WatchlistViewController: TypedViewController<UITableView> {
         fatalError("init(coder:) has not been implemented")
     }
 
+    private var cancellables: [AnyCancellable] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = viewModel.title
+        title = viewModel.currentWatchlistName
         navigationController?.navigationBar.isHidden = false
+
+        viewModel.$items
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] _ in
+                self?.customView.reloadData()
+            })
+            .store(in: &cancellables)
         viewModel.fetchQuotes()
     }
 }
