@@ -27,6 +27,5 @@ class TypedViewController<ViewType: UIView>: UIViewController {
     }
 
     // - SeeAlso: UIViewController.viewDidLoad()
-    override func viewDidLoad() {
-    }
+    override func viewDidLoad() {}
 }

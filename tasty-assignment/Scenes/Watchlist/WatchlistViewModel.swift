@@ -13,7 +13,7 @@ struct Watchlist {
     let items: [WatchlistItem]
 }
 
-struct WatchlistItem {
+struct WatchlistItem: Hashable {
     let symbol: String
     let companyName: String
     let bidPrice: Double
@@ -59,19 +59,22 @@ class WatchlistViewModel: ObservableObject {
             }
             .collect()
             .eraseToAnyPublisher()
-            .sink(receiveCompletion: { error in
-                print(error) // TODO: Handle error
-            }, receiveValue: { [weak self] in
-                self?.items = $0.map { quoteItem in
-                    WatchlistItem(
-                        symbol: quoteItem.companyName,
-                        companyName: quoteItem.symbol,
-                        bidPrice: quoteItem.bidPrice,
-                        askPrice: quoteItem.askPrice,
-                        lastPrice: quoteItem.latestPrice
-                    )
+            .sink(
+                receiveCompletion: { error in
+                    print(error) // TODO: Handle error
+                }, receiveValue: { [weak self] in
+                    self?.items = $0.map { quoteItem in
+                        print(quoteItem)
+                        return WatchlistItem(
+                            symbol: quoteItem.companyName,
+                            companyName: quoteItem.symbol,
+                            bidPrice: quoteItem.bidPrice,
+                            askPrice: quoteItem.askPrice,
+                            lastPrice: quoteItem.latestPrice
+                        )
+                    }
                 }
-            })
+            )
             .store(in: &cancellables)
     }
 }
