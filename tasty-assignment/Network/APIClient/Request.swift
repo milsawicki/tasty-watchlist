@@ -41,10 +41,6 @@ extension Request {
         .none
     }
 
-    var basePath: String {
-        "cloud.iexapis.com/stable/"
-    }
-
     var headers: [String: String]? {
         return [
             "Accept": "application/json",

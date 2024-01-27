@@ -1,29 +1,33 @@
 //
-//  QuotesRequest.swift
+//  SearchSymbolRequest.swift
 //  tasty-assignment
 //
-//  Created by Milan Sawicki on 24/01/2024.
+//  Created by Milan Sawicki on 26/01/2024.
 //
 
 import Foundation
 
-struct QuotesRequest: Request {
+struct SearchSymbolRequest: Request {
     var apiPath: String {
-        "stock/\(symbol)/quote"
+        "symbols/search/\(query)"
+    }
+
+    var basePath: String {
+        "api.tastyworks.com/"
     }
 
     var method: HTTPMethod = .get
 
     var authorizationType: AuthorizationType = .iex
 
-    private let symbol: String
+    private let query: String
 
     // MARK: Initializers
 
     /// Initializes the request.
     /// - Parameters:
     ///   - symbol: Symbol of stock for which quote should be provided.
-    init(symbol: String) {
-        self.symbol = symbol
+    init(query: String) {
+        self.query = query
     }
 }

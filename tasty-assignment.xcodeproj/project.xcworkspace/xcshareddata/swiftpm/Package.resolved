@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "combinedatasources",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/CombineCommunity/CombineDataSources.git",
+      "state" : {
+        "revision" : "362795e0336f2c1637036f692a3b5d05806302b4",
+        "version" : "0.2.5"
+      }
+    },
+    {
       "identity" : "snapkit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SnapKit/SnapKit.git",
