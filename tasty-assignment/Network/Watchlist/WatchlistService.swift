@@ -26,10 +26,10 @@ class WatchlistService: QuoutesServiceProtocol {
         )
     }
 
-    func searchSymbol(for query: String) -> AnyPublisher<ItemsContainer, Error> {
+    func searchSymbol(for query: String) -> AnyPublisher<SearchSymbolItemsResponse, Error> {
         apiClient.fetch(
             request: SearchSymbolRequest(query: query),
-            expectedResponseType: ItemsContainer.self,
+            expectedResponseType: SearchSymbolItemsResponse.self,
             hasTopLevelKey: true
         )
     }
