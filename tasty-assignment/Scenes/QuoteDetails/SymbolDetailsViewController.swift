@@ -25,9 +25,8 @@ class SymbolDetailsViewController: TypedViewController<SymbolDetailsView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-
         setupBindings()
-        customView.quoteView.decorate(with: viewModel.item)
+//        customView.quoteView.decorate(with: viewModel.item)
     }
 }
 
@@ -50,6 +49,5 @@ class SymbolDetailsViewModel {
 
     init(item: WatchlistItem) {
         self.item = item
-
     }
 }

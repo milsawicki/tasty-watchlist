@@ -36,7 +36,7 @@ class AddWatchlistItemViewController: TypedViewController<SymbolSearchView> {
 private extension AddWatchlistItemViewController {
     func setupBindings() {
         viewModel.bind(query: customView.searchBar.textPublisher)
-
+            
         viewModel
             .$searchResult
             .receive(on: DispatchQueue.main)
@@ -44,8 +44,8 @@ private extension AddWatchlistItemViewController {
                 subscriber: customView.resultTableView.rowsSubscriber(
                     cellIdentifier: String(describing: SymbolSearchResultTableViewCell.self),
                     cellType: SymbolSearchResultTableViewCell.self,
-                    cellConfig: { cell, _, symbolItem in
-                        cell.decorate(with: symbolItem)
+                    cellConfig: { cell, _, item in
+                        cell.decorate(with: item)
                     }
                 )
             )

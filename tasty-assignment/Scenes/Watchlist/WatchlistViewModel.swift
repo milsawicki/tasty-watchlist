@@ -16,18 +16,15 @@ struct Watchlist {
 struct WatchlistItem: Hashable {
     let symbol: String
     let companyName: String
-    let bidPrice: Double
-    let askPrice: Double
-    let lastPrice: Double
 }
 
 extension Watchlist {
     static let mocked: Watchlist = .init(
         name: "My Watchlist",
         items: [
-            .init(symbol: "AAPL", companyName: "Apple", bidPrice: 12, askPrice: 12, lastPrice: 20),
-            .init(symbol: "MSFT", companyName: "Microsoft", bidPrice: 12, askPrice: 12, lastPrice: 20),
-            .init(symbol: "GOOG", companyName: "Google", bidPrice: 12, askPrice: 12, lastPrice: 20),
+            .init(symbol: "AAPL", companyName: "Apple"),
+            .init(symbol: "MSFT", companyName: "Microsoft"),
+            .init(symbol: "GOOG", companyName: "Google"),
         ]
     )
 }
@@ -41,40 +38,31 @@ class WatchlistViewModel: ObservableObject {
     private let service: WatchlistService
     private var cancellables: [AnyCancellable] = []
 
-    @Published var items: [WatchlistItem] = []
+    @Published var result: Result<[StockQuoteResponse], Error> = .success([])
 
     init(service: WatchlistService) {
         self.service = service
     }
 
     func fetchQuotes() {
-        activeWatchlist
-            .items
-            .publisher
-            .flatMap { [weak self] in
-                guard let self = self else {
-                    return AnyPublisher<StockQuoteResponse, Error>(Empty())
-                }
-                return self.service.fetchQuotes(for: $0.symbol)
-            }
-            .collect()
-            .eraseToAnyPublisher()
-            .sink(
-                receiveCompletion: { error in
-                    print(error) // TODO: Handle error
-                }, receiveValue: { [weak self] in
-                    self?.items = $0.map { quoteItem in
-                        print(quoteItem)
-                        return WatchlistItem(
-                            symbol: quoteItem.companyName,
-                            companyName: quoteItem.symbol,
-                            bidPrice: quoteItem.bidPrice,
-                            askPrice: quoteItem.askPrice,
-                            lastPrice: quoteItem.latestPrice
-                        )
+        Timer.publish(every: 5, on: .main, in: .common)
+            .autoconnect()
+            .flatMap { [unowned self] _ in
+                self.activeWatchlist.items.publisher
+                    .map { $0.symbol }
+                    .flatMap { symbol in
+                        self.service.fetchQuotes(for: symbol)
                     }
-                }
-            )
+                    .collect()
+                    .eraseToAnyPublisher()
+            }
+            .asResult()
+            .sink { error in
+                print(error)
+            } receiveValue: { result in
+                print(result)
+                self.result = result
+            }
             .store(in: &cancellables)
     }
 }

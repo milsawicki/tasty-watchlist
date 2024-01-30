@@ -38,7 +38,7 @@ class WatchlistItemTableViewCell: UITableViewCell {
         setupView()
     }
 
-    func decorate(with item: WatchlistItem) {
+    func bind(with item: StockQuoteResponse) {
         symbolNameLabel.text = "\(item.symbol)"
         priceView.decorate(with: item)
     }

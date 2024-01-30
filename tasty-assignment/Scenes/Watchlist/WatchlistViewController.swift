@@ -51,13 +51,14 @@ class WatchlistViewController: TypedViewController<UITableView> {
 
     private func setupBindings() {
         viewModel
-            .$items
+            .$result
+            .compactMap { try? $0.get() }
             .receive(on: DispatchQueue.main)
             .bind(
                 subscriber: customView.rowsSubscriber(
                     cellIdentifier: String(describing: WatchlistItemTableViewCell.self),
                     cellType: WatchlistItemTableViewCell.self) { cell, _, item in
-                        cell.decorate(with: item)
+                        cell.bind(with: item)
                     }
             )
             .store(in: &cancellables)
@@ -66,11 +67,12 @@ class WatchlistViewController: TypedViewController<UITableView> {
 
 extension WatchlistViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(
-            SymbolDetailsViewController(
-                viewModel: SymbolDetailsViewModel(item: viewModel.items[indexPath.row])
-            ),
-            animated: true
-        )
+        guard let item = try? viewModel.result.get()[indexPath.row] else { return }
+//        navigationController?.pushViewController(
+//            SymbolDetailsViewController(
+//                viewModel: SymbolDetailsViewModel(item: item)
+//            ),
+//            animated: true
+//        )
     }
 }

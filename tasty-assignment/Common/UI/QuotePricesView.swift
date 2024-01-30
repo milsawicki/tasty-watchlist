@@ -91,10 +91,10 @@ class QuotePricesView: UIView {
         setupConstraints()
     }
 
-    func decorate(with item: WatchlistItem) {
+    func decorate(with item: StockQuoteResponse) {
         bidPriceLabel.text = "\(item.bidPrice)"
         askPriceLabel.text = "\(item.askPrice)"
-        lastPriceLabel.text = "\(item.lastPrice)"
+        lastPriceLabel.text = "\(item.latestPrice)"
     }
 
     required init?(coder: NSCoder) {
