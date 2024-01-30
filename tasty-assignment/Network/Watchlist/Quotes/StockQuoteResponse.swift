@@ -8,7 +8,7 @@
 import Foundation
 
 /// Response for stock quote request.
-struct StockQuoteResponse: Codable {
+struct StockQuoteResponse: Codable, Hashable {
     let companyName: String
     let symbol: String
     let bidPrice: Double
