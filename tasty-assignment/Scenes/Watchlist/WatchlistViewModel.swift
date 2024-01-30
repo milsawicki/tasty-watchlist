@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 
-struct Watchlist {
+struct Watchlist: Hashable {
     let name: String
     let items: [WatchlistItem]
 }

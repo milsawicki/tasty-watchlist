@@ -36,7 +36,6 @@ class AddWatchlistItemViewController: TypedViewController<SymbolSearchView> {
 private extension AddWatchlistItemViewController {
     func setupBindings() {
         viewModel.bind(query: customView.searchBar.textPublisher)
-            
         viewModel
             .$searchResult
             .receive(on: DispatchQueue.main)

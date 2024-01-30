@@ -37,19 +37,35 @@ class WatchlistViewController: TypedViewController<UITableView> {
         setupBindings()
         viewModel.fetchQuotes()
     }
+}
 
+extension WatchlistViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let item = try? viewModel.result.get()[indexPath.row] else { return }
+    }
+}
+
+private extension WatchlistViewController {
     @objc func addButtonTapped() {
         navigationController?.present(AddWatchlistItemViewController(viewModel: SearchSymbolViewModel()), animated: true)
     }
 
-    private func setupNavigationController() {
+    @objc func watchlistsButtonTapped() {
+        navigationController?.pushViewController(MyWatchlistsViewController(viewModel: MyWatchlistsViewModel()), animated: true)
+    }
+
+    func setupNavigationController() {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         addButton.tintColor = .red
         navigationItem.rightBarButtonItem = addButton
         navigationController?.navigationBar.isHidden = false
+
+        let watchlistsButton = UIBarButtonItem(image: UIImage(systemName: "eyeglasses"), style: .plain, target: self, action: #selector(watchlistsButtonTapped))
+        watchlistsButton.tintColor = .red
+        navigationItem.leftBarButtonItem = watchlistsButton
     }
 
-    private func setupBindings() {
+    func setupBindings() {
         viewModel
             .$result
             .compactMap { try? $0.get() }
@@ -62,17 +78,5 @@ class WatchlistViewController: TypedViewController<UITableView> {
                     }
             )
             .store(in: &cancellables)
-    }
-}
-
-extension WatchlistViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let item = try? viewModel.result.get()[indexPath.row] else { return }
-//        navigationController?.pushViewController(
-//            SymbolDetailsViewController(
-//                viewModel: SymbolDetailsViewModel(item: item)
-//            ),
-//            animated: true
-//        )
     }
 }
