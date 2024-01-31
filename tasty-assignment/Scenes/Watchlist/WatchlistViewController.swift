@@ -6,21 +6,19 @@
 //
 
 import Combine
-import CombineDataSources
 import UIKit
 
-class WatchlistViewController: TypedViewController<UITableView> {
-    var viewModel: WatchlistViewModel
+class WatchlistViewController: TypedViewController<WatchlistView> {
+    enum Section {
+        case main
+    }
 
+    var viewModel: WatchlistViewModel
+    private var cancellables: [AnyCancellable] = []
+    var dataSource: UITableViewDiffableDataSource<Section, StockQuoteResponse>!
     init(viewModel: WatchlistViewModel) {
         self.viewModel = viewModel
-        super.init(customView: UITableView())
-        customView.separatorStyle = .none
-        customView.delegate = self
-        customView.register(
-            WatchlistItemTableViewCell.self,
-            forCellReuseIdentifier: String(describing: WatchlistItemTableViewCell.self)
-        )
+        super.init(customView: WatchlistView())
     }
 
     @available(*, unavailable, message: "You should use init(viewModel:) method.")
@@ -28,51 +26,73 @@ class WatchlistViewController: TypedViewController<UITableView> {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private var cancellables: [AnyCancellable] = []
-
     override func viewDidLoad() {
         super.viewDidLoad()
         title = viewModel.currentWatchlistName
         setupNavigationController()
+        setupTableView()
         setupBindings()
-        viewModel.fetchQuotes()
+    }
+}
+
+extension WatchlistViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel.activeWatchlist.items.count
     }
 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: WatchlistItemTableViewCell.self)) as? WatchlistItemTableViewCell else {
+            return UITableViewCell()
+        }
+
+        cell.bind(with: viewModel.fetchQuotes(for: viewModel.activeWatchlist.items[indexPath.row].symbol))
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    }
+}
+
+private extension WatchlistViewController {
     @objc func addButtonTapped() {
         navigationController?.present(AddWatchlistItemViewController(viewModel: SearchSymbolViewModel()), animated: true)
     }
 
-    private func setupNavigationController() {
+    @objc func watchlistsButtonTapped() {
+        navigationController?.pushViewController(MyWatchlistsViewController(viewModel: MyWatchlistsViewModel()), animated: true)
+    }
+
+    func setupNavigationController() {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         addButton.tintColor = .red
         navigationItem.rightBarButtonItem = addButton
         navigationController?.navigationBar.isHidden = false
+
+        let watchlistsButton = UIBarButtonItem(image: UIImage(systemName: "eyeglasses"), style: .plain, target: self, action: #selector(watchlistsButtonTapped))
+        watchlistsButton.tintColor = .red
+        navigationItem.leftBarButtonItem = watchlistsButton
     }
 
-    private func setupBindings() {
-        viewModel
-            .$result
-            .compactMap { try? $0.get() }
+    func setupBindings() {
+        viewModel.$quotesResult
             .receive(on: DispatchQueue.main)
-            .bind(
-                subscriber: customView.rowsSubscriber(
-                    cellIdentifier: String(describing: WatchlistItemTableViewCell.self),
-                    cellType: WatchlistItemTableViewCell.self) { cell, _, item in
-                        cell.bind(with: item)
-                    }
-            )
+            .filter { $0.isSuccess }
+            .compactMap { $0.value }
+            .sink(receiveValue: { [weak self] _ in
+                self?.customView.tableView.reloadData()
+            })
             .store(in: &cancellables)
     }
-}
 
-extension WatchlistViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let item = try? viewModel.result.get()[indexPath.row] else { return }
-//        navigationController?.pushViewController(
-//            SymbolDetailsViewController(
-//                viewModel: SymbolDetailsViewModel(item: item)
-//            ),
-//            animated: true
-//        )
+    func setupTableView() {
+        customView.tableView.dataSource = self
+        customView.tableView.separatorStyle = .none
+        customView.tableView.register(
+            WatchlistItemTableViewCell.self,
+            forCellReuseIdentifier: String(describing: WatchlistItemTableViewCell.self)
+        )
     }
 }

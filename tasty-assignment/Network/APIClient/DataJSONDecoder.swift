@@ -26,8 +26,8 @@ class TopLevelKeyJSONDecoder: JSONDecoder {
         let topLevelContainer = try super.decode(TopLevelContainer<T>.self, from: data)
         return topLevelContainer.data
     }
-    
-    private struct TopLevelContainer<T: Decodable>: Decodable {
-        let data: T
-    }
+}
+
+struct TopLevelContainer<T: Decodable>: Decodable {
+    let data: T
 }

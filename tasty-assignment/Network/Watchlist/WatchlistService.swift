@@ -12,8 +12,8 @@ protocol QuoutesServiceProtocol {
     func fetchQuotes(for symbol: String) -> AnyPublisher<StockQuoteResponse, Error>
 }
 
-class WatchlistService: QuoutesServiceProtocol {
-    let apiClient: APIClient
+final class WatchlistService: QuoutesServiceProtocol {
+    private let apiClient: APIClient
 
     init(apiClient: APIClient) {
         self.apiClient = apiClient
@@ -21,16 +21,15 @@ class WatchlistService: QuoutesServiceProtocol {
 
     func fetchQuotes(for symbol: String) -> AnyPublisher<StockQuoteResponse, Error> {
         apiClient.fetch(
-            request: QuotesRequest(symbol: symbol),
-            expectedResponseType: StockQuoteResponse.self
+            request: QuotesRequest(symbol: symbol)
         )
     }
 
     func searchSymbol(for query: String) -> AnyPublisher<SearchSymbolItemsResponse, Error> {
-        apiClient.fetch(
-            request: SearchSymbolRequest(query: query),
-            expectedResponseType: SearchSymbolItemsResponse.self,
-            hasTopLevelKey: true
+        AnyPublisher<TopLevelContainer<SearchSymbolItemsResponse>, Error>(
+            apiClient.fetch(request: SearchSymbolRequest(query: query))
         )
+        .map { $0.data }
+        .eraseToAnyPublisher()
     }
 }
