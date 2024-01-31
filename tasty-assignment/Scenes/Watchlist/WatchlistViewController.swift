@@ -38,12 +38,12 @@ class WatchlistViewController: TypedViewController<WatchlistView> {
 
 extension WatchlistViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.result.value?.count ?? 0
+        viewModel.quotesResult.value?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: WatchlistItemTableViewCell.self)) as? WatchlistItemTableViewCell,
-              let item = viewModel.result.value?[indexPath.row] else {
+              let item = viewModel.quotesResult.value?[indexPath.row] else {
             return UITableViewCell()
         }
 
@@ -71,7 +71,7 @@ private extension WatchlistViewController {
     }
 
     func setupBindings() {
-        viewModel.$result
+        viewModel.$quotesResult
             .receive(on: DispatchQueue.main)
             .map { $0.isLoading }
             .sink { [weak self] isLoading in
@@ -79,13 +79,13 @@ private extension WatchlistViewController {
             }
             .store(in: &cancellables)
 
-        viewModel.$result
+        viewModel.$quotesResult
             .receive(on: DispatchQueue.main)
             .map { $0.isSuccess }
             .assign(to: \.isHidden, on: customView.loadingIndicator)
             .store(in: &cancellables)
 
-        viewModel.$result
+        viewModel.$quotesResult
             .receive(on: DispatchQueue.main)
             .filter { $0.isSuccess }
             .compactMap { $0.value }

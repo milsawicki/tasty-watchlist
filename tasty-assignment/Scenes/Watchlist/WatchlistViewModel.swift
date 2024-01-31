@@ -34,7 +34,7 @@ class WatchlistViewModel: ObservableObject {
         activeWatchlist.name
     }
 
-    @Published var result: AsyncResult<[StockQuoteResponse], Error> = .pending
+    @Published var quotesResult: AsyncResult<[StockQuoteResponse], Error> = .pending
     private var activeWatchlist: Watchlist = Watchlist.mocked
     private let service: WatchlistService
     private var cancellables: [AnyCancellable] = []
@@ -57,7 +57,7 @@ class WatchlistViewModel: ObservableObject {
             }
             .map { $0.sorted { $0.symbol < $1.symbol } }
             .asResult()
-            .assign(to: &$result)
+            .assign(to: &$quotesResult)
     }
     
     func deleteSymbol() {
