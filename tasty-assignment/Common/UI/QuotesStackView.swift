@@ -8,21 +8,21 @@
 import UIKit
 
 class QuotesStackView: UIView {
-    private let bidPriceLabel: UILabel = {
+    let bidPriceLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.font = Typography.bold(size: 12)
         return label
     }()
 
-    private let askPriceLabel: UILabel = {
+    let askPriceLabel: UILabel = {
         let label = UILabel()
         label.font = Typography.bold(size: 12)
         label.textAlignment = .center
         return label
     }()
 
-    private let lastPriceLabel: UILabel = {
+    let lastPriceLabel: UILabel = {
         let label = UILabel()
         label.font = Typography.bold(size: 14)
         label.textAlignment = .center

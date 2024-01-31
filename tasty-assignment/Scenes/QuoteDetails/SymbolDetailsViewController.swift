@@ -36,11 +36,6 @@ private extension SymbolDetailsViewController {
             .map { $0.symbol }
             .assign(to: \.text, on: customView.symbolLabel)
             .store(in: &cancellables)
-        
-        viewModel.$item
-            .map { $0.companyName }
-            .assign(to: \.text, on: customView.quoteDescriptionLabel)
-            .store(in: &cancellables)
     }
 }
 

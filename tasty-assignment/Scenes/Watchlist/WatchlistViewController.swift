@@ -32,22 +32,20 @@ class WatchlistViewController: TypedViewController<WatchlistView> {
         setupNavigationController()
         setupTableView()
         setupBindings()
-        viewModel.fetchQuotes()
     }
 }
 
 extension WatchlistViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.quotesResult.value?.count ?? 0
+        viewModel.activeWatchlist.items.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: WatchlistItemTableViewCell.self)) as? WatchlistItemTableViewCell,
-              let item = viewModel.quotesResult.value?[indexPath.row] else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: WatchlistItemTableViewCell.self)) as? WatchlistItemTableViewCell else {
             return UITableViewCell()
         }
 
-        cell.decorate(with: item)
+        cell.bind(with: viewModel.fetchQuotes(for: viewModel.activeWatchlist.items[indexPath.row].symbol))
         return cell
     }
 
@@ -63,11 +61,19 @@ private extension WatchlistViewController {
         navigationController?.present(AddWatchlistItemViewController(viewModel: SearchSymbolViewModel()), animated: true)
     }
 
+    @objc func watchlistsButtonTapped() {
+        navigationController?.pushViewController(MyWatchlistsViewController(viewModel: MyWatchlistsViewModel()), animated: true)
+    }
+
     func setupNavigationController() {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         addButton.tintColor = .red
         navigationItem.rightBarButtonItem = addButton
         navigationController?.navigationBar.isHidden = false
+
+        let watchlistsButton = UIBarButtonItem(image: UIImage(systemName: "eyeglasses"), style: .plain, target: self, action: #selector(watchlistsButtonTapped))
+        watchlistsButton.tintColor = .red
+        navigationItem.leftBarButtonItem = watchlistsButton
     }
 
     func setupBindings() {
