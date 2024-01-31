@@ -9,16 +9,10 @@ import UIKit
 
 class WatchlistView: UIView {
     let tableView = UITableView()
-    let loadingIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView()
-        indicator.style = .large
-        return indicator
-    }()
 
     init() {
         super.init(frame: .zero)
         addSubview(tableView)
-        addSubview(loadingIndicator)
         setupConstraints()
     }
 
@@ -31,9 +25,6 @@ private extension WatchlistView {
     func setupConstraints() {
         tableView.snp.makeConstraints { make in
             make.edges.equalTo(self)
-        }
-        loadingIndicator.snp.makeConstraints { make in
-            make.center.equalTo(self)
         }
     }
 }

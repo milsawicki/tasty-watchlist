@@ -36,7 +36,6 @@
 		015B52072B5EE124000F7071 /* tasty_assignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B52062B5EE124000F7071 /* tasty_assignmentTests.swift */; };
 		015B52112B5EE124000F7071 /* tasty_assignmentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B52102B5EE124000F7071 /* tasty_assignmentUITests.swift */; };
 		015B52132B5EE124000F7071 /* tasty_assignmentUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B52122B5EE124000F7071 /* tasty_assignmentUITestsLaunchTests.swift */; };
-		01B602312B649B0F00E6B7BB /* CombineDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 01B602302B649B0F00E6B7BB /* CombineDataSources */; };
 		01B602332B649C0900E6B7BB /* SymbolSearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B602322B649C0900E6B7BB /* SymbolSearchResultTableViewCell.swift */; };
 		01B602382B65874E00E6B7BB /* SymbolDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B602372B65874E00E6B7BB /* SymbolDetailsViewController.swift */; };
 		01B6023A2B6587F400E6B7BB /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B602392B6587F400E6B7BB /* ChartView.swift */; };
@@ -121,7 +120,6 @@
 				01037B4D2B62B7B4005FEFC2 /* SnapKit in Frameworks */,
 				01037B4F2B62B7B4005FEFC2 /* SnapKit-Dynamic in Frameworks */,
 				01B6023F2B65885400E6B7BB /* DGChartsDynamic in Frameworks */,
-				01B602312B649B0F00E6B7BB /* CombineDataSources in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,7 +366,6 @@
 			packageProductDependencies = (
 				01037B4C2B62B7B4005FEFC2 /* SnapKit */,
 				01037B4E2B62B7B4005FEFC2 /* SnapKit-Dynamic */,
-				01B602302B649B0F00E6B7BB /* CombineDataSources */,
 				01B6023C2B65885400E6B7BB /* DGCharts */,
 				01B6023E2B65885400E6B7BB /* DGChartsDynamic */,
 			);
@@ -446,7 +443,6 @@
 			mainGroup = 015B51E32B5EE122000F7071;
 			packageReferences = (
 				01037B4B2B62B7B4005FEFC2 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				01B6022F2B649B0F00E6B7BB /* XCRemoteSwiftPackageReference "CombineDataSources" */,
 				01B6023B2B65885400E6B7BB /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = 015B51ED2B5EE122000F7071 /* Products */;
@@ -875,14 +871,6 @@
 				minimumVersion = 5.7.0;
 			};
 		};
-		01B6022F2B649B0F00E6B7BB /* XCRemoteSwiftPackageReference "CombineDataSources" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/CombineCommunity/CombineDataSources.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.2.5;
-			};
-		};
 		01B6023B2B65885400E6B7BB /* XCRemoteSwiftPackageReference "Charts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielgindi/Charts.git";
@@ -903,11 +891,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 01037B4B2B62B7B4005FEFC2 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = "SnapKit-Dynamic";
-		};
-		01B602302B649B0F00E6B7BB /* CombineDataSources */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 01B6022F2B649B0F00E6B7BB /* XCRemoteSwiftPackageReference "CombineDataSources" */;
-			productName = CombineDataSources;
 		};
 		01B6023C2B65885400E6B7BB /* DGCharts */ = {
 			isa = XCSwiftPackageProductDependency;
