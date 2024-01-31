@@ -37,7 +37,7 @@ class WatchlistViewController: TypedViewController<WatchlistView> {
 
 extension WatchlistViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.activeWatchlist.items.count
+        viewModel.currentWatchlist.symbols.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -45,14 +45,31 @@ extension WatchlistViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
 
-        cell.bind(with: viewModel.fetchQuotes(for: viewModel.activeWatchlist.items[indexPath.row].symbol))
+        let symbol = viewModel.currentWatchlist.symbols[indexPath.row]
+        cell.bind(with: viewModel.fetchQuotes(for: symbol))
+
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        navigationController?.pushViewController(SymbolDetailsViewController(viewModel: SymbolDetailsViewModel(symbol: viewModel.symbols[indexPath.row])), animated: true)
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let symbol = viewModel.symbols[indexPath.row]
+
+            let alert = UIAlertController(title: "Delete Symbol", message: "Are you sure you want to remove \(symbol) from the watchlist?", preferredStyle: .alert)
+
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+            alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
+                self?.viewModel.delete(symbol: symbol)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }))
+
+            present(alert, animated: true)
+        }
     }
 }
 
@@ -62,7 +79,14 @@ private extension WatchlistViewController {
     }
 
     @objc func watchlistsButtonTapped() {
-        navigationController?.pushViewController(MyWatchlistsViewController(viewModel: MyWatchlistsViewModel()), animated: true)
+        navigationController?.pushViewController(
+            MyWatchlistsViewController(
+                viewModel: MyWatchlistsViewModel(
+                    watchlistStorage: WatchlistStorage()
+                )
+            ),
+            animated: true
+        )
     }
 
     func setupNavigationController() {

@@ -25,8 +25,8 @@ class MyWatchlistsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func bind(with model: Watchlist) {
-        watchlistNameLabel.text = model.name
+    func bind(with watchlist: Watchlist) {
+        watchlistNameLabel.text = watchlist.name
     }
     
     private func setupView() {
