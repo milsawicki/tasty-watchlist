@@ -15,8 +15,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let viewController = WatchlistViewController(viewModel: WatchlistViewModel(service: WatchlistService(apiClient: DefaultAPIClient())))
-
+        let viewController = WatchlistViewController(
+            viewModel: WatchlistViewModel(
+                service: WatchlistService(
+                    apiClient: DefaultAPIClient()
+                ),
+                watchlistStorage: WatchlistStorage()
+            )
+        )
         let navigationController = UINavigationController(rootViewController: viewController)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()

@@ -8,45 +8,45 @@
 import Combine
 import Foundation
 
-struct Watchlist: Hashable {
-    let name: String
-    let items: [WatchlistItem]
-}
+struct Watchlist: Codable {
+    let id: UUID
+    var name: String
+    var symbols: [String]
 
-struct WatchlistItem: Hashable {
-    let symbol: String
-}
-
-extension Watchlist {
-    static let mocked: Watchlist = .init(
-        name: "My Watchlist",
-        items: [
-            .init(symbol: "AAPL"),
-            .init(symbol: "MSFT"),
-            .init(symbol: "GOOG"),
-        ]
-    )
+    init(name: String, symbols: [String] = []) {
+        id = UUID()
+        self.name = name
+        self.symbols = symbols
+    }
 }
 
 class WatchlistViewModel: ObservableObject {
     var currentWatchlistName: String {
-        activeWatchlist.name
+        currentWatchlist.name
+    }
+
+    var currentWatchlist: Watchlist {
+        watchlistStorage.loadWatchlists().first ?? Watchlist(name: "", symbols: [])
+    }
+
+    var symbols: [String] {
+        currentWatchlist.symbols
     }
 
     @Published var quotesResult: AsyncResult<[StockQuoteResponse], Error> = .pending
-    var activeWatchlist: Watchlist = Watchlist.mocked
     private let service: WatchlistService
-    private var cancellables: [AnyCancellable] = []
-    init(service: WatchlistService) {
+    private var watchlistStorage: WatchlistStorageProtocol
+
+    init(service: WatchlistService, watchlistStorage: WatchlistStorageProtocol) {
         self.service = service
+        self.watchlistStorage = watchlistStorage
     }
 
     func fetchQuotes(for symbol: String) -> AnyPublisher<StockQuoteResponse, Error> {
-        service.fetchQuotes(for: symbol).eraseToAnyPublisher()
+        service.fetchQuotes(for: symbol)
     }
 
-    // TODO: refresh quotes for each cell
-
-    func deleteSymbol() {
+    func delete(symbol: String) {
+        watchlistStorage.removeSymbol(from: currentWatchlist.id, symbol: symbol)
     }
 }

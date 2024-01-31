@@ -21,6 +21,7 @@ class MyWatchlistsViewController: TypedViewController<MyWatchlistsView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         customView.watchlistsTableView.dataSource = self
+        customView.watchlistsTableView.delegate = self
         navigationController?.navigationBar.tintColor = .red
         let addWatchlistButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         addWatchlistButton.tintColor = .red
@@ -31,12 +32,12 @@ class MyWatchlistsViewController: TypedViewController<MyWatchlistsView> {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     @objc func addButtonTapped() {
     }
 }
 
-extension MyWatchlistsViewController: UITableViewDataSource {
+extension MyWatchlistsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.watchlists.count
     }
@@ -49,12 +50,12 @@ extension MyWatchlistsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            viewModel.watchlists.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            let watchlist = viewModel.watchlists[indexPath.row]
+            viewModel.delete(watchlist: watchlist)
         }
     }
-}
 
-class MyWatchlistsViewModel {
-    @Published var watchlists: [Watchlist] = [Watchlist.mocked, Watchlist.mocked]
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        viewModel.watchlists.count <= 1 ? .none : .delete
+    }
 }

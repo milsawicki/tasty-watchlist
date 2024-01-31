@@ -31,17 +31,17 @@ class SymbolDetailsViewController: TypedViewController<SymbolDetailsView> {
 
 private extension SymbolDetailsViewController {
     func setupBindings() {
-        viewModel.$item
-            .map { $0.symbol }
+        viewModel.$symbol
+            .compactMap { $0 }
             .assign(to: \.text, on: customView.symbolLabel)
             .store(in: &cancellables)
     }
 }
 
 class SymbolDetailsViewModel {
-    @Published var item: WatchlistItem
+    @Published var symbol: String
 
-    init(item: WatchlistItem) {
-        self.item = item
+    init(symbol: String) {
+        self.symbol = symbol
     }
 }

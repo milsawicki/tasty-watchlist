@@ -10,11 +10,24 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        setupDefaultWatchlist()
         // Override point for customization after application launch.
         return true
     }
 
+    private func setupDefaultWatchlist() {
+        let storage = WatchlistStorage()
+        let defaultWatchlists = storage.loadWatchlists()
+
+        storage.removeAll()
+        // Check if the app is launched for the first time
+        if defaultWatchlists.isEmpty {
+            let defaultWatchlist = Watchlist(name: "My first list", symbols: ["AAPL", "GOOGL", "MSFT"])
+            storage.addWatchlist(defaultWatchlist)
+        }
+    }
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
