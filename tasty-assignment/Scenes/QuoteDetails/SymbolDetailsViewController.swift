@@ -26,7 +26,6 @@ class SymbolDetailsViewController: TypedViewController<SymbolDetailsView> {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setupBindings()
-//        customView.quoteView.decorate(with: viewModel.item)
     }
 }
 

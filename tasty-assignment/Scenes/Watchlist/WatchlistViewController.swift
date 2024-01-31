@@ -79,20 +79,6 @@ private extension WatchlistViewController {
     func setupBindings() {
         viewModel.$quotesResult
             .receive(on: DispatchQueue.main)
-            .map { $0.isLoading }
-            .sink { [weak self] isLoading in
-                isLoading ? self?.customView.loadingIndicator.startAnimating() : self?.customView.loadingIndicator.stopAnimating()
-            }
-            .store(in: &cancellables)
-
-        viewModel.$quotesResult
-            .receive(on: DispatchQueue.main)
-            .map { $0.isSuccess }
-            .assign(to: \.isHidden, on: customView.loadingIndicator)
-            .store(in: &cancellables)
-
-        viewModel.$quotesResult
-            .receive(on: DispatchQueue.main)
             .filter { $0.isSuccess }
             .compactMap { $0.value }
             .sink(receiveValue: { [weak self] _ in
