@@ -24,7 +24,7 @@ class SymbolDetailsView: UIView {
         return label
     }()
 
-    let quoteView = QuotePricesView()
+    let quoteView = QuotesStackView()
 
     private lazy var headerStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [symbolLabel, quoteDescriptionLabel])

@@ -7,22 +7,22 @@
 
 import UIKit
 
-class QuotePricesView: UIView {
-    private let bidPriceLabel: UILabel = {
+class QuotesStackView: UIView {
+    let bidPriceLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.font = Typography.bold(size: 12)
         return label
     }()
 
-    private let askPriceLabel: UILabel = {
+    let askPriceLabel: UILabel = {
         let label = UILabel()
         label.font = Typography.bold(size: 12)
         label.textAlignment = .center
         return label
     }()
 
-    private let lastPriceLabel: UILabel = {
+    let lastPriceLabel: UILabel = {
         let label = UILabel()
         label.font = Typography.bold(size: 14)
         label.textAlignment = .center
@@ -102,7 +102,7 @@ class QuotePricesView: UIView {
     }
 }
 
-private extension QuotePricesView {
+private extension QuotesStackView {
     func setupConstraints() {
         wrappingStackView.snp.makeConstraints { make in
             make.leading.trailing.top.bottom.equalTo(self)

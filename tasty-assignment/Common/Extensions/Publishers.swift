@@ -8,8 +8,8 @@
 import Combine
 
 extension Publisher {
-    func asResult() -> AnyPublisher<Result<Output, Failure>, Never> {
-        map(Result.success)
+    func asResult() -> AnyPublisher<AsyncResult<Output, Failure>, Never> {
+        map(AsyncResult.success)
             .catch { Just(.failure($0)) }
             .eraseToAnyPublisher()
     }

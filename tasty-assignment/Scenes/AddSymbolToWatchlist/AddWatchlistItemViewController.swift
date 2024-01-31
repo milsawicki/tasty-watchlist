@@ -6,7 +6,6 @@
 //
 
 import Combine
-import CombineDataSources
 import UIKit
 
 class AddWatchlistItemViewController: TypedViewController<SymbolSearchView> {
@@ -36,19 +35,5 @@ class AddWatchlistItemViewController: TypedViewController<SymbolSearchView> {
 private extension AddWatchlistItemViewController {
     func setupBindings() {
         viewModel.bind(query: customView.searchBar.textPublisher)
-            
-        viewModel
-            .$searchResult
-            .receive(on: DispatchQueue.main)
-            .bind(
-                subscriber: customView.resultTableView.rowsSubscriber(
-                    cellIdentifier: String(describing: SymbolSearchResultTableViewCell.self),
-                    cellType: SymbolSearchResultTableViewCell.self,
-                    cellConfig: { cell, _, item in
-                        cell.decorate(with: item)
-                    }
-                )
-            )
-            .store(in: &cancellables)
     }
 }
