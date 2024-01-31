@@ -52,7 +52,7 @@ class WatchlistItemTableViewCell: UITableViewCell {
         setupView()
     }
 
-    private func bindPublisher(_ quotesPublisher: AnyPublisher<AsyncResult<StockQuoteResponse, Error>, Never>) {
+    private func bind(_ quotesPublisher: AnyPublisher<AsyncResult<StockQuoteResponse, Error>, Never>) {
         quotesPublisher
             .compactMap { $0.value?.symbol }
             .assign(to: \.text, on: symbolNameLabel)
@@ -91,8 +91,14 @@ class WatchlistItemTableViewCell: UITableViewCell {
             .autoconnect()
             .flatMap { _ in quotesPublisher }
             .eraseToAnyPublisher()
-        bindPublisher(quotesPublisher)
-        bindPublisher(timerPublisher)
+        bind(quotesPublisher)
+        bind(timerPublisher)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cancellables.forEach { $0.cancel() }
+        cancellables.removeAll()
     }
 }
 
