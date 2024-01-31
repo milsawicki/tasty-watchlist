@@ -7,7 +7,7 @@
 
 import UIKit
 
-class QuotePricesView: UIView {
+class QuotesStackView: UIView {
     private let bidPriceLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -102,7 +102,7 @@ class QuotePricesView: UIView {
     }
 }
 
-private extension QuotePricesView {
+private extension QuotesStackView {
     func setupConstraints() {
         wrappingStackView.snp.makeConstraints { make in
             make.leading.trailing.top.bottom.equalTo(self)

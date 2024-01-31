@@ -34,12 +34,10 @@ class WatchlistViewModel: ObservableObject {
         activeWatchlist.name
     }
 
+    @Published var result: AsyncResult<[StockQuoteResponse], Error> = .pending
     private var activeWatchlist: Watchlist = Watchlist.mocked
     private let service: WatchlistService
     private var cancellables: [AnyCancellable] = []
-
-    @Published var result: Result<[StockQuoteResponse], Error> = .success([])
-
     init(service: WatchlistService) {
         self.service = service
     }
@@ -47,6 +45,7 @@ class WatchlistViewModel: ObservableObject {
     func fetchQuotes() {
         Timer.publish(every: 5, on: .main, in: .common)
             .autoconnect()
+            .flatMap { _ in Just(AsyncResult<StockQuoteResponse, Error>.pending) }
             .flatMap { [unowned self] _ in
                 self.activeWatchlist.items.publisher
                     .map { $0.symbol }
@@ -56,13 +55,12 @@ class WatchlistViewModel: ObservableObject {
                     .collect()
                     .eraseToAnyPublisher()
             }
+            .map { $0.sorted { $0.symbol < $1.symbol } }
             .asResult()
-            .sink { error in
-                print(error)
-            } receiveValue: { result in
-                print(result)
-                self.result = result
-            }
-            .store(in: &cancellables)
+            .assign(to: &$result)
+    }
+    
+    func deleteSymbol() {
+        
     }
 }

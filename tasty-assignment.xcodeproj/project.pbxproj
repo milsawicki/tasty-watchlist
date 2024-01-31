@@ -26,6 +26,8 @@
 		012055802B608A8200FD95AA /* WatchlistService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0120557F2B608A8200FD95AA /* WatchlistService.swift */; };
 		012055822B60971300FD95AA /* WatchlistItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012055812B60971300FD95AA /* WatchlistItemTableViewCell.swift */; };
 		012055842B615AB300FD95AA /* QuotesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012055832B615AB300FD95AA /* QuotesRequest.swift */; };
+		014A633E2B6AC62C008F4BE3 /* WatchlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014A633D2B6AC62C008F4BE3 /* WatchlistView.swift */; };
+		014A63402B6ACDE1008F4BE3 /* AsyncResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014A633F2B6ACDE1008F4BE3 /* AsyncResult.swift */; };
 		015B51F02B5EE122000F7071 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B51EF2B5EE122000F7071 /* AppDelegate.swift */; };
 		015B51F22B5EE122000F7071 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B51F12B5EE122000F7071 /* SceneDelegate.swift */; };
 		015B51F42B5EE122000F7071 /* WatchlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B51F32B5EE122000F7071 /* WatchlistViewController.swift */; };
@@ -41,7 +43,7 @@
 		01B6023D2B65885400E6B7BB /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 01B6023C2B65885400E6B7BB /* DGCharts */; };
 		01B6023F2B65885400E6B7BB /* DGChartsDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 01B6023E2B65885400E6B7BB /* DGChartsDynamic */; };
 		01B602412B65896C00E6B7BB /* SymbolDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B602402B65896C00E6B7BB /* SymbolDetailsView.swift */; };
-		01B602432B65930500E6B7BB /* QuotePricesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B602422B65930500E6B7BB /* QuotePricesView.swift */; };
+		01B602432B65930500E6B7BB /* QuotesStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B602422B65930500E6B7BB /* QuotesStackView.swift */; };
 		01B602452B65A4E800E6B7BB /* Publishers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B602442B65A4E800E6B7BB /* Publishers.swift */; };
 		01D41D952B62B731004B6789 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D41D942B62B731004B6789 /* Typography.swift */; };
 /* End PBXBuildFile section */
@@ -81,6 +83,8 @@
 		0120557F2B608A8200FD95AA /* WatchlistService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistService.swift; sourceTree = "<group>"; };
 		012055812B60971300FD95AA /* WatchlistItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistItemTableViewCell.swift; sourceTree = "<group>"; };
 		012055832B615AB300FD95AA /* QuotesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotesRequest.swift; sourceTree = "<group>"; };
+		014A633D2B6AC62C008F4BE3 /* WatchlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistView.swift; sourceTree = "<group>"; };
+		014A633F2B6ACDE1008F4BE3 /* AsyncResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncResult.swift; sourceTree = "<group>"; };
 		015B51EC2B5EE122000F7071 /* tasty-assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tasty-assignment.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		015B51EF2B5EE122000F7071 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		015B51F12B5EE122000F7071 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,7 +101,7 @@
 		01B602372B65874E00E6B7BB /* SymbolDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolDetailsViewController.swift; sourceTree = "<group>"; };
 		01B602392B6587F400E6B7BB /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		01B602402B65896C00E6B7BB /* SymbolDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolDetailsView.swift; sourceTree = "<group>"; };
-		01B602422B65930500E6B7BB /* QuotePricesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotePricesView.swift; sourceTree = "<group>"; };
+		01B602422B65930500E6B7BB /* QuotesStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotesStackView.swift; sourceTree = "<group>"; };
 		01B602442B65A4E800E6B7BB /* Publishers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publishers.swift; sourceTree = "<group>"; };
 		01D41D942B62B731004B6789 /* Typography.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -168,6 +172,7 @@
 				015B51F32B5EE122000F7071 /* WatchlistViewController.swift */,
 				010D09952B601AA700763897 /* WatchlistViewModel.swift */,
 				012055812B60971300FD95AA /* WatchlistItemTableViewCell.swift */,
+				014A633D2B6AC62C008F4BE3 /* WatchlistView.swift */,
 			);
 			path = Watchlist;
 			sourceTree = "<group>";
@@ -193,7 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				010D09912B60155100763897 /* TypedViewController.swift */,
-				01B602422B65930500E6B7BB /* QuotePricesView.swift */,
+				01B602422B65930500E6B7BB /* QuotesStackView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -202,8 +207,8 @@
 			isa = PBXGroup;
 			children = (
 				01B602342B649D6000E6B7BB /* Watchlist */,
-				010D09992B601C7300763897 /* Database */,
 				010D09982B601C6000763897 /* APIClient */,
+				014A633F2B6ACDE1008F4BE3 /* AsyncResult.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -218,13 +223,6 @@
 				01037B622B63E32F005FEFC2 /* APIError.swift */,
 			);
 			path = APIClient;
-			sourceTree = "<group>";
-		};
-		010D09992B601C7300763897 /* Database */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Database;
 			sourceTree = "<group>";
 		};
 		010D099C2B6028C600763897 /* Model */ = {
@@ -259,6 +257,7 @@
 		015B51EE2B5EE122000F7071 /* tasty-assignment */ = {
 			isa = PBXGroup;
 			children = (
+				01AEA03A2B6A9AC800295FDC /* Database */,
 				010D099C2B6028C600763897 /* Model */,
 				010D09972B601C5800763897 /* Network */,
 				010D098F2B600FAA00763897 /* Common */,
@@ -288,6 +287,13 @@
 				015B52122B5EE124000F7071 /* tasty_assignmentUITestsLaunchTests.swift */,
 			);
 			path = "tasty-assignmentUITests";
+			sourceTree = "<group>";
+		};
+		01AEA03A2B6A9AC800295FDC /* Database */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 		01B602342B649D6000E6B7BB /* Watchlist */ = {
@@ -473,7 +479,7 @@
 				01037B592B63ADA8005FEFC2 /* UITextField+Publisher.swift in Sources */,
 				01B602382B65874E00E6B7BB /* SymbolDetailsViewController.swift in Sources */,
 				01037B522B633148005FEFC2 /* AddWatchlistItemViewController.swift in Sources */,
-				01B602432B65930500E6B7BB /* QuotePricesView.swift in Sources */,
+				01B602432B65930500E6B7BB /* QuotesStackView.swift in Sources */,
 				010D099B2B601C9600763897 /* APIClient.swift in Sources */,
 				015B51F42B5EE122000F7071 /* WatchlistViewController.swift in Sources */,
 				012055802B608A8200FD95AA /* WatchlistService.swift in Sources */,
@@ -482,6 +488,7 @@
 				010D09962B601AA700763897 /* WatchlistViewModel.swift in Sources */,
 				01B602452B65A4E800E6B7BB /* Publishers.swift in Sources */,
 				010D09A02B602B9A00763897 /* HttpMethod.swift in Sources */,
+				014A63402B6ACDE1008F4BE3 /* AsyncResult.swift in Sources */,
 				010D09922B60155100763897 /* TypedViewController.swift in Sources */,
 				01B602332B649C0900E6B7BB /* SymbolSearchResultTableViewCell.swift in Sources */,
 				01037B542B63316C005FEFC2 /* SymbolSearchView.swift in Sources */,
@@ -492,6 +499,7 @@
 				015B51F22B5EE122000F7071 /* SceneDelegate.swift in Sources */,
 				01D41D952B62B731004B6789 /* Typography.swift in Sources */,
 				012055842B615AB300FD95AA /* QuotesRequest.swift in Sources */,
+				014A633E2B6AC62C008F4BE3 /* WatchlistView.swift in Sources */,
 				01037B612B63BC24005FEFC2 /* DataJSONDecoder.swift in Sources */,
 				01037B632B63E32F005FEFC2 /* APIError.swift in Sources */,
 				01B6023A2B6587F400E6B7BB /* ChartView.swift in Sources */,

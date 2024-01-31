@@ -8,23 +8,36 @@
 import SnapKit
 import UIKit
 
-
 class WatchlistItemTableViewCell: UITableViewCell {
     private lazy var wrapperStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [symbolNameLabel, priceView])
+        let stackView = UIStackView(arrangedSubviews: [stockStackView, quotesStackView])
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.spacing = 4
         return stackView
     }()
 
-    private let symbolNameLabel: UILabel = {
+    private lazy var stockStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [symbolNameLabel, companyNameLabel])
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.spacing = 4
+        return stackView
+    }()
+
+    private let companyNameLabel: UILabel = {
         let label = UILabel()
         label.font = Typography.bold(size: 14)
         return label
     }()
 
-    let priceView = QuotePricesView()
+    private let symbolNameLabel: UILabel = {
+        let label = UILabel()
+        label.font = Typography.regular(size: 14)
+        return label
+    }()
+
+    let quotesStackView = QuotesStackView()
 
     // - SeeAlso: UITableViewCell.init(style:reuseIdentifier)
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -38,14 +51,15 @@ class WatchlistItemTableViewCell: UITableViewCell {
         setupView()
     }
 
-    func bind(with item: StockQuoteResponse) {
-        symbolNameLabel.text = "\(item.symbol)"
-        priceView.decorate(with: item)
+    func decorate(with item: StockQuoteResponse) {
+        symbolNameLabel.text = item.symbol
+        companyNameLabel.text = item.companyName
+        quotesStackView.decorate(with: item)
     }
 }
 
 private extension WatchlistItemTableViewCell {
-    private func setupView() {
+    func setupView() {
         selectionStyle = .none
         addSubview(wrapperStackView)
         setupConstraints()
