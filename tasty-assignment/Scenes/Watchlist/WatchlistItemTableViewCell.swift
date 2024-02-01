@@ -10,30 +10,16 @@ import SnapKit
 import UIKit
 class WatchlistItemTableViewCell: UITableViewCell {
     private lazy var wrapperStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [stockStackView, quotesStackView])
+        let stackView = UIStackView(arrangedSubviews: [symbolNameLabel, quotesStackView])
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.spacing = 4
         return stackView
     }()
 
-    private lazy var stockStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [symbolNameLabel, companyNameLabel])
-        stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.spacing = 4
-        return stackView
-    }()
-
-    private let companyNameLabel: UILabel = {
-        let label = UILabel()
-        label.font = Typography.bold(size: 14)
-        return label
-    }()
-
     private let symbolNameLabel: UILabel = {
         let label = UILabel()
-        label.font = Typography.regular(size: 14)
+        label.font = Typography.bold(size: 16)
         return label
     }()
 
@@ -59,11 +45,6 @@ class WatchlistItemTableViewCell: UITableViewCell {
             .store(in: &cancellables)
 
         quotesPublisher
-            .compactMap { $0.value?.companyName }
-            .assign(to: \.text, on: companyNameLabel)
-            .store(in: &cancellables)
-
-        quotesPublisher
             .compactMap { $0.value?.bidPrice }
             .map { "\($0)" }
             .assign(to: \.text, on: quotesStackView.bidPriceLabel)
@@ -82,7 +63,9 @@ class WatchlistItemTableViewCell: UITableViewCell {
             .store(in: &cancellables)
     }
 
-    func bind(with publisher: AnyPublisher<StockQuoteResponse, Error>) {
+    func bind(_ symbol: String, with publisher: AnyPublisher<StockQuoteResponse, Error>) {
+        symbolNameLabel.text = symbol
+
         let quotesPublisher = publisher
             .receive(on: DispatchQueue.main)
             .asResult()
@@ -94,7 +77,7 @@ class WatchlistItemTableViewCell: UITableViewCell {
         bind(quotesPublisher)
         bind(timerPublisher)
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         cancellables.forEach { $0.cancel() }

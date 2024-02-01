@@ -46,7 +46,7 @@ extension WatchlistViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         if let symbol = viewModel.currentWatchlist?.symbols[indexPath.row] {
-            cell.bind(with: viewModel.fetchQuotes(for: symbol))
+            cell.bind(symbol, with: viewModel.fetchQuotes(for: symbol))
         }
         return cell
     }
