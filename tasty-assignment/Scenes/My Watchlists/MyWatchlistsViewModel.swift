@@ -8,7 +8,7 @@
 import Foundation
 import XCoordinator
 
-class MyWatchlistsViewModel {
+final class MyWatchlistsViewModel {
     private let router: WeakRouter<AppRoute>
     private let watchlistStorage: WatchlistStorageProtocol
 

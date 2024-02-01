@@ -28,13 +28,6 @@ protocol WatchlistStorageProtocol {
     /// - Parameter id: The id of the watchlist to be removed.
     func removeWatchlist(id: UUID)
 
-    /// Renames an existing watchlist from an old name to a new name.
-    ///
-    /// - Parameters:
-    ///   - oldName: The current name of the watchlist.
-    ///   - newName: The new name for the watchlist.
-    func renameWatchlist(oldName: String, newName: String)
-
     /// Adds a symbol to the specified watchlist.
     ///
     /// - Parameters:
@@ -109,14 +102,6 @@ class WatchlistStorage: WatchlistStorageProtocol {
     func removeWatchlist(id: UUID) {
         var watchlists = loadWatchlists()
         watchlists.removeAll { $0.id == id }
-        saveWatchlists(watchlists)
-    }
-
-    func renameWatchlist(oldName: String, newName: String) {
-        var watchlists = loadWatchlists()
-        if let index = watchlists.firstIndex(where: { $0.name == oldName }) {
-            watchlists[index].name = newName
-        }
         saveWatchlists(watchlists)
     }
 

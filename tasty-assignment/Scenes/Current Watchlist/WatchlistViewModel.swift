@@ -9,19 +9,7 @@ import Combine
 import Foundation
 import XCoordinator
 
-struct Watchlist: Codable {
-    let id: UUID
-    var name: String
-    var symbols: [String]
-
-    init(name: String, symbols: [String] = []) {
-        id = UUID()
-        self.name = name
-        self.symbols = symbols
-    }
-}
-
-class WatchlistViewModel: ObservableObject {
+final class WatchlistViewModel: ObservableObject {
     
     var shouldShowEmpty: Bool {
         symbols.isEmpty

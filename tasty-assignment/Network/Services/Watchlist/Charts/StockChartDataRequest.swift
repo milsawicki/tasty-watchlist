@@ -8,7 +8,6 @@
 import Foundation
 
 struct StockChartDataRequest: Request {
-
     var apiPath: String {
         "/stock/\(query)/chart/1m"
     }

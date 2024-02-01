@@ -63,6 +63,3 @@ final class DefaultAPIClient: APIClient {
             .eraseToAnyPublisher()
     }
 }
-
-extension APIClient {
-}

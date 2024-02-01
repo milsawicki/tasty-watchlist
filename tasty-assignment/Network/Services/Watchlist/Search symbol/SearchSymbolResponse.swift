@@ -7,6 +7,18 @@
 
 import Foundation
 
+struct SearchSymbolItemsResponse: Codable {
+    let items: [SearchSymbolResponse]
+    
+    init() {
+        items = []
+    }
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.items = try container.decode([SearchSymbolResponse].self, forKey: .items)
+    }
+}
+
 struct SearchSymbolResponse: Codable, Hashable {
     let symbol: String
     let description: String
@@ -26,14 +38,5 @@ struct SearchSymbolResponse: Codable, Hashable {
         case instrumentType = "instrument-type"
     }
 }
-struct SearchSymbolItemsResponse: Codable {
-    let items: [SearchSymbolResponse]
-    
-    init() {
-        items = []
-    }
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.items = try container.decode([SearchSymbolResponse].self, forKey: .items)
-    }
-}
+
+
