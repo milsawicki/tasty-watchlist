@@ -5,20 +5,26 @@
 //  Created by Milan Sawicki on 27/01/2024.
 //
 
-import UIKit
 import DGCharts
+import UIKit
 
 class ChartView: UIView {
-    let dataEntries = [
-        CandleChartDataEntry(x: 1, shadowH: 10, shadowL: 5, open: 6, close: 9),
-        CandleChartDataEntry(x: 2, shadowH: 12, shadowL: 4, open: 8, close: 11)
-        // ... more entries
-    ]
+ 
+    private let candleStickChartView = CandleStickChartView()
+
     init() {
         super.init(frame: .zero)
         addSubview(candleStickChartView)
         setupConstraints()
-        let dataSet = CandleChartDataSet(entries: dataEntries, label: "My Data")
+    }
+
+    @available(*, unavailable, message: "Use init() method instead.")
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
+    func updateChart(with entries: [CandleChartDataEntry]) {
+        let dataSet = CandleChartDataSet(entries: entries, label: "D1 chart")
         dataSet.colors = [NSUIColor.black]
         dataSet.shadowColor = NSUIColor.darkGray
         dataSet.shadowWidth = 0.7
@@ -26,14 +32,8 @@ class ChartView: UIView {
         dataSet.decreasingFilled = true
         dataSet.increasingColor = NSUIColor.green
         dataSet.increasingFilled = true
-        let data = CandleChartData(dataSet: dataSet)
-        candleStickChartView.data = data
-    }
 
-    let candleStickChartView = CandleStickChartView()
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        candleStickChartView.data = CandleChartData(dataSet: dataSet)
     }
 }
 

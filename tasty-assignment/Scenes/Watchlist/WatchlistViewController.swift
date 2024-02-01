@@ -69,7 +69,6 @@ extension WatchlistViewController: UITableViewDelegate, UITableViewDataSource {
                 tableView.deleteRows(at: [indexPath], with: .fade)
                 tableView.endUpdates()
             }))
-
             present(alert, animated: true)
         }
     }
@@ -103,6 +102,7 @@ private extension WatchlistViewController {
 
     func setupTableView() {
         customView.tableView.dataSource = self
+        customView.tableView.delegate = self
         customView.tableView.separatorStyle = .none
         customView.tableView.register(
             WatchlistItemTableViewCell.self,

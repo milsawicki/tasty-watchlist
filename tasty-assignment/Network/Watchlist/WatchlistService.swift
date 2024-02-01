@@ -8,11 +8,13 @@
 import Combine
 import Foundation
 
-protocol QuoutesServiceProtocol {
+protocol WatchlistServiceProtocol {
     func fetchQuotes(for symbol: String) -> AnyPublisher<StockQuoteResponse, Error>
+    func searchSymbol(for query: String) -> AnyPublisher<[SearchSymbolResponse], Error>
+    func fetchChartData(for symbol: String) -> AnyPublisher<[StockChartDataResponse], Error>
 }
 
-final class WatchlistService: QuoutesServiceProtocol {
+final class WatchlistService: WatchlistServiceProtocol {
     private let apiClient: APIClient
 
     init(apiClient: APIClient) {
@@ -31,5 +33,9 @@ final class WatchlistService: QuoutesServiceProtocol {
         )
         .map { $0.data.items }
         .eraseToAnyPublisher()
+    }
+    
+    func fetchChartData(for symbol: String) -> AnyPublisher<[StockChartDataResponse], Error> {
+        apiClient.fetch(request: StockChartDataRequest(query: symbol))
     }
 }

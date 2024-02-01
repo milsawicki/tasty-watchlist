@@ -9,15 +9,16 @@ import Combine
 import UIKit
 
 class SymbolDetailsViewController: TypedViewController<SymbolDetailsView> {
-    let viewModel: SymbolDetailsViewModel
+    private let viewModel: SymbolDetailsViewModel
+    private var cancellables = Set<AnyCancellable>()
 
-    private var cancellables = [AnyCancellable]()
     init(viewModel: SymbolDetailsViewModel) {
         let customView = SymbolDetailsView()
         self.viewModel = viewModel
         super.init(customView: customView)
     }
 
+    @available(*, unavailable, message: "Use init(viewModel: SymbolDetailsViewModel) instead.")
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -35,13 +36,27 @@ private extension SymbolDetailsViewController {
             .compactMap { $0 }
             .assign(to: \.text, on: customView.symbolLabel)
             .store(in: &cancellables)
-    }
-}
 
-class SymbolDetailsViewModel {
-    @Published var symbol: String
+        viewModel.fetchChartData()
+            .receive(on: DispatchQueue.main)
+            .sink { error in
+                print(error)
+            } receiveValue: { [weak self] entries in
+                self?.customView.updateChart(with: entries)
+            }
+            .store(in: &cancellables)
 
-    init(symbol: String) {
-        self.symbol = symbol
+        viewModel.fetchQuotes()
+            .receive(on: DispatchQueue.main)
+            .asResult()
+            .filter { $0.isSuccess }
+            .compactMap { $0.value }
+            .sink { [weak self] response in
+                guard let self = self else { return }
+                customView.quoteView.askPriceLabel.text = "\(response.askPrice)"
+                customView.quoteView.bidPriceLabel.text = "\(response.bidPrice)"
+                customView.quoteView.lastPriceLabel.text = "\(response.latestPrice)"
+            }
+            .store(in: &cancellables)
     }
 }

@@ -45,7 +45,7 @@ class AppCoordinator: NavigationCoordinator<AppRoute> {
             let viewController = MyWatchlistsViewController(viewModel: viewModel)
             return .push(viewController)
         case let .symbolDetails(symbol):
-            let viewModel = SymbolDetailsViewModel(symbol: symbol)
+            let viewModel = SymbolDetailsViewModel(symbol: symbol, watchlistService: watchlistService)
             let viewController = SymbolDetailsViewController(viewModel: viewModel)
             return .push(viewController)
         case let .addSymbolToWatchlist(uuid, completion):
