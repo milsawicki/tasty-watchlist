@@ -50,6 +50,9 @@
 		01D41D952B62B731004B6789 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D41D942B62B731004B6789 /* Typography.swift */; };
 		01F8208E2B6B0694006CE2BD /* MyWatchlistsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8208D2B6B0694006CE2BD /* MyWatchlistsViewModel.swift */; };
 		01F820922B6B13B9006CE2BD /* WatchlistStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F820912B6B13B9006CE2BD /* WatchlistStorage.swift */; };
+		01F820952B6B177A006CE2BD /* XCoordinator in Frameworks */ = {isa = PBXBuildFile; productRef = 01F820942B6B177A006CE2BD /* XCoordinator */; };
+		01F820972B6B177A006CE2BD /* XCoordinatorCombine in Frameworks */ = {isa = PBXBuildFile; productRef = 01F820962B6B177A006CE2BD /* XCoordinatorCombine */; };
+		01F8209A2B6B1DFD006CE2BD /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F820992B6B1DFD006CE2BD /* AppCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +116,7 @@
 		01D41D942B62B731004B6789 /* Typography.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		01F8208D2B6B0694006CE2BD /* MyWatchlistsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWatchlistsViewModel.swift; sourceTree = "<group>"; };
 		01F820912B6B13B9006CE2BD /* WatchlistStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistStorage.swift; sourceTree = "<group>"; };
+		01F820992B6B1DFD006CE2BD /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,10 +124,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01F820972B6B177A006CE2BD /* XCoordinatorCombine in Frameworks */,
 				01B6023D2B65885400E6B7BB /* DGCharts in Frameworks */,
 				01037B4D2B62B7B4005FEFC2 /* SnapKit in Frameworks */,
 				01037B4F2B62B7B4005FEFC2 /* SnapKit-Dynamic in Frameworks */,
 				01B6023F2B65885400E6B7BB /* DGChartsDynamic in Frameworks */,
+				01F820952B6B177A006CE2BD /* XCoordinator in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +272,7 @@
 		015B51EE2B5EE122000F7071 /* tasty-assignment */ = {
 			isa = PBXGroup;
 			children = (
+				01F820982B6B1DEB006CE2BD /* Router */,
 				01F820902B6B13B9006CE2BD /* Persistance */,
 				010D099C2B6028C600763897 /* Model */,
 				010D09972B601C5800763897 /* Network */,
@@ -353,6 +360,14 @@
 			path = Persistance;
 			sourceTree = "<group>";
 		};
+		01F820982B6B1DEB006CE2BD /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				01F820992B6B1DFD006CE2BD /* AppCoordinator.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -374,6 +389,8 @@
 				01037B4E2B62B7B4005FEFC2 /* SnapKit-Dynamic */,
 				01B6023C2B65885400E6B7BB /* DGCharts */,
 				01B6023E2B65885400E6B7BB /* DGChartsDynamic */,
+				01F820942B6B177A006CE2BD /* XCoordinator */,
+				01F820962B6B177A006CE2BD /* XCoordinatorCombine */,
 			);
 			productName = "tasty-assignment";
 			productReference = 015B51EC2B5EE122000F7071 /* tasty-assignment.app */;
@@ -450,6 +467,7 @@
 			packageReferences = (
 				01037B4B2B62B7B4005FEFC2 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				01B6023B2B65885400E6B7BB /* XCRemoteSwiftPackageReference "Charts" */,
+				01F820932B6B177A006CE2BD /* XCRemoteSwiftPackageReference "XCoordinator" */,
 			);
 			productRefGroup = 015B51ED2B5EE122000F7071 /* Products */;
 			projectDirPath = "";
@@ -520,6 +538,7 @@
 				010D09A22B602F0F00763897 /* Request.swift in Sources */,
 				015B51F02B5EE122000F7071 /* AppDelegate.swift in Sources */,
 				01B6024A2B69A62B00E6B7BB /* MyWatchlistsView.swift in Sources */,
+				01F8209A2B6B1DFD006CE2BD /* AppCoordinator.swift in Sources */,
 				015B51F22B5EE122000F7071 /* SceneDelegate.swift in Sources */,
 				01D41D952B62B731004B6789 /* Typography.swift in Sources */,
 				012055842B615AB300FD95AA /* QuotesRequest.swift in Sources */,
@@ -887,6 +906,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		01F820932B6B177A006CE2BD /* XCRemoteSwiftPackageReference "XCoordinator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/QuickBirdEng/XCoordinator.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -909,6 +936,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 01B6023B2B65885400E6B7BB /* XCRemoteSwiftPackageReference "Charts" */;
 			productName = DGChartsDynamic;
+		};
+		01F820942B6B177A006CE2BD /* XCoordinator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01F820932B6B177A006CE2BD /* XCRemoteSwiftPackageReference "XCoordinator" */;
+			productName = XCoordinator;
+		};
+		01F820962B6B177A006CE2BD /* XCoordinatorCombine */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01F820932B6B177A006CE2BD /* XCRemoteSwiftPackageReference "XCoordinator" */;
+			productName = XCoordinatorCombine;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

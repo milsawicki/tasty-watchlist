@@ -7,6 +7,7 @@
 
 import Combine
 import Foundation
+import XCoordinator
 
 struct Watchlist: Codable {
     let id: UUID
@@ -36,10 +37,12 @@ class WatchlistViewModel: ObservableObject {
     @Published var quotesResult: AsyncResult<[StockQuoteResponse], Error> = .pending
     private let service: WatchlistService
     private var watchlistStorage: WatchlistStorageProtocol
+    private var router: WeakRouter<AppRoute>
 
-    init(service: WatchlistService, watchlistStorage: WatchlistStorageProtocol) {
+    init(service: WatchlistService, watchlistStorage: WatchlistStorageProtocol, router: WeakRouter<AppRoute>) {
         self.service = service
         self.watchlistStorage = watchlistStorage
+        self.router = router
     }
 
     func fetchQuotes(for symbol: String) -> AnyPublisher<StockQuoteResponse, Error> {
@@ -48,5 +51,17 @@ class WatchlistViewModel: ObservableObject {
 
     func delete(symbol: String) {
         watchlistStorage.removeSymbol(from: currentWatchlist.id, symbol: symbol)
+    }
+    
+    func showSymbolDetails(_ symbol: String) {
+        router.trigger(.symbolDetails(symbol: symbol))
+    }
+    
+    func showAddSymbol() {
+        router.trigger(.addSymbolToWatchlist)
+    }
+    
+    func manageWatchlists() {
+        router.trigger(.manageWatchlists)
     }
 }

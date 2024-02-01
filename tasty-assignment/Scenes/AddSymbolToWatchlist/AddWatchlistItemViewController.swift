@@ -14,7 +14,7 @@ class AddWatchlistItemViewController: TypedViewController<SymbolSearchView> {
 
     init(viewModel: SearchSymbolViewModel) {
         let customView = SymbolSearchView()
-        self.viewModel = SearchSymbolViewModel()
+        self.viewModel = viewModel
         super.init(customView: customView)
         customView.dismissView = { [weak self] in
             self?.dismiss(animated: true)

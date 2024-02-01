@@ -8,23 +8,15 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-    let apiClient: APIClient = DefaultAPIClient()
-    lazy var service: QuoutesServiceProtocol = WatchlistService(apiClient: apiClient)
+    var appCoordinator: AppCoordinator?
+
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let viewController = WatchlistViewController(
-            viewModel: WatchlistViewModel(
-                service: WatchlistService(
-                    apiClient: DefaultAPIClient()
-                ),
-                watchlistStorage: WatchlistStorage()
-            )
-        )
-        let navigationController = UINavigationController(rootViewController: viewController)
-        window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
+        appCoordinator = AppCoordinator()
+        guard let window = window else { return }
+        appCoordinator?.setRoot(for: window)
     }
 }

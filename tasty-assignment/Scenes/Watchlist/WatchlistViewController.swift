@@ -52,7 +52,8 @@ extension WatchlistViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(SymbolDetailsViewController(viewModel: SymbolDetailsViewModel(symbol: viewModel.symbols[indexPath.row])), animated: true)
+        let symbol = viewModel.symbols[indexPath.row]
+        viewModel.showSymbolDetails(symbol)
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -75,18 +76,11 @@ extension WatchlistViewController: UITableViewDelegate, UITableViewDataSource {
 
 private extension WatchlistViewController {
     @objc func addButtonTapped() {
-        navigationController?.present(AddWatchlistItemViewController(viewModel: SearchSymbolViewModel()), animated: true)
+        viewModel.showAddSymbol()
     }
 
     @objc func watchlistsButtonTapped() {
-        navigationController?.pushViewController(
-            MyWatchlistsViewController(
-                viewModel: MyWatchlistsViewModel(
-                    watchlistStorage: WatchlistStorage()
-                )
-            ),
-            animated: true
-        )
+        viewModel.manageWatchlists()
     }
 
     func setupNavigationController() {

@@ -9,12 +9,13 @@ import Combine
 import UIKit
 
 class SearchSymbolViewModel {
-    private let service = WatchlistService(apiClient: DefaultAPIClient())
+    private let service: WatchlistService
     @Published var searchTextFieldValue: String = ""
     @Published var searchResult: [SearchSymbolResponse] = []
     private var cancellables = [AnyCancellable]()
 
-    init() {
+    init(service: WatchlistService) {
+        self.service = service
     }
 
     func bind(query: AnyPublisher<String, Never>) {
