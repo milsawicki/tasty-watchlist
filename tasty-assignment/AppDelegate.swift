@@ -6,11 +6,11 @@
 //
 
 import UIKit
+import XCoordinator
+import XCoordinatorCombine
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupDefaultWatchlist()
         // Override point for customization after application launch.
@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             storage.addWatchlist(defaultWatchlist)
         }
     }
+
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
