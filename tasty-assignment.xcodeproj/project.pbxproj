@@ -30,6 +30,7 @@
 		013171A12B6C043000C0A0A8 /* SymbolDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013171A02B6C043000C0A0A8 /* SymbolDetailsViewModel.swift */; };
 		013171A32B6C08D100C0A0A8 /* StockChartDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013171A22B6C08D100C0A0A8 /* StockChartDataRequest.swift */; };
 		013171A52B6C0A9D00C0A0A8 /* StockChartDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013171A42B6C0A9D00C0A0A8 /* StockChartDataResponse.swift */; };
+		013171A82B6C571400C0A0A8 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013171A72B6C571400C0A0A8 /* Config.swift */; };
 		014A633E2B6AC62C008F4BE3 /* WatchlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014A633D2B6AC62C008F4BE3 /* WatchlistView.swift */; };
 		014A63402B6ACDE1008F4BE3 /* AsyncResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014A633F2B6ACDE1008F4BE3 /* AsyncResult.swift */; };
 		015B51F02B5EE122000F7071 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B51EF2B5EE122000F7071 /* AppDelegate.swift */; };
@@ -98,6 +99,7 @@
 		013171A02B6C043000C0A0A8 /* SymbolDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolDetailsViewModel.swift; sourceTree = "<group>"; };
 		013171A22B6C08D100C0A0A8 /* StockChartDataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockChartDataRequest.swift; sourceTree = "<group>"; };
 		013171A42B6C0A9D00C0A0A8 /* StockChartDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockChartDataResponse.swift; sourceTree = "<group>"; };
+		013171A72B6C571400C0A0A8 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		014A633D2B6AC62C008F4BE3 /* WatchlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistView.swift; sourceTree = "<group>"; };
 		014A633F2B6ACDE1008F4BE3 /* AsyncResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncResult.swift; sourceTree = "<group>"; };
 		015B51EC2B5EE122000F7071 /* tasty-assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tasty-assignment.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -260,6 +262,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		013171A62B6C56E500C0A0A8 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				013171A72B6C571400C0A0A8 /* Config.swift */,
+			);
+			path = Configs;
+			sourceTree = "<group>";
+		};
 		015B51E32B5EE122000F7071 = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +293,7 @@
 		015B51EE2B5EE122000F7071 /* tasty-assignment */ = {
 			isa = PBXGroup;
 			children = (
+				013171A62B6C56E500C0A0A8 /* Configs */,
 				01F820982B6B1DEB006CE2BD /* Router */,
 				01F820902B6B13B9006CE2BD /* Persistance */,
 				010D099C2B6028C600763897 /* Model */,
@@ -560,6 +571,7 @@
 				014A633E2B6AC62C008F4BE3 /* WatchlistView.swift in Sources */,
 				01037B612B63BC24005FEFC2 /* DataJSONDecoder.swift in Sources */,
 				01037B632B63E32F005FEFC2 /* APIError.swift in Sources */,
+				013171A82B6C571400C0A0A8 /* Config.swift in Sources */,
 				01B6023A2B6587F400E6B7BB /* ChartView.swift in Sources */,
 				013171A12B6C043000C0A0A8 /* SymbolDetailsViewModel.swift in Sources */,
 			);

@@ -67,7 +67,7 @@ protocol WatchlistStorageProtocol {
 
 class WatchlistStorage: WatchlistStorageProtocol {
     private let defaults = UserDefaults.standard
-    private let watchlistKey = "watchlists"
+    private let watchlistKey = Configs.UserDefaultsKeys.watchlistsStorage
 
     func loadWatchlists() -> [Watchlist] {
         guard let data = defaults.object(forKey: watchlistKey) as? Data else {

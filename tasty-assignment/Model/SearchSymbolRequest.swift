@@ -9,11 +9,11 @@ import Foundation
 
 struct SearchSymbolRequest: Request {
     var apiPath: String {
-        "symbols/search/\(query)"
+        "/symbols/search/\(query)"
     }
 
     var basePath: String {
-        "api.tastyworks.com/"
+        Configs.Network.tastyApiBaseUrl
     }
 
     var method: HTTPMethod = .get

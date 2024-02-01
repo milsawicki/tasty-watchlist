@@ -14,7 +14,7 @@ struct StockChartDataRequest: Request {
     }
 
     var basePath: String {
-        "cloud.iexapis.com/stable"
+        Configs.Network.iexBaseUrl
     }
 
     var method: HTTPMethod = .get

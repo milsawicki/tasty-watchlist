@@ -9,11 +9,11 @@ import Foundation
 
 struct QuotesRequest: Request {
     var apiPath: String {
-        "stock/\(symbol)/quote"
+        "/stock/\(symbol)/quote"
     }
 
     var basePath: String {
-        "cloud.iexapis.com/stable/"
+        Configs.Network.iexBaseUrl
     }
 
     var method: HTTPMethod = .get
