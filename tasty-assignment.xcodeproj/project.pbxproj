@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		01037B4D2B62B7B4005FEFC2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 01037B4C2B62B7B4005FEFC2 /* SnapKit */; };
 		01037B4F2B62B7B4005FEFC2 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 01037B4E2B62B7B4005FEFC2 /* SnapKit-Dynamic */; };
-		01037B522B633148005FEFC2 /* AddWatchlistItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01037B512B633148005FEFC2 /* AddWatchlistItemViewController.swift */; };
+		01037B522B633148005FEFC2 /* SearchSymbolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01037B512B633148005FEFC2 /* SearchSymbolViewController.swift */; };
 		01037B542B63316C005FEFC2 /* SymbolSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01037B532B63316C005FEFC2 /* SymbolSearchView.swift */; };
 		01037B562B633B6C005FEFC2 /* SearchSymbolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01037B552B633B6C005FEFC2 /* SearchSymbolViewModel.swift */; };
 		01037B592B63ADA8005FEFC2 /* UITextField+Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01037B582B63ADA8005FEFC2 /* UITextField+Publisher.swift */; };
@@ -73,7 +73,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		01037B512B633148005FEFC2 /* AddWatchlistItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWatchlistItemViewController.swift; sourceTree = "<group>"; };
+		01037B512B633148005FEFC2 /* SearchSymbolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSymbolViewController.swift; sourceTree = "<group>"; };
 		01037B532B63316C005FEFC2 /* SymbolSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolSearchView.swift; sourceTree = "<group>"; };
 		01037B552B633B6C005FEFC2 /* SearchSymbolViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSymbolViewModel.swift; sourceTree = "<group>"; };
 		01037B582B63ADA8005FEFC2 /* UITextField+Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Publisher.swift"; sourceTree = "<group>"; };
@@ -150,15 +150,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		01037B502B633130005FEFC2 /* AddSymbolToWatchlist */ = {
+		01037B502B633130005FEFC2 /* SearchSymbol */ = {
 			isa = PBXGroup;
 			children = (
-				01037B512B633148005FEFC2 /* AddWatchlistItemViewController.swift */,
+				01037B512B633148005FEFC2 /* SearchSymbolViewController.swift */,
 				01037B532B63316C005FEFC2 /* SymbolSearchView.swift */,
 				01037B552B633B6C005FEFC2 /* SearchSymbolViewModel.swift */,
 				01B602322B649C0900E6B7BB /* SymbolSearchResultTableViewCell.swift */,
 			);
-			path = AddSymbolToWatchlist;
+			path = SearchSymbol;
 			sourceTree = "<group>";
 		};
 		01037B572B63AD93005FEFC2 /* Extensions */ = {
@@ -175,7 +175,7 @@
 			children = (
 				01B602462B69A5FB00E6B7BB /* MyWatchlists */,
 				01B602362B65873400E6B7BB /* QuoteDetails */,
-				01037B502B633130005FEFC2 /* AddSymbolToWatchlist */,
+				01037B502B633130005FEFC2 /* SearchSymbol */,
 				010D098D2B600B3000763897 /* Watchlist */,
 			);
 			path = Scenes;
@@ -515,7 +515,7 @@
 				01037B562B633B6C005FEFC2 /* SearchSymbolViewModel.swift in Sources */,
 				01037B592B63ADA8005FEFC2 /* UITextField+Publisher.swift in Sources */,
 				01B602382B65874E00E6B7BB /* SymbolDetailsViewController.swift in Sources */,
-				01037B522B633148005FEFC2 /* AddWatchlistItemViewController.swift in Sources */,
+				01037B522B633148005FEFC2 /* SearchSymbolViewController.swift in Sources */,
 				01B602432B65930500E6B7BB /* QuotesStackView.swift in Sources */,
 				010D099B2B601C9600763897 /* APIClient.swift in Sources */,
 				015B51F42B5EE122000F7071 /* WatchlistViewController.swift in Sources */,

@@ -23,23 +23,29 @@ struct Watchlist: Codable {
 
 class WatchlistViewModel: ObservableObject {
     var currentWatchlistName: String {
-        currentWatchlist.name
+        currentWatchlist?.name ?? ""
     }
 
-    var currentWatchlist: Watchlist {
-        watchlistStorage.loadWatchlists().first ?? Watchlist(name: "", symbols: [])
+    var currentWatchlist: Watchlist? {
+        watchlistStorage.fetchWatchlist(by: watchlistId)
     }
 
     var symbols: [String] {
-        currentWatchlist.symbols
+        watchlistStorage.fetchSymbols(fromWatchlist: watchlistId) ?? []
     }
 
-    @Published var quotesResult: AsyncResult<[StockQuoteResponse], Error> = .pending
+    var reloadData: (() -> Void)?
+
     private let service: WatchlistService
     private var watchlistStorage: WatchlistStorageProtocol
     private var router: WeakRouter<AppRoute>
-
-    init(service: WatchlistService, watchlistStorage: WatchlistStorageProtocol, router: WeakRouter<AppRoute>) {
+    private var watchlistId: UUID
+    init(
+        watchlistId: UUID,
+        service: WatchlistService,
+        watchlistStorage: WatchlistStorageProtocol,
+        router: WeakRouter<AppRoute>) {
+        self.watchlistId = watchlistId
         self.service = service
         self.watchlistStorage = watchlistStorage
         self.router = router
@@ -50,17 +56,21 @@ class WatchlistViewModel: ObservableObject {
     }
 
     func delete(symbol: String) {
-        watchlistStorage.removeSymbol(from: currentWatchlist.id, symbol: symbol)
+        guard let id = currentWatchlist?.id else { return }
+        watchlistStorage.removeSymbol(from: id, symbol: symbol)
     }
-    
+
     func showSymbolDetails(_ symbol: String) {
         router.trigger(.symbolDetails(symbol: symbol))
     }
-    
+
     func showAddSymbol() {
-        router.trigger(.addSymbolToWatchlist)
+        guard let id = currentWatchlist?.id else { return }
+        router.trigger(.addSymbolToWatchlist(watchlistId: id) { [weak self] in
+            self?.reloadData?()
+        })
     }
-    
+
     func manageWatchlists() {
         router.trigger(.manageWatchlists)
     }

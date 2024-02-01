@@ -38,9 +38,9 @@ protocol WatchlistStorageProtocol {
     /// Adds a symbol to the specified watchlist.
     ///
     /// - Parameters:
-    ///   - watchlistName: The name of the watchlist to which the symbol will be added.
+    ///   - watchlistName: The UUID of the watchlist to which the symbol will be added.
     ///   - symbol: The symbol to be added to the watchlist.
-    func addSymbol(to watchlistName: String, symbol: String)
+    func addSymbol(to watchlistId: UUID, symbol: String)
 
     /// Removes a symbol from the specified watchlist.
     ///
@@ -48,6 +48,18 @@ protocol WatchlistStorageProtocol {
     ///   - watchlistId: The id of the watchlist from which the symbol will be removed.
     ///   - symbol: The symbol to be removed from the watchlist.
     func removeSymbol(from watchlistId: UUID, symbol: String)
+
+    /// Fetches a watchlist by its UUID.
+    ///
+    /// - Parameter id: The UUID of the watchlist to fetch.
+    /// - Returns: The `Watchlist` object if found, otherwise `nil`.
+    func fetchWatchlist(by id: UUID) -> Watchlist?
+
+    /// Fetches symbols from a watchlist by its UUID.
+    ///
+    /// - Parameter id: The UUID of the watchlist from which to fetch symbols.
+    /// - Returns: An array of symbols if the watchlist is found, otherwise `nil`.
+    func fetchSymbols(fromWatchlist id: UUID) -> [String]?
 
     /// Removes all items from the current watchlist.
     func removeAll()
@@ -108,9 +120,9 @@ class WatchlistStorage: WatchlistStorageProtocol {
         saveWatchlists(watchlists)
     }
 
-    func addSymbol(to watchlistName: String, symbol: String) {
+    func addSymbol(to watchlistId: UUID, symbol: String) {
         var watchlists = loadWatchlists()
-        if let index = watchlists.firstIndex(where: { $0.name == watchlistName }) {
+        if let index = watchlists.firstIndex(where: { $0.id == watchlistId }) {
             watchlists[index].symbols.append(symbol)
         }
         saveWatchlists(watchlists)
@@ -122,6 +134,16 @@ class WatchlistStorage: WatchlistStorageProtocol {
             watchlists[index].symbols.removeAll { $0 == symbol }
         }
         saveWatchlists(watchlists)
+    }
+
+    func fetchWatchlist(by id: UUID) -> Watchlist? {
+        let watchlists = loadWatchlists()
+        return watchlists.first { $0.id == id }
+    }
+
+    func fetchSymbols(fromWatchlist id: UUID) -> [String]? {
+        let watchlists = loadWatchlists()
+        return watchlists.first { $0.id == id }?.symbols
     }
 
     func removeAll() {
