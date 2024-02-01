@@ -33,12 +33,12 @@ class WatchlistViewModel: ObservableObject {
     var symbols: [String] {
         currentWatchlist.symbols
     }
+    
+    var reloadData: (() -> Void)?
 
-    @Published var quotesResult: AsyncResult<[StockQuoteResponse], Error> = .pending
     private let service: WatchlistService
     private var watchlistStorage: WatchlistStorageProtocol
     private var router: WeakRouter<AppRoute>
-
     init(service: WatchlistService, watchlistStorage: WatchlistStorageProtocol, router: WeakRouter<AppRoute>) {
         self.service = service
         self.watchlistStorage = watchlistStorage
@@ -52,15 +52,17 @@ class WatchlistViewModel: ObservableObject {
     func delete(symbol: String) {
         watchlistStorage.removeSymbol(from: currentWatchlist.id, symbol: symbol)
     }
-    
+
     func showSymbolDetails(_ symbol: String) {
         router.trigger(.symbolDetails(symbol: symbol))
     }
-    
+
     func showAddSymbol() {
-        router.trigger(.addSymbolToWatchlist)
+        router.trigger(.addSymbolToWatchlist(watchlistId: currentWatchlist.id) { [weak self] in
+            self?.reloadData?()
+        })
     }
-    
+
     func manageWatchlists() {
         router.trigger(.manageWatchlists)
     }

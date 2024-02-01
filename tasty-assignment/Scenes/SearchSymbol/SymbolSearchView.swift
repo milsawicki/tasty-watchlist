@@ -9,6 +9,9 @@ import UIKit
 
 class SymbolSearchView: UIView {
     var dismissView: (() -> Void)?
+    
+    var activityIndicator = UIActivityIndicatorView(style: .large)
+    
     var searchBar: UITextField = {
         let searchBar = UITextField()
         searchBar.placeholder = "Search for stock symbols"
@@ -16,10 +19,7 @@ class SymbolSearchView: UIView {
         return searchBar
     }()
 
-    var resultTableView: UITableView = {
-        let tableView = UITableView()
-        return tableView
-    }()
+    var resultTableView: UITableView = UITableView()
 
     private lazy var cancelButton: UIButton = {
         let button = UIButton(type: .system)
@@ -35,6 +35,7 @@ class SymbolSearchView: UIView {
         addSubview(searchBar)
         addSubview(resultTableView)
         addSubview(cancelButton)
+        addSubview(activityIndicator)
         resultTableView.delegate = self
         resultTableView.showsVerticalScrollIndicator = false
         resultTableView.register(SymbolSearchResultTableViewCell.self, forCellReuseIdentifier: String(describing: SymbolSearchResultTableViewCell.self))
@@ -70,7 +71,10 @@ extension SymbolSearchView {
             make.right.equalTo(self).offset(-16)
             make.bottom.equalTo(self)
         }
-    }    
+        activityIndicator.snp.makeConstraints { make in
+            make.center.equalTo(snp.center)
+        }
+    }
 
     @objc private func cancelButtonTapped() {
         dismissView?()

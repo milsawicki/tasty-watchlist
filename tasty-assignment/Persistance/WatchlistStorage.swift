@@ -38,9 +38,9 @@ protocol WatchlistStorageProtocol {
     /// Adds a symbol to the specified watchlist.
     ///
     /// - Parameters:
-    ///   - watchlistName: The name of the watchlist to which the symbol will be added.
+    ///   - watchlistName: The UUID of the watchlist to which the symbol will be added.
     ///   - symbol: The symbol to be added to the watchlist.
-    func addSymbol(to watchlistName: String, symbol: String)
+    func addSymbol(to watchlistId: UUID, symbol: String)
 
     /// Removes a symbol from the specified watchlist.
     ///
@@ -108,9 +108,9 @@ class WatchlistStorage: WatchlistStorageProtocol {
         saveWatchlists(watchlists)
     }
 
-    func addSymbol(to watchlistName: String, symbol: String) {
+    func addSymbol(to watchlistId: UUID, symbol: String) {
         var watchlists = loadWatchlists()
-        if let index = watchlists.firstIndex(where: { $0.name == watchlistName }) {
+        if let index = watchlists.firstIndex(where: { $0.id == watchlistId }) {
             watchlists[index].symbols.append(symbol)
         }
         saveWatchlists(watchlists)

@@ -11,8 +11,9 @@ import XCoordinator
 enum AppRoute: Route {
     case watchlist
     case manageWatchlists
-    case addSymbolToWatchlist
+    case addSymbolToWatchlist(watchlistId: UUID, completion: () -> ())
     case symbolDetails(symbol: String)
+    case dismiss
 }
 
 class AppCoordinator: NavigationCoordinator<AppRoute> {
@@ -25,6 +26,8 @@ class AppCoordinator: NavigationCoordinator<AppRoute> {
 
     override func prepareTransition(for route: AppRoute) -> NavigationTransition {
         switch route {
+        case .dismiss:
+            return .dismiss()
         case .watchlist:
             let viewModel = WatchlistViewModel(
                 service: watchlistService,
@@ -41,9 +44,15 @@ class AppCoordinator: NavigationCoordinator<AppRoute> {
             let viewModel = SymbolDetailsViewModel(symbol: symbol)
             let viewController = SymbolDetailsViewController(viewModel: viewModel)
             return .push(viewController)
-        case .addSymbolToWatchlist:
-            let viewModel = SearchSymbolViewModel(service: watchlistService)
-            let viewController = AddWatchlistItemViewController(viewModel: viewModel)
+        case let .addSymbolToWatchlist(uuid, completion):
+            let viewModel = SearchSymbolViewModel(
+                service: watchlistService,
+                watchlistStorage: watchlistStorage,
+                router: weakRouter,
+                watchlistId: uuid,
+                addSymbolCompletion: completion
+            )
+            let viewController = SearchSymbolViewController(viewModel: viewModel)
             return .present(viewController)
         }
     }

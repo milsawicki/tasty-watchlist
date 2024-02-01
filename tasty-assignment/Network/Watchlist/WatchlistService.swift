@@ -25,11 +25,11 @@ final class WatchlistService: QuoutesServiceProtocol {
         )
     }
 
-    func searchSymbol(for query: String) -> AnyPublisher<SearchSymbolItemsResponse, Error> {
+    func searchSymbol(for query: String) -> AnyPublisher<[SearchSymbolResponse], Error> {
         AnyPublisher<TopLevelContainer<SearchSymbolItemsResponse>, Error>(
             apiClient.fetch(request: SearchSymbolRequest(query: query))
         )
-        .map { $0.data }
+        .map { $0.data.items }
         .eraseToAnyPublisher()
     }
 }

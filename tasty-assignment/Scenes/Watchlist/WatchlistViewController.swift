@@ -95,14 +95,9 @@ private extension WatchlistViewController {
     }
 
     func setupBindings() {
-        viewModel.$quotesResult
-            .receive(on: DispatchQueue.main)
-            .filter { $0.isSuccess }
-            .compactMap { $0.value }
-            .sink(receiveValue: { [weak self] _ in
-                self?.customView.tableView.reloadData()
-            })
-            .store(in: &cancellables)
+        viewModel.reloadData = { [weak self] in
+            self?.customView.tableView.reloadData()
+        }
     }
 
     func setupTableView() {

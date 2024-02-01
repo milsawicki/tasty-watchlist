@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storage = WatchlistStorage()
         let defaultWatchlists = storage.loadWatchlists()
 
-        storage.removeAll()
+//        storage.removeAll()
         // Check if the app is launched for the first time
         if defaultWatchlists.isEmpty {
             let defaultWatchlist = Watchlist(name: "My first list", symbols: ["AAPL", "GOOGL", "MSFT"])
