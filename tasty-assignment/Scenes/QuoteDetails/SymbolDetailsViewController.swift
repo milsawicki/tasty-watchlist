@@ -46,11 +46,13 @@ private extension SymbolDetailsViewController {
             }
             .store(in: &cancellables)
 
-        viewModel.fetchQuotes()
+        let quotesPublisher = viewModel.fetchQuotes()
             .receive(on: DispatchQueue.main)
             .asResult()
             .filter { $0.isSuccess }
             .compactMap { $0.value }
+        
+        quotesPublisher
             .sink { [weak self] response in
                 guard let self = self else { return }
                 customView.quoteView.askPriceLabel.text = "\(response.askPrice)"
@@ -58,5 +60,24 @@ private extension SymbolDetailsViewController {
                 customView.quoteView.lastPriceLabel.text = "\(response.latestPrice)"
             }
             .store(in: &cancellables)
+    
+        let timerPublisher = Timer.publish(every: 5, on: .main, in: .common)
+            .autoconnect()
+            .flatMap { _ in quotesPublisher }
+            .eraseToAnyPublisher()
+        
+        bind(quotesPublisher.eraseToAnyPublisher())
+        bind(timerPublisher.eraseToAnyPublisher())
+    }
+    
+    func bind(_ publisher: AnyPublisher<StockQuoteResponse, Never>) {
+        publisher
+        .sink { [weak self] response in
+            guard let self = self else { return }
+            customView.quoteView.askPriceLabel.text = "\(response.askPrice)"
+            customView.quoteView.bidPriceLabel.text = "\(response.bidPrice)"
+            customView.quoteView.lastPriceLabel.text = "\(response.latestPrice)"
+        }
+        .store(in: &cancellables)
     }
 }

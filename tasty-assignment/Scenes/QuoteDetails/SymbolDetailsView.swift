@@ -59,7 +59,7 @@ private extension SymbolDetailsView {
         chartView.snp.makeConstraints { make in
             make.leading.trailing.equalTo(safeAreaLayoutGuide)
             make.top.equalTo(headerStackView.snp.bottom)
-            make.height.equalTo(300)
+            make.height.equalTo(self).dividedBy(2)
         }
 
         quoteView.snp.makeConstraints { make in
