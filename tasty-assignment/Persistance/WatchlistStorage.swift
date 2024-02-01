@@ -49,6 +49,18 @@ protocol WatchlistStorageProtocol {
     ///   - symbol: The symbol to be removed from the watchlist.
     func removeSymbol(from watchlistId: UUID, symbol: String)
 
+    /// Fetches a watchlist by its UUID.
+    ///
+    /// - Parameter id: The UUID of the watchlist to fetch.
+    /// - Returns: The `Watchlist` object if found, otherwise `nil`.
+    func fetchWatchlist(by id: UUID) -> Watchlist?
+
+    /// Fetches symbols from a watchlist by its UUID.
+    ///
+    /// - Parameter id: The UUID of the watchlist from which to fetch symbols.
+    /// - Returns: An array of symbols if the watchlist is found, otherwise `nil`.
+    func fetchSymbols(fromWatchlist id: UUID) -> [String]?
+
     /// Removes all items from the current watchlist.
     func removeAll()
 }
@@ -122,6 +134,16 @@ class WatchlistStorage: WatchlistStorageProtocol {
             watchlists[index].symbols.removeAll { $0 == symbol }
         }
         saveWatchlists(watchlists)
+    }
+
+    func fetchWatchlist(by id: UUID) -> Watchlist? {
+        let watchlists = loadWatchlists()
+        return watchlists.first { $0.id == id }
+    }
+
+    func fetchSymbols(fromWatchlist id: UUID) -> [String]? {
+        let watchlists = loadWatchlists()
+        return watchlists.first { $0.id == id }?.symbols
     }
 
     func removeAll() {

@@ -23,17 +23,14 @@ class MyWatchlistsViewController: TypedViewController<MyWatchlistsView> {
         customView.watchlistsTableView.dataSource = self
         customView.watchlistsTableView.delegate = self
         navigationController?.navigationBar.tintColor = .red
-        let addWatchlistButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
-        addWatchlistButton.tintColor = .red
-        navigationItem.rightBarButtonItem = addWatchlistButton
+        let createWatchlistButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(createWatchlistButtonTapped))
+        createWatchlistButton.tintColor = .red
+        navigationItem.rightBarButtonItem = createWatchlistButton
     }
 
     @available(*, unavailable, message: "Use init(viewModel: MyWatchlistsViewModel) method instead.  ")
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    @objc func addButtonTapped() {
     }
 }
 
@@ -51,11 +48,25 @@ extension MyWatchlistsViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let watchlist = viewModel.watchlists[indexPath.row]
+            tableView.beginUpdates()
             viewModel.delete(watchlist: watchlist)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.endUpdates()
         }
     }
 
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         viewModel.watchlists.count <= 1 ? .none : .delete
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let watchlist = viewModel.watchlists[indexPath.row]
+        viewModel.didSelect(watchlist: watchlist)
+    }
+    
+    @objc func createWatchlistButtonTapped() {
+        viewModel.createWatchlist { [weak self] in
+            self?.customView.watchlistsTableView.reloadData()
+        }
     }
 }
