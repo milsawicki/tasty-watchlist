@@ -40,6 +40,7 @@ class WatchlistViewModel: ObservableObject {
     private var watchlistStorage: WatchlistStorageProtocol
     private var router: WeakRouter<AppRoute>
     private var watchlistId: UUID
+
     init(
         watchlistId: UUID,
         service: WatchlistService,
