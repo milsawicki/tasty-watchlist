@@ -10,7 +10,7 @@ import UIKit
 class SymbolSearchView: UIView {
     var dismissView: (() -> Void)?
     
-    var activityIndicator = UIActivityIndicatorView(style: .large)
+    var activityIndicator = UIActivityIndicatorView(frame: .zero)
     
     var searchBar: UITextField = {
         let searchBar = UITextField()
@@ -36,6 +36,7 @@ class SymbolSearchView: UIView {
         addSubview(resultTableView)
         addSubview(cancelButton)
         addSubview(activityIndicator)
+        activityIndicator.startAnimating()
         resultTableView.delegate = self
         resultTableView.showsVerticalScrollIndicator = false
         resultTableView.register(SymbolSearchResultTableViewCell.self, forCellReuseIdentifier: String(describing: SymbolSearchResultTableViewCell.self))
@@ -73,6 +74,7 @@ extension SymbolSearchView {
         }
         activityIndicator.snp.makeConstraints { make in
             make.center.equalTo(snp.center)
+            make.width.height.equalTo(32)
         }
     }
 

@@ -17,13 +17,13 @@ final class SearchSymbolViewModel {
     private var cancellables = [AnyCancellable]()
     private var watchlistId: UUID
     private var router: WeakRouter<AppRoute>
-    private var addSymbolCompletion: () -> ()
+    private var addSymbolCompletion: () -> Void
     init(
         service: WatchlistService,
         watchlistStorage: WatchlistStorageProtocol,
         router: WeakRouter<AppRoute>,
         watchlistId: UUID,
-        addSymbolCompletion: @escaping () -> ()
+        addSymbolCompletion: @escaping () -> Void
     ) {
         self.watchlistStorage = watchlistStorage
         self.service = service
@@ -44,6 +44,8 @@ final class SearchSymbolViewModel {
     }
 
     func addSymbolToWatchlist(_ symbol: String) {
+        guard let watchlist = watchlistStorage.loadWatchlists().first(where: { $0.id == watchlistId }),
+              !watchlist.symbols.contains(where: { $0 == symbol }) else { return }
         watchlistStorage.addSymbol(to: watchlistId, symbol: symbol)
         router.trigger(.dismiss)
         addSymbolCompletion()

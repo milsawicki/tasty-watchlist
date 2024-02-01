@@ -42,6 +42,7 @@ private extension SearchSymbolViewController {
             .receive(on: DispatchQueue.main)
             .asResult()
             .map { $0.isLoading }
+            .share()
 
         loadingPublisher
             .sink { [weak self] isLoading in
@@ -55,10 +56,6 @@ private extension SearchSymbolViewController {
                 self?.customView.resultTableView.reloadData()
             }
             .store(in: &cancellables)
-//        loadingPublisher
-//            .map { !$0 }
-//            .assign(to: \.isHidden, on: customView.activityIndicator)
-//            .store(in: &cancellables)
     }
 }
 
