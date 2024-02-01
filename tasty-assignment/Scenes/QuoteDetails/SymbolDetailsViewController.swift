@@ -26,6 +26,7 @@ class SymbolDetailsViewController: TypedViewController<SymbolDetailsView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        navigationController?.navigationBar.tintColor = .red
         setupBindings()
     }
 }
