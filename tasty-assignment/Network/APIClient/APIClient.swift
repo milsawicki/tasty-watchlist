@@ -12,7 +12,7 @@ protocol APIClient {
     func fetch<T: Decodable>(request: Request) -> AnyPublisher<T, Error>
 }
 
-class DefaultAPIClient: APIClient {
+final class DefaultAPIClient: APIClient {
     let jsonDecoder: JSONDecoder
 
     init(jsonDecoder: JSONDecoder = JSONDecoder()) {

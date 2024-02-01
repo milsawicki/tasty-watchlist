@@ -34,6 +34,7 @@ class SymbolDetailsViewController: TypedViewController<SymbolDetailsView> {
 private extension SymbolDetailsViewController {
     func setupBindings() {
         viewModel.$symbol
+            .receive(on: DispatchQueue.main)
             .compactMap { $0 }
             .assign(to: \.text, on: customView.symbolLabel)
             .store(in: &cancellables)
@@ -52,16 +53,7 @@ private extension SymbolDetailsViewController {
             .asResult()
             .filter { $0.isSuccess }
             .compactMap { $0.value }
-        
-        quotesPublisher
-            .sink { [weak self] response in
-                guard let self = self else { return }
-                customView.quoteView.askPriceLabel.text = "\(response.askPrice)"
-                customView.quoteView.bidPriceLabel.text = "\(response.bidPrice)"
-                customView.quoteView.lastPriceLabel.text = "\(response.latestPrice)"
-            }
-            .store(in: &cancellables)
-    
+
         let timerPublisher = Timer.publish(every: 5, on: .main, in: .common)
             .autoconnect()
             .flatMap { _ in quotesPublisher }

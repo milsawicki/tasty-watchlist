@@ -32,7 +32,7 @@ class ChartView: UIView {
         dataSet.decreasingFilled = true
         dataSet.increasingColor = NSUIColor.green
         dataSet.increasingFilled = true
-    
+
         candleStickChartView.data = CandleChartData(dataSet: dataSet)
     }
 }

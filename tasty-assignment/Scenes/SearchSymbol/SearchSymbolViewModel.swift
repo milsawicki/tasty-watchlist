@@ -10,7 +10,6 @@ import UIKit
 import XCoordinator
 
 final class SearchSymbolViewModel {
-    @Published var searchTextFieldValue: String = ""
     @Published var searchResult: AsyncResult<[SearchSymbolResponse], Error> = .pending
     private let service: WatchlistService
     private let watchlistStorage: WatchlistStorageProtocol
@@ -18,6 +17,10 @@ final class SearchSymbolViewModel {
     private var watchlistId: UUID
     private var router: WeakRouter<AppRoute>
     private var addSymbolCompletion: () -> Void
+    var numberOfRows: Int {
+        searchResult.value?.count ?? 0
+    }
+
     init(
         service: WatchlistService,
         watchlistStorage: WatchlistStorageProtocol,
@@ -49,5 +52,13 @@ final class SearchSymbolViewModel {
         watchlistStorage.addSymbol(to: watchlistId, symbol: symbol)
         router.trigger(.dismiss)
         addSymbolCompletion()
+    }
+    
+    func symbol(for row: Int) -> SearchSymbolResponse? {
+        searchResult.value?[row]
+    }
+    
+    func dismiss() {
+        router.trigger(.dismiss)
     }
 }

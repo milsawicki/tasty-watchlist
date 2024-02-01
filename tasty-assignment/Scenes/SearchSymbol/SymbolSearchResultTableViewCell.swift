@@ -80,7 +80,6 @@ private extension SymbolSearchResultTableViewCell {
     func setupConstraints() {
         symbolStackView.snp.makeConstraints { make in
             make.centerY.equalTo(self)
-            make.leading.equalTo(self).offset(8)
             make.width.equalTo(self).multipliedBy(0.7)
         }
         detailsStackView.snp.makeConstraints { make in

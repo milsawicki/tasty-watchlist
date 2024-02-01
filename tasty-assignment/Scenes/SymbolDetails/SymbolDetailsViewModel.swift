@@ -39,35 +39,3 @@ class SymbolDetailsViewModel {
             .eraseToAnyPublisher()
     }
 }
-
-extension Date {
-    // MARK: Private properties
-
-    private static let calendar = Calendar(identifier: .gregorian)
-
-    private static let dateFormatter = DateFormatter()
-
-    // MARK: Methods
-
-    /// Returns date with given components.
-    /// - Parameters:
-    ///   - day: Day of initialized date.
-    ///   - month: Month of initialized date.
-    ///   - year: Year of initialized date.
-    static func from(day: Int = 1, month: Int = 1, year: Int = 1970) -> Date? {
-        var components = DateComponents()
-        components.year = year
-        components.month = month
-        components.day = day
-        return calendar.date(from: components)
-    }
-
-    /// Converts string to date with given format if possible.
-    /// - Parameters:
-    ///   - string: String to be converted.
-    ///   - format: Date format of the string.
-    static func from(string: String, format: String) -> Date? {
-        dateFormatter.dateFormat = format
-        return dateFormatter.date(from: string)
-    }
-}

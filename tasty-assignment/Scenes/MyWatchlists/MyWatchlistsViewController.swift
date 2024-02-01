@@ -48,15 +48,12 @@ extension MyWatchlistsViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let watchlist = viewModel.watchlists[indexPath.row]
-            tableView.beginUpdates()
             viewModel.delete(watchlist: watchlist)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            tableView.endUpdates()
         }
     }
 
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        viewModel.watchlists.count <= 1 ? .none : .delete
+        viewModel.watchlists.count <= 1 ? .none : .delete // todo: viewModel.showAllowDelete
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

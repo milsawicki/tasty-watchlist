@@ -19,7 +19,7 @@ enum AppRoute: Route {
     case dismiss
 }
 
-class AppCoordinator: NavigationCoordinator<AppRoute> {
+final class AppCoordinator: NavigationCoordinator<AppRoute> {
     let apiClient: APIClient = DefaultAPIClient()
     lazy var watchlistService: WatchlistService = WatchlistService(apiClient: apiClient)
     let watchlistStorage: WatchlistStorageProtocol = WatchlistStorage()
@@ -59,7 +59,7 @@ class AppCoordinator: NavigationCoordinator<AppRoute> {
             let viewController = SearchSymbolViewController(viewModel: viewModel)
             return .present(viewController)
         case let .createWatchlist(completion):
-            let viewModel = CreateWatchlistViewModel(watchlistStorage: watchlistStorage, watchlistService: watchlistService)
+            let viewModel = CreateWatchlistViewModel(watchlistStorage: watchlistStorage)
             let alertController = UIAlertController(title: "Create new watchlist", message: nil, preferredStyle: .alert)
             alertController.addTextField { textField in
                 textField.placeholder = "Watchlist name..."
@@ -89,12 +89,10 @@ class AppCoordinator: NavigationCoordinator<AppRoute> {
 }
 
 struct CreateWatchlistViewModel {
-    private var watchlistStorage: WatchlistStorageProtocol
-    private let watchlistService: WatchlistService
+    private let watchlistStorage: WatchlistStorageProtocol
 
-    init(watchlistStorage: WatchlistStorageProtocol, watchlistService: WatchlistService) {
+    init(watchlistStorage: WatchlistStorageProtocol) {
         self.watchlistStorage = watchlistStorage
-        self.watchlistService = watchlistService
     }
 
     func createWatchlist(with name: String) {

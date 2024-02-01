@@ -9,9 +9,9 @@ import UIKit
 
 class SymbolSearchView: UIView {
     var dismissView: (() -> Void)?
-    
+
     var activityIndicator = UIActivityIndicatorView(frame: .zero)
-    
+
     var searchBar: UITextField = {
         let searchBar = UITextField()
         searchBar.placeholder = "Search for stock symbols"
@@ -36,13 +36,12 @@ class SymbolSearchView: UIView {
         addSubview(resultTableView)
         addSubview(cancelButton)
         addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-        resultTableView.delegate = self
-        resultTableView.showsVerticalScrollIndicator = false
-        resultTableView.register(SymbolSearchResultTableViewCell.self, forCellReuseIdentifier: String(describing: SymbolSearchResultTableViewCell.self))
+        setupTableView()
         setupConstraints()
+        activityIndicator.startAnimating()
     }
 
+    @available(*, unavailable, message: "Use init() method instead.")
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -50,12 +49,12 @@ class SymbolSearchView: UIView {
 
 extension SymbolSearchView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         dismissView?()
+        dismissView?()
     }
 }
 
 extension SymbolSearchView {
-    private func setupConstraints() {
+    func setupConstraints() {
         searchBar.snp.makeConstraints { make in
             make.top.left.equalTo(self).offset(16)
             make.height.equalTo(40)
@@ -76,6 +75,12 @@ extension SymbolSearchView {
             make.center.equalTo(snp.center)
             make.width.height.equalTo(32)
         }
+    }
+
+    func setupTableView() {
+        resultTableView.delegate = self
+        resultTableView.showsVerticalScrollIndicator = false
+        resultTableView.register(SymbolSearchResultTableViewCell.self, forCellReuseIdentifier: String(describing: SymbolSearchResultTableViewCell.self))
     }
 
     @objc private func cancelButtonTapped() {

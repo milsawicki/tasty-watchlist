@@ -9,13 +9,8 @@ import Combine
 import UIKit
 
 class WatchlistViewController: TypedViewController<WatchlistView> {
-    enum Section {
-        case main
-    }
-
     var viewModel: WatchlistViewModel
-    private var cancellables: [AnyCancellable] = []
-    var dataSource: UITableViewDiffableDataSource<Section, StockQuoteResponse>!
+    private var cancellables: Set<AnyCancellable> = []
     init(viewModel: WatchlistViewModel) {
         self.viewModel = viewModel
         super.init(customView: WatchlistView())
@@ -36,18 +31,8 @@ class WatchlistViewController: TypedViewController<WatchlistView> {
 }
 
 extension WatchlistViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        if self.viewModel.symbols.isEmpty {
-            self.customView.showEmptyView()
-            return 0
-        } else {
-            self.customView.hideEmptyView()
-            return 1
-        }
-    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.currentWatchlist?.symbols.count ?? 0
+        viewModel.numberOfRows
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -55,14 +40,13 @@ extension WatchlistViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
 
-        if let symbol = viewModel.currentWatchlist?.symbols[indexPath.row] {
-            cell.bind(symbol, with: viewModel.fetchQuotes(for: symbol))
-        }
+        let symbol = viewModel.symbol(for: indexPath.row)
+        cell.bind(symbol, with: viewModel.fetchQuotes(for: symbol))
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let symbol = viewModel.symbols[indexPath.row]
+        let symbol = viewModel.symbol(for: indexPath.row)
         viewModel.showSymbolDetails(symbol)
     }
 
@@ -72,11 +56,7 @@ extension WatchlistViewController: UITableViewDelegate, UITableViewDataSource {
             let alert = UIAlertController(title: "Delete Symbol", message: "Are you sure you want to remove \(symbol) from the watchlist?", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
-                tableView.beginUpdates()
                 self?.viewModel.delete(symbol: symbol)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-                tableView.deleteSections(IndexSet(integer: indexPath.section), with: .left)
-                tableView.endUpdates()
             }))
             present(alert, animated: true)
         }
@@ -106,6 +86,7 @@ private extension WatchlistViewController {
     func setupBindings() {
         viewModel.reloadData = { [weak self] in
             guard let self = self else { return }
+            customView.emptyView.isHidden = !viewModel.shouldShowEmpty
             self.customView.tableView.reloadData()
         }
     }

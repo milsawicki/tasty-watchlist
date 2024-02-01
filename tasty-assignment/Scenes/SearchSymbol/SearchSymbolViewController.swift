@@ -8,7 +8,7 @@
 import Combine
 import UIKit
 
-class SearchSymbolViewController: TypedViewController<SymbolSearchView> {
+final class SearchSymbolViewController: TypedViewController<SymbolSearchView> {
     private let viewModel: SearchSymbolViewModel
     private var cancellables = Set<AnyCancellable>()
 
@@ -17,7 +17,7 @@ class SearchSymbolViewController: TypedViewController<SymbolSearchView> {
         self.viewModel = viewModel
         super.init(customView: customView)
         customView.dismissView = { [weak self] in
-            self?.dismiss(animated: true)
+            self?.viewModel.dismiss()
         }
     }
 
@@ -28,28 +28,15 @@ class SearchSymbolViewController: TypedViewController<SymbolSearchView> {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        customView.resultTableView.delegate = self
+        customView.resultTableView.dataSource = self
         setupBindings()
     }
 }
 
 private extension SearchSymbolViewController {
     func setupBindings() {
-        customView.resultTableView.delegate = self
-        customView.resultTableView.dataSource = self
         viewModel.bind(query: customView.searchBar.textPublisher)
-
-        let loadingPublisher = viewModel.$searchResult
-            .receive(on: DispatchQueue.main)
-            .asResult()
-            .map { $0.isLoading }
-            .share()
-
-        loadingPublisher
-            .sink { [weak self] isLoading in
-                isLoading ? self?.customView.activityIndicator.startAnimating() : self?.customView.activityIndicator.stopAnimating()
-            }
-            .store(in: &cancellables)
-
         viewModel.$searchResult
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
@@ -61,13 +48,13 @@ private extension SearchSymbolViewController {
 
 extension SearchSymbolViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.searchResult.value?.count ?? 0
+        viewModel.numberOfRows
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SymbolSearchResultTableViewCell.self)) as? SymbolSearchResultTableViewCell,
-            let searchResult = viewModel.searchResult.value?[indexPath.row]
+            let searchResult = viewModel.symbol(for: indexPath.row)
         else { return UITableViewCell() }
         cell.decorate(with: searchResult)
         return cell

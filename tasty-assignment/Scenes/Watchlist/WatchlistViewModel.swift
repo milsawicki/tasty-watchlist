@@ -22,6 +22,15 @@ struct Watchlist: Codable {
 }
 
 class WatchlistViewModel: ObservableObject {
+    
+    var shouldShowEmpty: Bool {
+        symbols.isEmpty
+    }
+
+    var numberOfRows: Int {
+        symbols.count
+    }
+    
     var currentWatchlistName: String {
         currentWatchlist?.name ?? ""
     }
@@ -52,6 +61,10 @@ class WatchlistViewModel: ObservableObject {
         self.router = router
     }
 
+    func viewDidLoad() {
+        reloadData?()
+    }
+
     func fetchQuotes(for symbol: String) -> AnyPublisher<StockQuoteResponse, Error> {
         service.fetchQuotes(for: symbol)
     }
@@ -59,6 +72,7 @@ class WatchlistViewModel: ObservableObject {
     func delete(symbol: String) {
         guard let id = currentWatchlist?.id else { return }
         watchlistStorage.removeSymbol(from: id, symbol: symbol)
+        reloadData?()
     }
 
     func showSymbolDetails(_ symbol: String) {
@@ -70,6 +84,10 @@ class WatchlistViewModel: ObservableObject {
         router.trigger(.addSymbolToWatchlist(watchlistId: id) { [weak self] in
             self?.reloadData?()
         })
+    }
+    
+    func symbol(for row: Int) -> String {
+        symbols[row]
     }
 
     func manageWatchlists() {
