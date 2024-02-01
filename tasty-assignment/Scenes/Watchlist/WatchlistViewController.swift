@@ -36,6 +36,16 @@ class WatchlistViewController: TypedViewController<WatchlistView> {
 }
 
 extension WatchlistViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if self.viewModel.symbols.isEmpty {
+            self.customView.showEmptyView()
+            return 0
+        } else {
+            self.customView.hideEmptyView()
+            return 1
+        }
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.currentWatchlist?.symbols.count ?? 0
     }
@@ -59,17 +69,15 @@ extension WatchlistViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let symbol = viewModel.symbols[indexPath.row]
-
             let alert = UIAlertController(title: "Delete Symbol", message: "Are you sure you want to remove \(symbol) from the watchlist?", preferredStyle: .alert)
-
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
-                self?.viewModel.delete(symbol: symbol)
                 tableView.beginUpdates()
+                self?.viewModel.delete(symbol: symbol)
                 tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.deleteSections(IndexSet(integer: indexPath.section), with: .left)
                 tableView.endUpdates()
             }))
-
             present(alert, animated: true)
         }
     }
@@ -97,7 +105,8 @@ private extension WatchlistViewController {
 
     func setupBindings() {
         viewModel.reloadData = { [weak self] in
-            self?.customView.tableView.reloadData()
+            guard let self = self else { return }
+            self.customView.tableView.reloadData()
         }
     }
 
@@ -108,5 +117,8 @@ private extension WatchlistViewController {
             WatchlistItemTableViewCell.self,
             forCellReuseIdentifier: String(describing: WatchlistItemTableViewCell.self)
         )
+        customView.addButtonTapped = { [weak self] in
+            self?.viewModel.showAddSymbol()
+        }
     }
 }

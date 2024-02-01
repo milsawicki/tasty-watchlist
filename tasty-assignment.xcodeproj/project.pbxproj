@@ -26,6 +26,7 @@
 		012055802B608A8200FD95AA /* WatchlistService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0120557F2B608A8200FD95AA /* WatchlistService.swift */; };
 		012055822B60971300FD95AA /* WatchlistItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012055812B60971300FD95AA /* WatchlistItemTableViewCell.swift */; };
 		012055842B615AB300FD95AA /* QuotesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012055832B615AB300FD95AA /* QuotesRequest.swift */; };
+		0131719F2B6BCC7200C0A0A8 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0131719E2B6BCC7200C0A0A8 /* EmptyStateView.swift */; };
 		014A633E2B6AC62C008F4BE3 /* WatchlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014A633D2B6AC62C008F4BE3 /* WatchlistView.swift */; };
 		014A63402B6ACDE1008F4BE3 /* AsyncResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014A633F2B6ACDE1008F4BE3 /* AsyncResult.swift */; };
 		015B51F02B5EE122000F7071 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B51EF2B5EE122000F7071 /* AppDelegate.swift */; };
@@ -90,6 +91,7 @@
 		0120557F2B608A8200FD95AA /* WatchlistService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistService.swift; sourceTree = "<group>"; };
 		012055812B60971300FD95AA /* WatchlistItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistItemTableViewCell.swift; sourceTree = "<group>"; };
 		012055832B615AB300FD95AA /* QuotesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotesRequest.swift; sourceTree = "<group>"; };
+		0131719E2B6BCC7200C0A0A8 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		014A633D2B6AC62C008F4BE3 /* WatchlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistView.swift; sourceTree = "<group>"; };
 		014A633F2B6ACDE1008F4BE3 /* AsyncResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncResult.swift; sourceTree = "<group>"; };
 		015B51EC2B5EE122000F7071 /* tasty-assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tasty-assignment.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -214,6 +216,7 @@
 			children = (
 				010D09912B60155100763897 /* TypedViewController.swift */,
 				01B602422B65930500E6B7BB /* QuotesStackView.swift */,
+				0131719E2B6BCC7200C0A0A8 /* EmptyStateView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 				01F820922B6B13B9006CE2BD /* WatchlistStorage.swift in Sources */,
 				01B602452B65A4E800E6B7BB /* Publishers.swift in Sources */,
 				010D09A02B602B9A00763897 /* HttpMethod.swift in Sources */,
+				0131719F2B6BCC7200C0A0A8 /* EmptyStateView.swift in Sources */,
 				014A63402B6ACDE1008F4BE3 /* AsyncResult.swift in Sources */,
 				010D09922B60155100763897 /* TypedViewController.swift in Sources */,
 				01B602332B649C0900E6B7BB /* SymbolSearchResultTableViewCell.swift in Sources */,
