@@ -15,17 +15,30 @@ class SymbolSearchView: UIView {
     var searchBar: UITextField = {
         let searchBar = UITextField()
         searchBar.placeholder = "Search for stock symbols"
-        searchBar.borderStyle = .roundedRect
         return searchBar
     }()
 
-    var emptyView: EmptyStateView = {
-        let emptyView = EmptyStateView()
-        emptyView.configure(withMessage: "Unable to find symbols for given query", buttonText: "")
-        return emptyView
+    lazy var emptyView: UIStackView = {
+        let label = UILabel()
+        label.font = Typography.bold(size: 16)
+        label.text = "No symbols found for given query."
+        label.textAlignment = .center
+        let stackView = UIStackView(arrangedSubviews: [emptyImageView, label])
+        stackView.axis = .vertical
+        stackView.spacing = 8
+
+        return stackView
     }()
 
     var resultTableView: UITableView = UITableView()
+
+    private lazy var emptyImageView = {
+        let image = UIImage(systemName: "doc.text.magnifyingglass")
+        let imageView = UIImageView(image: image)
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .red
+        return imageView
+    }()
 
     private lazy var cancelButton: UIButton = {
         let button = UIButton(type: .system)
@@ -40,7 +53,6 @@ class SymbolSearchView: UIView {
         backgroundColor = .systemBackground
         addSubview(searchBar)
         addSubview(emptyView)
-
         addSubview(resultTableView)
         addSubview(cancelButton)
         addSubview(activityIndicator)
@@ -74,8 +86,8 @@ extension SymbolSearchView {
         }
         resultTableView.snp.makeConstraints { make in
             make.top.equalTo(searchBar.snp.bottom)
-            make.left.equalTo(self).offset(16)
-            make.right.equalTo(self).offset(-16)
+            make.leading.equalTo(self).offset(16)
+            make.trailing.equalTo(self).offset(-16)
             make.bottom.equalTo(self)
         }
         activityIndicator.snp.makeConstraints { make in
@@ -83,10 +95,13 @@ extension SymbolSearchView {
             make.width.height.equalTo(32)
         }
         emptyView.snp.makeConstraints { make in
-            make.top.equalTo(searchBar.snp.bottom)
-            make.left.equalTo(self).offset(16)
-            make.right.equalTo(self).offset(-16)
-            make.bottom.equalTo(self)
+            make.centerX.equalTo(self)
+            make.centerY.equalTo(self)
+
+            make.leading.trailing.equalTo(self)
+        }
+        emptyImageView.snp.makeConstraints { make in
+            make.height.equalTo(self).dividedBy(4)
         }
     }
 
