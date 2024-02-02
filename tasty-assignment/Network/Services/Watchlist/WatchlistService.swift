@@ -9,9 +9,9 @@ import Combine
 import Foundation
 
 protocol WatchlistServiceProtocol {
-    func fetchQuotes(for symbol: String) -> AnyPublisher<StockQuoteResponse, Error>
-    func searchSymbol(for query: String) -> AnyPublisher<[SearchSymbolResponse], Error>
-    func fetchChartData(for symbol: String) -> AnyPublisher<[StockChartDataResponse], Error>
+    func fetchQuotes(for symbol: String) -> AnyPublisher<StockQuoteResponse, APIError>
+    func searchSymbol(for query: String) -> AnyPublisher<[SearchSymbolResponse], APIError>
+    func fetchChartData(for symbol: String) -> AnyPublisher<[StockChartDataResponse], APIError>
 }
 
 final class WatchlistService: WatchlistServiceProtocol {
@@ -21,21 +21,21 @@ final class WatchlistService: WatchlistServiceProtocol {
         self.apiClient = apiClient
     }
 
-    func fetchQuotes(for symbol: String) -> AnyPublisher<StockQuoteResponse, Error> {
+    func fetchQuotes(for symbol: String) -> AnyPublisher<StockQuoteResponse, APIError> {
         apiClient.fetch(
             request: QuotesRequest(symbol: symbol)
         )
     }
 
-    func searchSymbol(for query: String) -> AnyPublisher<[SearchSymbolResponse], Error> {
-        AnyPublisher<TopLevelContainer<SearchSymbolItemsResponse>, Error>(
+    func searchSymbol(for query: String) -> AnyPublisher<[SearchSymbolResponse], APIError> {
+        AnyPublisher<TopLevelContainer<SearchSymbolItemsResponse>, APIError>(
             apiClient.fetch(request: SearchSymbolRequest(query: query))
         )
         .map { $0.data.items }
         .eraseToAnyPublisher()
     }
     
-    func fetchChartData(for symbol: String) -> AnyPublisher<[StockChartDataResponse], Error> {
+    func fetchChartData(for symbol: String) -> AnyPublisher<[StockChartDataResponse], APIError> {
         apiClient.fetch(request: StockChartDataRequest(query: symbol))
     }
 }

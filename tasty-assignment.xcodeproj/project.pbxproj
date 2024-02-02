@@ -296,6 +296,13 @@
 			path = Charts;
 			sourceTree = "<group>";
 		};
+		013171AE2B6CF15A00C0A0A8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		015B51E32B5EE122000F7071 = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +345,7 @@
 		015B52052B5EE124000F7071 /* tasty-assignmentTests */ = {
 			isa = PBXGroup;
 			children = (
+				013171AE2B6CF15A00C0A0A8 /* ViewModel */,
 				015B52062B5EE124000F7071 /* tasty_assignmentTests.swift */,
 			);
 			path = "tasty-assignmentTests";

@@ -18,11 +18,11 @@ class SymbolDetailsViewModel {
         self.watchlistService = watchlistService
     }
 
-    func fetchQuotes() -> AnyPublisher<StockQuoteResponse, Error> {
+    func fetchQuotes() -> AnyPublisher<StockQuoteResponse, APIError> {
         watchlistService.fetchQuotes(for: symbol)
     }
 
-    func fetchChartData() -> AnyPublisher<[CandleChartDataEntry], Error> {
+    func fetchChartData() -> AnyPublisher<[CandleChartDataEntry], APIError> {
         watchlistService.fetchChartData(for: symbol)
             .map {
                 $0.enumerated()

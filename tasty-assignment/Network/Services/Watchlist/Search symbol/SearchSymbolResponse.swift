@@ -22,19 +22,11 @@ struct SearchSymbolItemsResponse: Codable {
 struct SearchSymbolResponse: Codable, Hashable {
     let symbol: String
     let description: String
-    let listedMarket: String
-    let priceIncrements: String
-    let tradingHours: String
-    let options: Bool
     let instrumentType: String
 
     enum CodingKeys: String, CodingKey {
         case symbol
         case description
-        case listedMarket = "listed-market"
-        case priceIncrements = "price-increments"
-        case tradingHours = "trading-hours"
-        case options
         case instrumentType = "instrument-type"
     }
 }

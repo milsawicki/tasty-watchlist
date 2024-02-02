@@ -38,7 +38,7 @@ class WatchlistItemTableViewCell: UITableViewCell {
         setupView()
     }
 
-    private func bind(_ quotesPublisher: AnyPublisher<AsyncResult<StockQuoteResponse, Error>, Never>) {
+    private func bind(_ quotesPublisher: AnyPublisher<AsyncResult<StockQuoteResponse, APIError>, Never>) {
         quotesPublisher
             .compactMap { $0.value?.symbol }
             .assign(to: \.text, on: symbolNameLabel)
@@ -63,7 +63,7 @@ class WatchlistItemTableViewCell: UITableViewCell {
             .store(in: &cancellables)
     }
 
-    func bind(_ symbol: String, with publisher: AnyPublisher<StockQuoteResponse, Error>) {
+    func bind(_ symbol: String, with publisher: AnyPublisher<StockQuoteResponse, APIError>) {
         symbolNameLabel.text = symbol
 
         let quotesPublisher = publisher

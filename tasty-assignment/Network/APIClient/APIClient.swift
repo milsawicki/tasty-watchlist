@@ -9,7 +9,7 @@ import Combine
 import Foundation
 
 protocol APIClient {
-    func fetch<T: Decodable>(request: Request) -> AnyPublisher<T, Error>
+    func fetch<T: Decodable>(request: Request) -> AnyPublisher<T, APIError>
 }
 
 final class DefaultAPIClient: APIClient {
@@ -28,7 +28,7 @@ final class DefaultAPIClient: APIClient {
     ///   - hasTopLevelKey: A boolean indicating whether the JSON response contains a top-level key that should be omitted during the decoding process. Defaults to `false`.
     ///
     /// - Returns: A publisher emitting the decoded response object of type `T` or an error if the operation fails.
-    func fetch<Response: Decodable>(request: Request) -> AnyPublisher<Response, Error> {
+    func fetch<Response: Decodable>(request: Request) -> AnyPublisher<Response, APIError> {
         var urlRequest = request.asURLRequest()
 
         switch request.authorizationType {

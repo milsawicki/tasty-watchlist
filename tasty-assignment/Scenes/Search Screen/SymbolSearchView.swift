@@ -14,6 +14,8 @@ class SymbolSearchView: UIView {
 
     var searchBar: UITextField = {
         let searchBar = UITextField()
+        searchBar.autocapitalizationType = .none
+        searchBar.autocorrectionType = .no
         searchBar.placeholder = "Search for stock symbols"
         return searchBar
     }()

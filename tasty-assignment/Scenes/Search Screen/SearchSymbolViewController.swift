@@ -34,12 +34,12 @@ final class SearchSymbolViewController: TypedViewController<SymbolSearchView> {
 private extension SearchSymbolViewController {
     func setupBindings() {
         viewModel.bind(queryPublisher: customView.searchBar.textPublisher)
-
         viewModel.$searchResult
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-            self?.customView.resultTableView.reloadData()
-        }.store(in: &cancellables)
+                self?.customView.resultTableView.reloadData()
+            }
+            .store(in: &cancellables)
 
         viewModel.$loadingPublisher
             .receive(on: DispatchQueue.main)
