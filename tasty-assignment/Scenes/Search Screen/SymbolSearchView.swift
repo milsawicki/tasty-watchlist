@@ -19,6 +19,12 @@ class SymbolSearchView: UIView {
         return searchBar
     }()
 
+    var emptyView: EmptyStateView = {
+        let emptyView = EmptyStateView()
+        emptyView.configure(withMessage: "Unable to find symbols for given query", buttonText: "")
+        return emptyView
+    }()
+
     var resultTableView: UITableView = UITableView()
 
     private lazy var cancelButton: UIButton = {
@@ -33,12 +39,13 @@ class SymbolSearchView: UIView {
         super.init(frame: .zero)
         backgroundColor = .systemBackground
         addSubview(searchBar)
+        addSubview(emptyView)
+
         addSubview(resultTableView)
         addSubview(cancelButton)
         addSubview(activityIndicator)
         setupTableView()
         setupConstraints()
-        activityIndicator.startAnimating()
     }
 
     @available(*, unavailable, message: "Use init() method instead.")
@@ -74,6 +81,12 @@ extension SymbolSearchView {
         activityIndicator.snp.makeConstraints { make in
             make.center.equalTo(snp.center)
             make.width.height.equalTo(32)
+        }
+        emptyView.snp.makeConstraints { make in
+            make.top.equalTo(searchBar.snp.bottom)
+            make.left.equalTo(self).offset(16)
+            make.right.equalTo(self).offset(-16)
+            make.bottom.equalTo(self)
         }
     }
 

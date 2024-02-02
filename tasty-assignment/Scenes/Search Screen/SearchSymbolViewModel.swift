@@ -10,10 +10,12 @@ import UIKit
 import XCoordinator
 
 final class SearchSymbolViewModel {
+    @Published var loadingPublisher: Bool = false
+    @Published var emptyPublisher: Bool = false
     @Published var searchResult: AsyncResult<[SearchSymbolResponse], Error> = .pending
     private let service: WatchlistService
     private let watchlistStorage: WatchlistStorageProtocol
-    private var cancellables = [AnyCancellable]()
+    private var cancellables = Set<AnyCancellable>()
     private var watchlistId: UUID
     private var router: WeakRouter<AppRoute>
     private var addSymbolCompletion: () -> Void
@@ -35,15 +37,46 @@ final class SearchSymbolViewModel {
         self.addSymbolCompletion = addSymbolCompletion
     }
 
-    func bind(query: AnyPublisher<String, Never>) {
-        query
-            .debounce(for: .seconds(0.5), scheduler: DispatchQueue.global())
-            .flatMap { [weak self] symbol in
+    func bind(queryPublisher: AnyPublisher<String, Never>) {
+        queryPublisher
+            .map { $0.isEmpty }
+            .combineLatest($searchResult.compactMap { $0.isLoading })
+            .map { !$0 && $1 }
+            .assign(to: &$loadingPublisher)
+
+
+        queryPublisher
+            .map { $0.isEmpty }
+            .combineLatest($searchResult.compactMap { $0.error != nil })
+            .map { !$0 && $1 }
+            .assign(to: &$emptyPublisher)
+
+        queryPublisher
+            .map { !$0.isEmpty }
+            .combineLatest(
+                $searchResult
+                    .filter { $0.isSuccess }
+                    .compactMap { $0.value?.isEmpty }
+            )
+            .map { $0 && $1 }
+            .assign(to: &$emptyPublisher)
+
+        queryPublisher
+            .filter { !$0.isEmpty }
+            .map { _ in AsyncResult.pending }
+            .assign(to: &$searchResult)
+
+        queryPublisher
+            .removeDuplicates()
+            .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
+            .print()
+            .flatMap(maxPublishers: .max(1)) { [weak self] symbol in
                 guard let self = self else { return Empty<[SearchSymbolResponse], Error>().eraseToAnyPublisher() }
                 return self.service.searchSymbol(for: symbol).eraseToAnyPublisher()
             }
             .asResult()
             .assign(to: &$searchResult)
+    
     }
 
     func addSymbolToWatchlist(_ symbol: String) {
@@ -53,11 +86,11 @@ final class SearchSymbolViewModel {
         router.trigger(.dismiss)
         addSymbolCompletion()
     }
-    
+
     func symbol(for row: Int) -> SearchSymbolResponse? {
         searchResult.value?[row]
     }
-    
+
     func dismiss() {
         router.trigger(.dismiss)
     }

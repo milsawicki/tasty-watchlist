@@ -8,9 +8,10 @@
 import Combine
 import UIKit
 
-class WatchlistViewController: TypedViewController<WatchlistView> {
-    var viewModel: WatchlistViewModel
+final class WatchlistViewController: TypedViewController<WatchlistView> {
+    private var viewModel: WatchlistViewModel
     private var cancellables: Set<AnyCancellable> = []
+
     init(viewModel: WatchlistViewModel) {
         self.viewModel = viewModel
         super.init(customView: WatchlistView())
@@ -27,6 +28,7 @@ class WatchlistViewController: TypedViewController<WatchlistView> {
         setupNavigationController()
         setupTableView()
         setupBindings()
+        viewModel.viewDidLoad()
     }
 }
 

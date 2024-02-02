@@ -11,7 +11,7 @@ import UIKit
 class MyWatchlistsViewController: TypedViewController<MyWatchlistsView> {
     let viewModel: MyWatchlistsViewModel
 
-    private var cancellables: [AnyCancellable] = []
+    private var cancellables: Set<AnyCancellable> = []
 
     init(viewModel: MyWatchlistsViewModel) {
         self.viewModel = viewModel
@@ -47,17 +47,17 @@ extension MyWatchlistsViewController: UITableViewDataSource, UITableViewDelegate
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let watchlist = viewModel.watchlists[indexPath.row]
+            let watchlist = viewModel.watchlist(for: indexPath.row)
             viewModel.delete(watchlist: watchlist)
         }
     }
 
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        viewModel.watchlists.count <= 1 ? .none : .delete // todo: viewModel.showAllowDelete
+        viewModel.shouldAllowDelete ? .delete : .none
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let watchlist = viewModel.watchlists[indexPath.row]
+        let watchlist = viewModel.watchlist(for: indexPath.row)
         viewModel.didSelect(watchlist: watchlist)
     }
     

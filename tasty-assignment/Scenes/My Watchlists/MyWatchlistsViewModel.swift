@@ -16,6 +16,10 @@ final class MyWatchlistsViewModel {
         watchlistStorage.loadWatchlists()
     }
 
+    var shouldAllowDelete: Bool {
+        watchlists.count > 1
+    }
+
     init(watchlistStorage: WatchlistStorageProtocol, router: WeakRouter<AppRoute>) {
         self.watchlistStorage = watchlistStorage
         self.router = router
@@ -31,5 +35,9 @@ final class MyWatchlistsViewModel {
     
     func didSelect(watchlist: Watchlist) {
         router.trigger(.disSelect(watchlist: watchlist))
+    }
+    
+    func watchlist(for row: Int) -> Watchlist {
+        watchlists[row]
     }
 }

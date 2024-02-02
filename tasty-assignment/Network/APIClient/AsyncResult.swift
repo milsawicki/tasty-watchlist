@@ -30,6 +30,16 @@ enum AsyncResult<Success, Failure> {
         }
     }
 
+    /// Returns a failure if request failed.
+    var error: Failure? {
+        switch self {
+        case .success, .pending:
+            return nil
+        case let .failure(error):
+            return error
+        }
+    }
+
     /// A computed property that returns `true` if the operation was successful.
     var isSuccess: Bool {
         switch self {

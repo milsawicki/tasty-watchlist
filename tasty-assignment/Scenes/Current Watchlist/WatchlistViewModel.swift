@@ -10,7 +10,6 @@ import Foundation
 import XCoordinator
 
 final class WatchlistViewModel: ObservableObject {
-    
     var shouldShowEmpty: Bool {
         symbols.isEmpty
     }
@@ -18,7 +17,7 @@ final class WatchlistViewModel: ObservableObject {
     var numberOfRows: Int {
         symbols.count
     }
-    
+
     var currentWatchlistName: String {
         currentWatchlist?.name ?? ""
     }
@@ -42,7 +41,8 @@ final class WatchlistViewModel: ObservableObject {
         watchlistId: UUID,
         service: WatchlistService,
         watchlistStorage: WatchlistStorageProtocol,
-        router: WeakRouter<AppRoute>) {
+        router: WeakRouter<AppRoute>
+    ) {
         self.watchlistId = watchlistId
         self.service = service
         self.watchlistStorage = watchlistStorage
@@ -73,7 +73,7 @@ final class WatchlistViewModel: ObservableObject {
             self?.reloadData?()
         })
     }
-    
+
     func symbol(for row: Int) -> String {
         symbols[row]
     }

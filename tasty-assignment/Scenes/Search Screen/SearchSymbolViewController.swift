@@ -16,9 +16,6 @@ final class SearchSymbolViewController: TypedViewController<SymbolSearchView> {
         let customView = SymbolSearchView()
         self.viewModel = viewModel
         super.init(customView: customView)
-        customView.dismissView = { [weak self] in
-            self?.viewModel.dismiss()
-        }
     }
 
     @available(*, unavailable, message: "You should use init(viewModel:) method.")
@@ -36,13 +33,31 @@ final class SearchSymbolViewController: TypedViewController<SymbolSearchView> {
 
 private extension SearchSymbolViewController {
     func setupBindings() {
-        viewModel.bind(query: customView.searchBar.textPublisher)
+        viewModel.bind(queryPublisher: customView.searchBar.textPublisher)
+
         viewModel.$searchResult
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                self?.customView.resultTableView.reloadData()
+            self?.customView.resultTableView.reloadData()
+        }.store(in: &cancellables)
+
+        viewModel.$loadingPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isLoading in
+                isLoading ? self?.customView.activityIndicator.startAnimating() : self?.customView.activityIndicator.stopAnimating()
             }
             .store(in: &cancellables)
+
+        viewModel.$emptyPublisher
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] shouldShow in
+                self?.customView.emptyView.isHidden = !shouldShow
+            })
+            .store(in: &cancellables)
+
+        customView.dismissView = { [weak self] in
+            self?.viewModel.dismiss()
+        }
     }
 }
 
