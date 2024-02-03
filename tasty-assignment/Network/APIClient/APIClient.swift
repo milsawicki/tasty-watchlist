@@ -10,7 +10,9 @@ import Foundation
 
 protocol APIClient {
     func fetch<T: Decodable>(request: Request) -> AnyPublisher<T, APIError>
+    func fetchs<Response: Decodable>(request: Request) -> ResultPublisher<Response, APIError>
 }
+typealias ResultPublisher<T, E> = AnyPublisher<AsyncResult<T, E>, Never>
 
 final class DefaultAPIClient: APIClient {
     let jsonDecoder: JSONDecoder
@@ -61,5 +63,49 @@ final class DefaultAPIClient: APIClient {
                 }
             }
             .eraseToAnyPublisher()
+    }
+
+    /// - Returns: A publisher emitting the decoded response object of type `T` or an error if the operation fails.
+    func fetchs<Response: Decodable>(request: Request) -> ResultPublisher<Response, APIError> {
+        var urlRequest = request.asURLRequest()
+
+        switch request.authorizationType {
+        case .none:
+            break
+        case .iex:
+            urlRequest.url = urlRequest.url?.appendingFinancialDataToken()
+        }
+
+        urlRequest.httpMethod = request.method.rawValue
+        urlRequest.allHTTPHeaderFields = request.headers
+
+        return URLSession.shared.dataTaskPublisher(for: urlRequest)
+            .flatMap { [weak self] output -> AnyPublisher<AsyncResult<Response, APIError>, Never> in
+                guard let self = self else { return AnyPublisher<AsyncResult<Response, APIError>, Never>(Empty()) }
+                guard let response = output.response as? HTTPURLResponse,
+                      response.statusCode >= 200 && response.statusCode < 300 else {
+                    return .just(.failure(APIError.responseError))
+                }
+                
+                if let data = try? self.jsonDecoder.decode(Response.self, from: output.data) {
+                    return .just(.success(data))
+                } else {
+                    return .just(.failure(.parsingError))
+                }
+            }
+            .replaceError(with: .failure(.parsingError))
+            .eraseToAnyPublisher()
+    }
+}
+
+extension AnyPublisher {
+    static func just(_ output: Output) -> Self {
+        Just(output)
+            .setFailureType(to: Failure.self)
+            .eraseToAnyPublisher()
+    }
+    
+    static func fail(with error: Failure) -> Self {
+        Fail(error: error).eraseToAnyPublisher()
     }
 }

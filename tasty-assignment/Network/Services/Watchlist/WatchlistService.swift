@@ -9,9 +9,9 @@ import Combine
 import Foundation
 
 protocol WatchlistServiceProtocol {
-    func fetchQuotes(for symbol: String) -> AnyPublisher<StockQuoteResponse, APIError>
-    func searchSymbol(for query: String) -> AnyPublisher<[SearchSymbolResponse], APIError>
-    func fetchChartData(for symbol: String) -> AnyPublisher<[StockChartDataResponse], APIError>
+    func fetchQuotes(for symbol: String) -> ResultPublisher<StockQuoteResponse, APIError>
+    func fetchChartData(for symbol: String) -> ResultPublisher<[StockChartDataResponse], APIError>
+    func searchSymbol(for query: String) -> ResultPublisher<[SearchSymbolResponse], APIError>
 }
 
 final class WatchlistService: WatchlistServiceProtocol {
@@ -21,21 +21,21 @@ final class WatchlistService: WatchlistServiceProtocol {
         self.apiClient = apiClient
     }
 
-    func fetchQuotes(for symbol: String) -> AnyPublisher<StockQuoteResponse, APIError> {
-        apiClient.fetch(
-            request: QuotesRequest(symbol: symbol)
-        )
+    func fetchQuotes(for symbol: String) -> ResultPublisher<StockQuoteResponse, APIError> {
+        apiClient.fetchs(request: QuotesRequest(symbol: symbol))
     }
 
-    func searchSymbol(for query: String) -> AnyPublisher<[SearchSymbolResponse], APIError> {
-        AnyPublisher<TopLevelContainer<SearchSymbolItemsResponse>, APIError>(
-            apiClient.fetch(request: SearchSymbolRequest(query: query))
+    func searchSymbol(for query: String) -> ResultPublisher<[SearchSymbolResponse], APIError> {
+        ResultPublisher<TopLevelContainer<SearchSymbolItemsResponse>, APIError>(
+            apiClient.fetchs(request: SearchSymbolRequest(query: query))
         )
-        .map { $0.data.items }
+        .map {
+            .success($0.value?.data.items ?? [])
+        }
         .eraseToAnyPublisher()
     }
     
-    func fetchChartData(for symbol: String) -> AnyPublisher<[StockChartDataResponse], APIError> {
-        apiClient.fetch(request: StockChartDataRequest(query: symbol))
+    func fetchChartData(for symbol: String) -> ResultPublisher<[StockChartDataResponse], APIError> {
+        apiClient.fetchs(request: StockChartDataRequest(query: symbol))
     }
 }

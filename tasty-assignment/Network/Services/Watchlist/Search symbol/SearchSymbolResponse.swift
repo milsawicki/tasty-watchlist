@@ -23,10 +23,11 @@ struct SearchSymbolResponse: Codable, Hashable {
     let symbol: String
     let description: String
     let instrumentType: String
-
+    let listedMarket: String?
     enum CodingKeys: String, CodingKey {
         case symbol
         case description
+        case listedMarket = "listed-market"
         case instrumentType = "instrument-type"
     }
 }

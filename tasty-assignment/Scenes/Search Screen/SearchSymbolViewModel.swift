@@ -67,12 +67,10 @@ final class SearchSymbolViewModel {
             .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
             .print()
             .map { [weak self] symbol in
-                guard let self = self else { return Empty<[SearchSymbolResponse], APIError>().eraseToAnyPublisher() }
-                return self.service.searchSymbol(for: symbol)
-                    .eraseToAnyPublisher()
+                guard let self = self else { return ResultPublisher<[SearchSymbolResponse], APIError>(Empty()) }
+                return self.service.searchSymbol(for: symbol).eraseToAnyPublisher()
             }
             .switchToLatest()
-            .asResult()
             .assign(to: &$searchResult)
     }
 

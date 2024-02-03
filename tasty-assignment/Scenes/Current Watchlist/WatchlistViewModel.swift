@@ -53,7 +53,7 @@ final class WatchlistViewModel: ObservableObject {
         reloadData?()
     }
 
-    func fetchQuotes(for symbol: String) -> AnyPublisher<StockQuoteResponse, APIError> {
+    func fetchQuotes(for symbol: String) -> ResultPublisher<StockQuoteResponse, APIError> {
         service.fetchQuotes(for: symbol)
     }
 

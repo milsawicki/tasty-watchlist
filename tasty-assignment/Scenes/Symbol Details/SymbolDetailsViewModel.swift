@@ -18,15 +18,15 @@ class SymbolDetailsViewModel {
         self.watchlistService = watchlistService
     }
 
-    func fetchQuotes() -> AnyPublisher<StockQuoteResponse, APIError> {
+    func fetchQuotes() -> ResultPublisher<StockQuoteResponse, APIError> {
         watchlistService.fetchQuotes(for: symbol)
     }
 
-    func fetchChartData() -> AnyPublisher<[CandleChartDataEntry], APIError> {
+    func fetchChartData() -> ResultPublisher<[CandleChartDataEntry], APIError> {
         watchlistService.fetchChartData(for: symbol)
-            .map {
-                $0.enumerated()
-                    .map { index, entry in
+            .map { response in
+                AsyncResult.success(
+                    response.value!.enumerated().map { index, entry in
                         CandleChartDataEntry(
                             x: Double(index),
                             shadowH: entry.high,
@@ -35,6 +35,7 @@ class SymbolDetailsViewModel {
                             close: entry.close
                         )
                     }
+                )
             }
             .eraseToAnyPublisher()
     }

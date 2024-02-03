@@ -67,7 +67,7 @@ class SymbolSearchResultTableViewCell: UITableViewCell {
         listedMarketLabel.text = searchResult.listedMarket
         typeLabel.text = searchResult.instrumentType
     }
-}
+}   
 
 private extension SymbolSearchResultTableViewCell {
     func setupView() {

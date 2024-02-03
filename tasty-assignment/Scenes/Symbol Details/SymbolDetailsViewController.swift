@@ -41,16 +41,14 @@ private extension SymbolDetailsViewController {
 
         viewModel.fetchChartData()
             .receive(on: DispatchQueue.main)
-            .sink { error in
-                print(error)
-            } receiveValue: { [weak self] entries in
+            .compactMap { $0.value }
+            .sink { [weak self] entries in
                 self?.customView.updateChart(with: entries)
             }
             .store(in: &cancellables)
 
         let quotesPublisher = viewModel.fetchQuotes()
             .receive(on: DispatchQueue.main)
-            .asResult()
             .filter { $0.isSuccess }
             .compactMap { $0.value }
 
@@ -58,19 +56,19 @@ private extension SymbolDetailsViewController {
             .autoconnect()
             .flatMap { _ in quotesPublisher }
             .eraseToAnyPublisher()
-        
+
         bind(quotesPublisher.eraseToAnyPublisher())
         bind(timerPublisher.eraseToAnyPublisher())
     }
-    
+
     func bind(_ publisher: AnyPublisher<StockQuoteResponse, Never>) {
         publisher
-        .sink { [weak self] response in
-            guard let self = self else { return }
-            customView.quoteView.askPriceLabel.text = "\(response.askPrice)"
-            customView.quoteView.bidPriceLabel.text = "\(response.bidPrice)"
-            customView.quoteView.lastPriceLabel.text = "\(response.latestPrice)"
-        }
-        .store(in: &cancellables)
+            .sink { [weak self] response in
+                guard let self = self else { return }
+                customView.quoteView.askPriceLabel.text = "\(response.askPrice)"
+                customView.quoteView.bidPriceLabel.text = "\(response.bidPrice)"
+                customView.quoteView.lastPriceLabel.text = "\(response.latestPrice)"
+            }
+            .store(in: &cancellables)
     }
 }
