@@ -39,15 +39,18 @@ final class SearchSymbolViewModel {
     }
 
     func bind(queryPublisher: AnyPublisher<String, Never>) {
-        queryPublisher
-            .map { $0.isEmpty }
-            .combineLatest($searchResult.compactMap { $0.isLoading })
-            .map { !$0 && $1 }
+        $searchResult.map { $0.isLoading }
+            .combineLatest(queryPublisher.map { !$0.isEmpty }.eraseToAnyPublisher() )
+            .map { $0 && $1 }
             .assign(to: &$loadingPublisher)
 
         queryPublisher
             .map { $0.isEmpty }
-            .combineLatest($searchResult.compactMap { $0.error != nil })
+            .combineLatest(
+                $searchResult
+                    .filter { !$0.isLoading && $0.isSuccess }
+                    .map { $0.value?.isEmpty ?? true }
+            )
             .map { !$0 && $1 }
             .assign(to: &$emptyPublisher)
 

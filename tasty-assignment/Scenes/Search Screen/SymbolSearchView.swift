@@ -58,6 +58,7 @@ class SymbolSearchView: UIView {
         addSubview(resultTableView)
         addSubview(cancelButton)
         addSubview(activityIndicator)
+        resultTableView.backgroundView = emptyView
         setupTableView()
         setupConstraints()
     }
