@@ -20,6 +20,9 @@ class MyWatchlistsViewController: TypedViewController<MyWatchlistsView> {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.reloadData = { [weak self] in
+            self?.customView.watchlistsTableView.reloadData()
+        }
         customView.watchlistsTableView.dataSource = self
         customView.watchlistsTableView.delegate = self
         navigationController?.navigationBar.tintColor = .red

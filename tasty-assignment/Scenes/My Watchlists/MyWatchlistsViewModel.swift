@@ -9,9 +9,11 @@ import Foundation
 import XCoordinator
 
 final class MyWatchlistsViewModel {
+    
+    var reloadData: (() -> Void)?
     private let router: WeakRouter<AppRoute>
     private let watchlistStorage: WatchlistStorageProtocol
-
+    
     var watchlists: [Watchlist] {
         watchlistStorage.loadWatchlists()
     }
@@ -27,6 +29,7 @@ final class MyWatchlistsViewModel {
 
     func delete(watchlist: Watchlist) {
         watchlistStorage.removeWatchlist(id: watchlist.id)
+        reloadData?()
     }
     
     func createWatchlist(completion: @escaping (() -> Void)) {
