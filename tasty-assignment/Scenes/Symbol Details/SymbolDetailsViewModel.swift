@@ -24,17 +24,19 @@ class SymbolDetailsViewModel {
 
     func fetchChartData() -> ResultPublisher<[CandleChartDataEntry], APIError> {
         watchlistService.fetchChartData(for: symbol)
-            .map { response in
-                AsyncResult.success(
-                    response.value!.enumerated().map { index, entry in
-                        CandleChartDataEntry(
-                            x: Double(index),
-                            shadowH: entry.high,
-                            shadowL: entry.low,
-                            open: entry.open,
-                            close: entry.close
-                        )
-                    }
+            .compactMap { $0.value }
+            .map {
+                .success(
+                    $0.enumerated()
+                        .map { index, entry in
+                            CandleChartDataEntry(
+                                x: Double(index),
+                                shadowH: entry.high,
+                                shadowL: entry.low,
+                                open: entry.open,
+                                close: entry.close
+                            )
+                        }
                 )
             }
             .eraseToAnyPublisher()
