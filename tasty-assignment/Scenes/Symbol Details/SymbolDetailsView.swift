@@ -44,7 +44,7 @@ class SymbolDetailsView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func updateChart(with entries: [CandleChartDataEntry]) {
         chartView.updateChart(with: entries)
     }

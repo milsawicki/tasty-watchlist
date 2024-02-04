@@ -16,7 +16,7 @@ struct Configs {
     struct UserDefaultsKeys {
         static let watchlistsStorage = "watchlistsStorage"
     }
-    
+
     struct Keys {
         static let iex = "pk_c664ebeb66ca46b2b6926dd1ae3f6480"
     }

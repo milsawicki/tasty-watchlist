@@ -12,9 +12,9 @@ import XCoordinator
 final class SearchSymbolViewModel {
     @Published var loadingPublisher: Bool = false
     @Published var emptyPublisher: Bool = false
-    @Published var searchResult: AsyncResult<[SearchSymbolResponse], APIError> = .pending
+    @Published var searchResult: AsyncResult<[SearchSymbolResponse], APIError> = .success([])
     var queryPublisher = PassthroughSubject<String, Never>()
-    private let service: WatchlistService
+    private let service: WatchlistServiceProtocol
     private let watchlistStorage: WatchlistStorageProtocol
     private var cancellables = Set<AnyCancellable>()
     private var watchlistId: UUID
@@ -25,7 +25,7 @@ final class SearchSymbolViewModel {
     }
 
     init(
-        service: WatchlistService,
+        service: WatchlistServiceProtocol,
         watchlistStorage: WatchlistStorageProtocol,
         router: WeakRouter<AppRoute>,
         watchlistId: UUID,
@@ -39,41 +39,28 @@ final class SearchSymbolViewModel {
     }
 
     func bind(queryPublisher: AnyPublisher<String, Never>) {
-        $searchResult.map { $0.isLoading }
-            .combineLatest(queryPublisher.map { !$0.isEmpty }.eraseToAnyPublisher() )
+        $searchResult
+            .map { $0.isLoading }
+            .combineLatest(queryPublisher.map { !$0.isEmpty })
             .map { $0 && $1 }
             .assign(to: &$loadingPublisher)
 
+        Publishers.Zip(
+            queryPublisher.map { $0.isEmpty },
+            $searchResult.compactMap { $0.value }.map { $0.isEmpty }
+        )
+        .dropFirst()
+        .map { isQueryEmpty, isResultEmpty in
+            return !isQueryEmpty && isResultEmpty
+        }
+        .assign(to: &$emptyPublisher)
+        
         queryPublisher
-            .map { $0.isEmpty }
-            .combineLatest(
-                $searchResult
-                    .filter { !$0.isLoading && $0.isSuccess }
-                    .map { $0.value?.isEmpty ?? true }
-            )
-            .map { !$0 && $1 }
-            .assign(to: &$emptyPublisher)
-
-        queryPublisher
-            .map { !$0.isEmpty }
-            .combineLatest(
-                $searchResult
-                    .filter { $0.isSuccess }
-                    .compactMap { $0.value?.isEmpty }
-            )
-            .map { $0 && $1 }
-            .assign(to: &$emptyPublisher)
-
-        queryPublisher
-            .filter { !$0.isEmpty }
-            .removeDuplicates()
-            .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
-            .print()
-            .map { [weak self] symbol in
+            .debounce(for: .milliseconds(200), scheduler: DispatchQueue.main)
+            .flatMap { [weak self] symbol in
                 guard let self = self else { return ResultPublisher<[SearchSymbolResponse], APIError>(Empty()) }
-                return self.service.searchSymbol(for: symbol).eraseToAnyPublisher()
+                return self.service.searchSymbol(for: symbol)
             }
-            .switchToLatest()
             .assign(to: &$searchResult)
     }
 

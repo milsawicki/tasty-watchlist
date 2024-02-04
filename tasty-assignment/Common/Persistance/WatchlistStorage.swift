@@ -11,7 +11,7 @@ import Foundation
 ///
 /// This protocol defines the necessary operations for managing watchlists,
 /// each containing a name and an array of symbols. It supports adding, removing,
-/// and renaming watchlists, as well as adding and removing symbols within them.
+/// as well as adding and removing symbols within them.
 protocol WatchlistStorageProtocol {
     /// Loads and returns the array of current watchlists.
     ///

@@ -32,14 +32,14 @@ final class WatchlistViewModel: ObservableObject {
 
     var reloadData: (() -> Void)?
 
-    private let service: WatchlistService
+    private let service: WatchlistServiceProtocol
     private var watchlistStorage: WatchlistStorageProtocol
     private var router: WeakRouter<AppRoute>
     private var watchlistId: UUID
 
     init(
         watchlistId: UUID,
-        service: WatchlistService,
+        service: WatchlistServiceProtocol,
         watchlistStorage: WatchlistStorageProtocol,
         router: WeakRouter<AppRoute>
     ) {

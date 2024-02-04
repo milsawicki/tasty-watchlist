@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import XCoordinator
 
-enum AppRoute: Route {
+enum AppRoute: Route, Equatable {
     case showWatchlist(watchlist: Watchlist)
     case manageWatchlists
     case addSymbolToWatchlist(watchlistId: UUID, completion: () -> Void)
@@ -17,6 +17,23 @@ enum AppRoute: Route {
     case createWatchlist(completion: () -> Void)
     case disSelect(watchlist: Watchlist)
     case dismiss
+    
+    static func == (lhs: AppRoute, rhs: AppRoute) -> Bool {
+        switch (lhs, rhs) {
+        case (.manageWatchlists, .manageWatchlists), (.dismiss, .dismiss):
+            return true
+        case let (.showWatchlist(watchlist1), .showWatchlist(watchlist2)):
+            return watchlist1 == watchlist2
+        case let (.addSymbolToWatchlist(id1, _), .addSymbolToWatchlist(id2, _)):
+            return id1 == id2
+        case let (.symbolDetails(symbol1), .symbolDetails(symbol2)):
+            return symbol1 == symbol2
+        case let (.disSelect(watchlist1), .disSelect(watchlist2)):
+            return watchlist1 == watchlist2
+        default:
+            return false
+        }
+    }
 }
 
 final class AppCoordinator: NavigationCoordinator<AppRoute> {

@@ -9,7 +9,7 @@ import Foundation
 
 struct SearchSymbolItemsResponse: Codable {
     let items: [SearchSymbolResponse]
-    
+
     init() {
         items = []
     }
@@ -31,5 +31,3 @@ struct SearchSymbolResponse: Codable, Hashable {
         case instrumentType = "instrument-type"
     }
 }
-
-

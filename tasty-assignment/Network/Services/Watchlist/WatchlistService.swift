@@ -22,20 +22,23 @@ final class WatchlistService: WatchlistServiceProtocol {
     }
 
     func fetchQuotes(for symbol: String) -> ResultPublisher<StockQuoteResponse, APIError> {
-        apiClient.fetchs(request: QuotesRequest(symbol: symbol))
+        apiClient.fetch(request: QuotesRequest(symbol: symbol))
     }
 
     func searchSymbol(for query: String) -> ResultPublisher<[SearchSymbolResponse], APIError> {
         ResultPublisher<TopLevelContainer<SearchSymbolItemsResponse>, APIError>(
-            apiClient.fetchs(request: SearchSymbolRequest(query: query))
+            apiClient.fetch(request: SearchSymbolRequest(query: query))
         )
         .map {
-            .success($0.value?.data.items ?? [])
+            if let items = $0.value?.data.items {
+                return .success(items)
+            }
+            return .pending
         }
         .eraseToAnyPublisher()
     }
-    
+
     func fetchChartData(for symbol: String) -> ResultPublisher<[StockChartDataResponse], APIError> {
-        apiClient.fetchs(request: StockChartDataRequest(query: symbol))
+        apiClient.fetch(request: StockChartDataRequest(query: symbol))
     }
 }

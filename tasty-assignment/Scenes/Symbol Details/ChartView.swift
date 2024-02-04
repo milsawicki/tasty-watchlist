@@ -9,7 +9,7 @@ import DGCharts
 import UIKit
 
 class ChartView: UIView {
- 
+
     private let candleStickChartView = CandleStickChartView()
 
     init() {

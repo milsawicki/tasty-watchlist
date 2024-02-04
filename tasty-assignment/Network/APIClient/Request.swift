@@ -44,7 +44,7 @@ extension Request {
     var headers: [String: String]? {
         return [
             "Accept": "application/json",
-            "Content-Type": "application/json",
+            "Content-Type": "application/json"
         ]
     }
 }

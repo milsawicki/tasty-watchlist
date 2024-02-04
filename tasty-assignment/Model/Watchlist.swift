@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Watchlist: Codable {
+struct Watchlist: Codable, Equatable {
     let id: UUID
     var name: String
     var symbols: [String]

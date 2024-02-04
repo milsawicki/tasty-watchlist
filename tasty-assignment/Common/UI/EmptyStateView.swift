@@ -29,7 +29,7 @@ class EmptyStateView: UIView {
             make.leading.equalTo(snp.leading).offset(20)
             make.trailing.equalTo(snp.trailing).offset(-20)
         }
-        
+
         actionButton.snp.makeConstraints { make in
             make.centerX.equalTo(snp.centerX)
             make.width.equalTo(200)
@@ -37,7 +37,7 @@ class EmptyStateView: UIView {
             make.top.equalTo(messageLabel.snp.bottom).offset(20)
         }
     }
-    
+
     private func setUpViews() {
         messageLabel.textAlignment = .center
         messageLabel.numberOfLines = 0
