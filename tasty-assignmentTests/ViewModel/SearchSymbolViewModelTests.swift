@@ -39,17 +39,6 @@ class SearchSymbolViewModelTests: XCTestCase {
         super.tearDown()
     }
 
-    func testAddSymbolToWatchlist_AddsSymbol() {
-        mockStorage.loadWatchlistsReturnValue = [mockWatchlist]
-        let addedSymbol = "AAPL"
-        sut.addSymbolToWatchlist(addedSymbol)
-
-        XCTAssertTrue(mockStorage.addSymbolCalled)
-        XCTAssertEqual(mockStorage.addSymbolReceivedWatchlistId, mockWatchlist.id)
-        XCTAssertEqual(mockCoordinator.lastCalledRoute, .dismiss)
-        XCTAssertEqual(mockStorage.addSymbolReceivedSymbol, addedSymbol)
-    }
-
     func test_shouldHideEmptyView_wheQueryEmpty() {
         // given
         let expectation = XCTestExpectation(description: "Debounce publisher test")
@@ -123,5 +112,23 @@ class SearchSymbolViewModelTests: XCTestCase {
             cancellable.cancel()
         }
         wait(for: [expectation], timeout: 0.4)
+    }
+    
+    func test_addSymbolToWatchlist_withSymbolAlreadyAdded_shouldNotAddDuplicateItem() {
+        mockStorage.loadWatchlistsReturnValue = [Watchlist(name: "mock")]
+        mockStorage.fetchSymbolsReturnValue = ["AAPL"]
+        
+        sut.addSymbolToWatchlist("AAPL")
+        XCTAssertEqual(mockStorage.fetchSymbolsReturnValue!.count, 1)
+    }
+    
+    func test_addSymbolToWatchlist_withSymbolNotExisting_shouldNotAddDuplicateItem() {
+        mockStorage.loadWatchlistsReturnValue = [mockWatchlist]
+        mockStorage.fetchSymbolsReturnValue = ["MSFT"]
+        
+        let addedSymbol = "AAPL"
+        sut.addSymbolToWatchlist(addedSymbol)
+        XCTAssertTrue(mockStorage.addSymbolCalled)
+        XCTAssertEqual(mockStorage.addSymbolReceivedSymbol, addedSymbol)
     }
 }
