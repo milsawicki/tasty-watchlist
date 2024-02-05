@@ -76,6 +76,13 @@ final class SearchSymbolViewModel {
         router.trigger(.dismiss)
         addSymbolCompletion()
     }
+    
+    func isOnWatchlist(_ symbol: String) -> Bool {
+        guard let watchlist = watchlistStorage.loadWatchlists().first(where: { $0.id == watchlistId }) else {
+            return false
+        }
+        return watchlist.symbols.contains(where: { $0 == symbol })
+    }
 
     func symbol(for row: Int) -> SearchSymbolResponse? {
         searchResult.value?[row]

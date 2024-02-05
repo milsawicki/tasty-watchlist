@@ -57,8 +57,7 @@ private extension SymbolDetailsViewController {
             .flatMap { _ in quotesPublisher }
             .eraseToAnyPublisher()
 
-        bind(quotesPublisher.eraseToAnyPublisher())
-        bind(timerPublisher.eraseToAnyPublisher())
+        bind(Publishers.Merge(quotesPublisher, timerPublisher).eraseToAnyPublisher())
     }
 
     func bind(_ publisher: AnyPublisher<StockQuoteResponse, Never>) {

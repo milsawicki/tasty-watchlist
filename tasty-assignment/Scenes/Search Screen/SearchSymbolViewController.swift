@@ -71,12 +71,12 @@ extension SearchSymbolViewController: UITableViewDataSource, UITableViewDelegate
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SymbolSearchResultTableViewCell.self)) as? SymbolSearchResultTableViewCell,
             let searchResult = viewModel.symbol(for: indexPath.row)
         else { return UITableViewCell() }
-        cell.decorate(with: searchResult)
+        cell.decorate(with: searchResult, isOnWatchlist: viewModel.isOnWatchlist(searchResult.symbol))
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let searchResult = viewModel.searchResult.value?[indexPath.row].symbol else { return }
+        guard let searchResult = viewModel.symbol(for: indexPath.row)?.symbol else { return }
         viewModel.addSymbolToWatchlist(searchResult)
     }
 }

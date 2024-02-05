@@ -61,11 +61,15 @@ class SymbolSearchResultTableViewCell: UITableViewCell {
         setupView()
     }
 
-    func decorate(with searchResult: SearchSymbolResponse) {
+    func decorate(with searchResult: SearchSymbolResponse, isOnWatchlist: Bool) {
         symbolNameLabel.text = searchResult.symbol
         descriptionLabel.text = searchResult.description
         listedMarketLabel.text = searchResult.listedMarket
         typeLabel.text = searchResult.instrumentType
+        symbolNameLabel.textColor = isOnWatchlist ? .lightGray : .black
+        descriptionLabel.textColor = isOnWatchlist ? .lightGray : .black
+        listedMarketLabel.textColor = isOnWatchlist ? .lightGray : .black
+        typeLabel.textColor = isOnWatchlist ? .lightGray : .black
     }
 }
 
