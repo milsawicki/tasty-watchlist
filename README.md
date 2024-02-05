@@ -24,3 +24,40 @@
 ![Simulator Screen Recording - iPhone 15 Pro Max - 2024-02-05 at 01 52 28](https://github.com/milsawicki/tasty-watchlist/assets/9397489/c4ce1f26-b0d6-490f-93a7-927046972990)
  ![Simulator Screen Recording - iPhone 15 Pro Max - 2024-02-05 at 01 52 42](https://github.com/milsawicki/tasty-watchlist/assets/9397489/6d0892b4-de49-4720-adfc-52c50be9b066)
   ![Simulator Screen Recording - iPhone 15 Pro Max - 2024-02-05 at 01 35 27](https://github.com/milsawicki/tasty-watchlist/assets/9397489/cffacbd8-b8d9-469d-8d4a-dda97378bc09)
+
+### Instalation
+
+1. Clone repository:
+
+    ```bash
+    # over https:
+    git clone https://github.com/milsawicki/tasty-watchlist.git
+    # or over SSH:
+    git git@github.com:milsawicki/tasty-watchlist.git
+    ```
+2. Remember to include .env file in project catalog! Secret variables can be found in .env.sample. You can insert your keys there, or ask the project administrator to share them. Secrets are read and provided to the project using [Arkana](https://github.com/rogerluan/arkana) 
+
+3. Run `bundle install` to install the required Ruby gems, including specific versions of tools like Arkana mentioned above.
+
+4. Run `bundle exec arkana` to install the required Ruby gems, including specific versions of tools like Arkana mentioned above. Arkana will generate its files based on .yaml template file as a local Swift Package. Make sure it's added as dependency correctly. [Read more](https://github.com/rogerluan/arkana?tab=readme-ov-file#adding-a-local-swift-package-to-your-xcode-project) 
+
+5. Open `{project_name}.xcodeproj` file and build the project.
+
+
+## Coding guidelines
+
+- Respect Swift [API Design Guidelines](https://swift.org/documentation/api-design-guidelines/)
+- The code must be readable and self-explanatory - full variable names, meaningful methods, etc.
+- Don't leave any commented-out code.
+- Write documentation for every method and property accessible outside the class. For example well documented method looks as follows:
+
+    for **Swift**:
+
+    ```swift
+    /// Tells the magician to perform a given trick.
+    ///
+    /// - Parameter trick: The magic trick to perform.
+    /// - Returns: Whether the magician succeeded in performing the magic trick.
+    func perform(magicTrick trick: MagicTrick) -> Bool {
+        // body
+    }
