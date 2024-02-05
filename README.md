@@ -1,4 +1,4 @@
-
+![Simulator Screen Recording - iPhone 15 Pro Max - 2024-02-05 at 02 27 36](https://github.com/milsawicki/tasty-watchlist/assets/9397489/02f633a1-c197-434e-ba0a-dd57990eee34)
 # Tasty Watchlist
 <br />
 <p align="center">
@@ -22,8 +22,10 @@
 
 - ## Screenshots
 ![Simulator Screen Recording - iPhone 15 Pro Max - 2024-02-05 at 01 52 28](https://github.com/milsawicki/tasty-watchlist/assets/9397489/c4ce1f26-b0d6-490f-93a7-927046972990)
- ![Simulator Screen Recording - iPhone 15 Pro Max - 2024-02-05 at 01 52 42](https://github.com/milsawicki/tasty-watchlist/assets/9397489/6d0892b4-de49-4720-adfc-52c50be9b066)
-  ![Simulator Screen Recording - iPhone 15 Pro Max - 2024-02-05 at 01 35 27](https://github.com/milsawicki/tasty-watchlist/assets/9397489/cffacbd8-b8d9-469d-8d4a-dda97378bc09)
+![Simulator Screen Recording - iPhone 15 Pro Max - 2024-02-05 at 01 52 42](https://github.com/milsawicki/tasty-watchlist/assets/9397489/6d0892b4-de49-4720-adfc-52c50be9b066)
+![Simulator Screen Recording - iPhone 15 Pro Max - 2024-02-05 at 01 35 27](https://github.com/milsawicki/tasty-watchlist/assets/9397489/cffacbd8-b8d9-469d-8d4a-dda97378bc09)
+![Simulator Screen Recording - iPhone 15 Pro Max - 2024-02-05 at 02 27 36](https://github.com/milsawicki/tasty-watchlist/assets/9397489/df65066c-78ef-4aec-8245-08520daa7bac)
+
 
 ### Instalation
 
