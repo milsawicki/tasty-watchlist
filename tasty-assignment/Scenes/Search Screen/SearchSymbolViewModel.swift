@@ -43,6 +43,8 @@ final class SearchSymbolViewModel {
         self.addSymbolCompletion = addSymbolCompletion
     }
 
+    /// Binds a publisher to initiate the search operation based on the user's query.
+    /// It updates `loadingPublisher` and `emptyPublisher` based on the loading state  and the search results.
     func bind(queryPublisher: AnyPublisher<String, Never>) {
         $searchResult
             .map { $0.isLoading }
@@ -69,6 +71,7 @@ final class SearchSymbolViewModel {
             .assign(to: &$searchResult)
     }
 
+    /// Adds a given symbol to the watchlist if it is not already present.
     func addSymbolToWatchlist(_ symbol: String) {
         guard let watchlist = watchlistStorage.loadWatchlists().first(where: { $0.id == watchlistId }),
               !watchlist.symbols.contains(where: { $0 == symbol }) else { return }
@@ -77,17 +80,20 @@ final class SearchSymbolViewModel {
         addSymbolCompletion()
     }
     
+    /// Checks if a given symbol is already on the watchlist.
     func isOnWatchlist(_ symbol: String) -> Bool {
         guard let watchlist = watchlistStorage.loadWatchlists().first(where: { $0.id == watchlistId }) else {
             return false
         }
         return watchlist.symbols.contains(where: { $0 == symbol })
     }
-
+    
+    /// Returns a `SearchSymbolResponse` object for a given row index from the search results.
     func symbol(for row: Int) -> SearchSymbolResponse? {
         searchResult.value?[row]
     }
 
+    /// Triggers a dismissal action in the router, usually used for navigation purposes.
     func dismiss() {
         router.trigger(.dismiss)
     }
