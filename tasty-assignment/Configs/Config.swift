@@ -16,6 +16,7 @@ struct Configs {
 
     struct UserDefaultsKeys {
         static let watchlistsStorage = "watchlistsStorage"
+        static let hasLaunchedBefore = "hasLaunchedBefore"
     }
 
     struct Keys {

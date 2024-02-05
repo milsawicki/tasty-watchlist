@@ -32,6 +32,7 @@
 		013171A52B6C0A9D00C0A0A8 /* StockChartDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013171A42B6C0A9D00C0A0A8 /* StockChartDataResponse.swift */; };
 		013171A82B6C571400C0A0A8 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013171A72B6C571400C0A0A8 /* Config.swift */; };
 		013171AA2B6C58E200C0A0A8 /* Watchlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013171A92B6C58E200C0A0A8 /* Watchlist.swift */; };
+		01397BB32B718E1A00BBB55B /* WatchlistStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01397BB22B718E1A00BBB55B /* WatchlistStorageTests.swift */; };
 		01409AFB2B70737500572000 /* AnyPublisher+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01409AFA2B70737500572000 /* AnyPublisher+Utils.swift */; };
 		014A633E2B6AC62C008F4BE3 /* WatchlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014A633D2B6AC62C008F4BE3 /* WatchlistView.swift */; };
 		014A63402B6ACDE1008F4BE3 /* AsyncResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014A633F2B6ACDE1008F4BE3 /* AsyncResult.swift */; };
@@ -61,6 +62,10 @@
 		01B6024C2B69AA3E00E6B7BB /* MyWatchlistsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B6024B2B69AA3E00E6B7BB /* MyWatchlistsTableViewCell.swift */; };
 		01C2B2C52B70EEDC002EE686 /* CreateWatchlistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C2B2C42B70EEDC002EE686 /* CreateWatchlistViewModel.swift */; };
 		01C2B2CE2B7157C3002EE686 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C2B2CD2B7157C3002EE686 /* ServiceProvider.swift */; };
+		01C2B2D12B716253002EE686 /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C2B2D02B716253002EE686 /* UserDefaultsWrapper.swift */; };
+		01C2B2D32B716296002EE686 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C2B2D22B716296002EE686 /* AppSettings.swift */; };
+		01C2B2D62B7162E5002EE686 /* UserDefaultsWrapperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C2B2D52B7162E5002EE686 /* UserDefaultsWrapperTest.swift */; };
+		01C2B2D82B71630B002EE686 /* MockUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C2B2D72B71630B002EE686 /* MockUserDefaults.swift */; };
 		01D41D952B62B731004B6789 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D41D942B62B731004B6789 /* Typography.swift */; };
 		01F8208E2B6B0694006CE2BD /* MyWatchlistsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8208D2B6B0694006CE2BD /* MyWatchlistsViewModel.swift */; };
 		01F820922B6B13B9006CE2BD /* WatchlistStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F820912B6B13B9006CE2BD /* WatchlistStorage.swift */; };
@@ -110,6 +115,7 @@
 		013171A42B6C0A9D00C0A0A8 /* StockChartDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockChartDataResponse.swift; sourceTree = "<group>"; };
 		013171A72B6C571400C0A0A8 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		013171A92B6C58E200C0A0A8 /* Watchlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watchlist.swift; sourceTree = "<group>"; };
+		01397BB22B718E1A00BBB55B /* WatchlistStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistStorageTests.swift; sourceTree = "<group>"; };
 		01409AFA2B70737500572000 /* AnyPublisher+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyPublisher+Utils.swift"; sourceTree = "<group>"; };
 		014A633D2B6AC62C008F4BE3 /* WatchlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistView.swift; sourceTree = "<group>"; };
 		014A633F2B6ACDE1008F4BE3 /* AsyncResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncResult.swift; sourceTree = "<group>"; };
@@ -140,6 +146,10 @@
 		01B6024B2B69AA3E00E6B7BB /* MyWatchlistsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWatchlistsTableViewCell.swift; sourceTree = "<group>"; };
 		01C2B2C42B70EEDC002EE686 /* CreateWatchlistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWatchlistViewModel.swift; sourceTree = "<group>"; };
 		01C2B2CD2B7157C3002EE686 /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
+		01C2B2D02B716253002EE686 /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
+		01C2B2D22B716296002EE686 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		01C2B2D52B7162E5002EE686 /* UserDefaultsWrapperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapperTest.swift; sourceTree = "<group>"; };
+		01C2B2D72B71630B002EE686 /* MockUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserDefaults.swift; sourceTree = "<group>"; };
 		01D41D942B62B731004B6789 /* Typography.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		01F8208D2B6B0694006CE2BD /* MyWatchlistsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWatchlistsViewModel.swift; sourceTree = "<group>"; };
 		01F820912B6B13B9006CE2BD /* WatchlistStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistStorage.swift; sourceTree = "<group>"; };
@@ -231,10 +241,12 @@
 		010D098F2B600FAA00763897 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				01C2B2CF2B716243002EE686 /* UserDefaultsWrapper */,
 				01F820902B6B13B9006CE2BD /* Persistance */,
 				01037B572B63AD93005FEFC2 /* Extensions */,
 				010D09902B600FBF00763897 /* UI */,
 				01C2B2CD2B7157C3002EE686 /* ServiceProvider.swift */,
+				01C2B2D22B716296002EE686 /* AppSettings.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -365,6 +377,8 @@
 		015B52052B5EE124000F7071 /* tasty-assignmentTests */ = {
 			isa = PBXGroup;
 			children = (
+				01C2B2D92B7167B8002EE686 /* Persistance */,
+				01C2B2D42B7162D1002EE686 /* Helpers */,
 				01B0B9C12B6F047C00D60F15 /* Mocks */,
 				013171AE2B6CF15A00C0A0A8 /* ViewModel */,
 			);
@@ -386,6 +400,7 @@
 				01B0B9C22B6F048500D60F15 /* MockWatchlistStorage.swift */,
 				01B0B9C42B6F061000D60F15 /* MockAppCoordinator.swift */,
 				01B0B9CE2B6F320600D60F15 /* MockWatchlistService.swift */,
+				01C2B2D72B71630B002EE686 /* MockUserDefaults.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -431,6 +446,30 @@
 				01C2B2C42B70EEDC002EE686 /* CreateWatchlistViewModel.swift */,
 			);
 			path = "My Watchlists";
+			sourceTree = "<group>";
+		};
+		01C2B2CF2B716243002EE686 /* UserDefaultsWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				01C2B2D02B716253002EE686 /* UserDefaultsWrapper.swift */,
+			);
+			path = UserDefaultsWrapper;
+			sourceTree = "<group>";
+		};
+		01C2B2D42B7162D1002EE686 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				01C2B2D52B7162E5002EE686 /* UserDefaultsWrapperTest.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		01C2B2D92B7167B8002EE686 /* Persistance */ = {
+			isa = PBXGroup;
+			children = (
+				01397BB22B718E1A00BBB55B /* WatchlistStorageTests.swift */,
+			);
+			path = Persistance;
 			sourceTree = "<group>";
 		};
 		01D41D932B62B731004B6789 /* Typography */ = {
@@ -606,6 +645,7 @@
 				01037B562B633B6C005FEFC2 /* SearchSymbolViewModel.swift in Sources */,
 				01037B592B63ADA8005FEFC2 /* UITextField+Publisher.swift in Sources */,
 				01B602382B65874E00E6B7BB /* SymbolDetailsViewController.swift in Sources */,
+				01C2B2D12B716253002EE686 /* UserDefaultsWrapper.swift in Sources */,
 				01037B522B633148005FEFC2 /* SearchSymbolViewController.swift in Sources */,
 				01B602432B65930500E6B7BB /* QuotesStackView.swift in Sources */,
 				010D099B2B601C9600763897 /* APIClientProtocol.swift in Sources */,
@@ -624,6 +664,7 @@
 				014A63402B6ACDE1008F4BE3 /* AsyncResult.swift in Sources */,
 				010D09922B60155100763897 /* TypedViewController.swift in Sources */,
 				01B602332B649C0900E6B7BB /* SymbolSearchResultTableViewCell.swift in Sources */,
+				01C2B2D32B716296002EE686 /* AppSettings.swift in Sources */,
 				01037B542B63316C005FEFC2 /* SymbolSearchView.swift in Sources */,
 				010D099E2B6028D200763897 /* StockQuoteResponse.swift in Sources */,
 				01C2B2C52B70EEDC002EE686 /* CreateWatchlistViewModel.swift in Sources */,
@@ -652,8 +693,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01397BB32B718E1A00BBB55B /* WatchlistStorageTests.swift in Sources */,
 				01B0B9CD2B6F317400D60F15 /* SearchSymbolViewModelTests.swift in Sources */,
 				01B0B9C02B6DC80D00D60F15 /* MyWatchlistsViewModelTests.swift in Sources */,
+				01C2B2D82B71630B002EE686 /* MockUserDefaults.swift in Sources */,
+				01C2B2D62B7162E5002EE686 /* UserDefaultsWrapperTest.swift in Sources */,
 				01B0B9D12B701C0800D60F15 /* WatchlistViewModelTests.swift in Sources */,
 				01B0B9CF2B6F320600D60F15 /* MockWatchlistService.swift in Sources */,
 				01B0B9C52B6F061000D60F15 /* MockAppCoordinator.swift in Sources */,

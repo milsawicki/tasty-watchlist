@@ -12,18 +12,7 @@ import XCoordinatorCombine
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        setupDefaultWatchlist()
         return true
-    }
-
-    private func setupDefaultWatchlist() {
-        let storage = WatchlistStorage()
-        let defaultWatchlists = storage.loadWatchlists()
-
-        if defaultWatchlists.isEmpty {
-            let defaultWatchlist = Watchlist(name: "My first list", symbols: ["AAPL", "GOOGL", "MSFT"])
-            storage.addWatchlist(defaultWatchlist)
-        }
     }
 
     // MARK: UISceneSession Lifecycle

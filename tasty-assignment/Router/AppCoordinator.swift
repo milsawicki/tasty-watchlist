@@ -51,8 +51,13 @@ final class AppCoordinator: NavigationCoordinator<AppRoute> {
     init(serviceProvider: ServiceProvider) {
         self.serviceProvider = serviceProvider
         super.init(initialRoute: .manageWatchlists)
+        self.setInitialState()
     }
 
+    private func setInitialState() {
+        serviceProvider.watchlistStorage.addWatchlist(name: "My first list", with: ["AAPL", "MSFT", "GOOG"])
+    }
+    
     override func prepareTransition(for route: AppRoute) -> NavigationTransition {
         switch route {
         case .dismiss:

@@ -29,11 +29,11 @@ final class WatchlistService: WatchlistServiceProtocol {
         ResultPublisher<TopLevelContainer<SearchSymbolItemsResponse>, APIError>(
             apiClient.fetch(request: SearchSymbolRequest(query: query))
         )
-        .map {
+        .compactMap {
             if let items = $0.value?.data.items {
                 return .success(items)
             }
-            return .pending
+            return nil
         }
         .eraseToAnyPublisher()
     }

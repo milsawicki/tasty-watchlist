@@ -9,6 +9,7 @@ import Foundation
 @testable import tasty_assignment
 
 class MockWatchlistStorage: WatchlistStorageProtocol {
+    
     var loadWatchlistsCalled = false
     var loadWatchlistsReturnValue: [Watchlist]!
     var addWatchlistCalled = false
@@ -58,6 +59,10 @@ class MockWatchlistStorage: WatchlistStorageProtocol {
 
     func removeAll() {
         removeAllCalled = true
+    }
+
+    func addWatchlist(name: String, with symbols: [String]) {
+        /// Not implemented yet
     }
 
     func fetchSymbols(fromWatchlist id: UUID) -> [String]? {

@@ -20,8 +20,15 @@ protocol WatchlistStorageProtocol {
 
     /// Adds a new watchlist with the given name.
     ///
-    /// - Parameter name: The name for the new watchlist. Must be unique.
+    /// - Parameter name: The name for the new watchlist.
     func addWatchlist(name: String)
+
+    /// Adds a new watchlist with the given name and symbols.
+    ///
+    /// - Parameters:
+    /// - name: The name for the new watchlist.
+    /// - symbols: The symbol to be removed from the watchlist.
+    func addWatchlist(name: String, with symbols: [String])
 
     /// Removes a watchlist with the specified id.
     ///
@@ -59,8 +66,12 @@ protocol WatchlistStorageProtocol {
 }
 
 class WatchlistStorage: WatchlistStorageProtocol {
-    private let defaults = UserDefaults.standard
+    private let defaults: UserDefaultsProtocol
     private let watchlistKey = Configs.UserDefaultsKeys.watchlistsStorage
+
+    init(userDefaults: UserDefaultsProtocol) {
+        self.defaults = userDefaults
+    }
 
     func loadWatchlists() -> [Watchlist] {
         guard let data = defaults.object(forKey: watchlistKey) as? Data else {
@@ -129,6 +140,13 @@ class WatchlistStorage: WatchlistStorageProtocol {
     func fetchSymbols(fromWatchlist id: UUID) -> [String]? {
         let watchlists = loadWatchlists()
         return watchlists.first { $0.id == id }?.symbols
+    }
+    
+    func addWatchlist(name: String, with symbols: [String]) {
+        var watchlists = loadWatchlists()
+        let newWatchlist = Watchlist(name: name, symbols: symbols)
+        watchlists.append(newWatchlist)
+        saveWatchlists(watchlists)
     }
 
     func removeAll() {
