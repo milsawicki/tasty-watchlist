@@ -44,6 +44,12 @@
 
 5. Open `{project_name}.xcodeproj` file and build the project.
 
+## Dependencies
+This project uses several key dependencies:
+
+- **XCoordinator**: A powerful navigation library for iOS based on the coordinator pattern.
+- **SnapKit**: A Swift Autolayout DSL for iOS & OS X.
+- **DGCharts**: A simple and effective chart library for iOS.
 
 ## Coding guidelines
 
