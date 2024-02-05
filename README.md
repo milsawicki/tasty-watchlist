@@ -1,4 +1,3 @@
-![Simulator Screen Recording - iPhone 15 Pro Max - 2024-02-05 at 02 27 36](https://github.com/milsawicki/tasty-watchlist/assets/9397489/02f633a1-c197-434e-ba0a-dd57990eee34)
 # Tasty Watchlist
 <br />
 <p align="center">
