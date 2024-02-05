@@ -114,15 +114,3 @@ final class AppCoordinator: NavigationCoordinator<AppRoute> {
         }
     }
 }
-
-struct CreateWatchlistViewModel {
-    private let watchlistStorage: WatchlistStorageProtocol
-
-    init(watchlistStorage: WatchlistStorageProtocol) {
-        self.watchlistStorage = watchlistStorage
-    }
-
-    func createWatchlist(with name: String) {
-        watchlistStorage.addWatchlist(name: name)
-    }
-}

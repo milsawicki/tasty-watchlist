@@ -16,8 +16,6 @@ class SearchSymbolViewModelTests: XCTestCase {
     var mockService: MockWatchlistService!
     var mockWatchlist = Watchlist(name: "mock")
     var mockTextFieldPublisher: AnyPublisher<String, Never>!
-    var addSymbolClosureSpy: (() -> Void) = {}
-    private var cancellables = Set<AnyCancellable>()
 
     override func setUp() {
         super.setUp()
@@ -29,7 +27,7 @@ class SearchSymbolViewModelTests: XCTestCase {
             service: mockService,
             watchlistStorage: mockStorage,
             router: mockCoordinator.weakRouter,
-            watchlistId: mockWatchlist.id, addSymbolCompletion: addSymbolClosureSpy
+            watchlistId: mockWatchlist.id, addSymbolCompletion: {}
         )
     }
 
@@ -52,10 +50,12 @@ class SearchSymbolViewModelTests: XCTestCase {
         XCTAssertEqual(mockStorage.addSymbolReceivedSymbol, addedSymbol)
     }
 
-    func test_doesnt_show_empty_view_when_no_query_entered() {
+    func test_shouldHideEmptyView_wheQueryEmpty() {
         // given
         let expectation = XCTestExpectation(description: "Debounce publisher test")
         let mockTextFieldPublisher = PassthroughSubject<String, Never>()
+        var receivedValues = false
+
         mockService.expectedSearchSymbolResponse = .just(.success([]))
         sut.bind(queryPublisher: mockTextFieldPublisher.eraseToAnyPublisher())
 
@@ -63,19 +63,24 @@ class SearchSymbolViewModelTests: XCTestCase {
         mockTextFieldPublisher.send("")
 
         // then
-        sut.$emptyPublisher
+        let cancellable = sut.$emptyPublisher
             .sink { shouldShowEmpty in
-                XCTAssertFalse(shouldShowEmpty)
+                receivedValues = shouldShowEmpty
                 expectation.fulfill()
             }
-            .store(in: &cancellables)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            XCTAssertTrue(receivedValues)
+            cancellable.cancel()
+        }
         wait(for: [expectation], timeout: 0.3)
     }
-    
-    func test_shows_loading_indicator_when_request_result_pending() {
+
+    func test_shouldShowLoadingIndicator_whenRequestResultPending() {
         // given
         let expectation = XCTestExpectation(description: "Debounce publisher test")
         let mockTextFieldPublisher = PassthroughSubject<String, Never>()
+        var receivedValues = false
         mockService.expectedSearchSymbolResponse = .just(.pending)
         sut.bind(queryPublisher: mockTextFieldPublisher.eraseToAnyPublisher())
 
@@ -83,32 +88,40 @@ class SearchSymbolViewModelTests: XCTestCase {
         mockTextFieldPublisher.send("some")
 
         // then
-        sut.$loadingPublisher
-            .sink { shouldShowEmpty in
-                XCTAssertTrue(shouldShowEmpty)
+        let cancellable = sut.$loadingPublisher
+            .sink { shouldShowLoading in
+                receivedValues = shouldShowLoading
                 expectation.fulfill()
             }
-            .store(in: &cancellables)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            XCTAssertTrue(receivedValues)
+            cancellable.cancel()
+        }
         wait(for: [expectation], timeout: 0.3)
     }
 
-    func test_should_display_empty_view_when_no_results_return() {
+    func test_shouldShowEmptyView_whenEmptySymolsReturned() {
         // given
         let expectation = XCTestExpectation(description: "Debounce publisher test")
         let mockTextFieldPublisher = PassthroughSubject<String, Never>()
+        var receivedValues = false
         mockService.expectedSearchSymbolResponse = .just(.success([]))
         sut.bind(queryPublisher: mockTextFieldPublisher.eraseToAnyPublisher())
 
         // when
-        mockTextFieldPublisher.send("somesymbol")
+        mockTextFieldPublisher.send("AAPLl")
 
         // then
-        sut.$emptyPublisher
+        let cancellable = sut.$emptyPublisher
             .sink { shouldShowEmpty in
-                XCTAssertTrue(shouldShowEmpty)
+                receivedValues = shouldShowEmpty
                 expectation.fulfill()
             }
-            .store(in: &cancellables)
-        wait(for: [expectation], timeout: 0.1)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            XCTAssertTrue(receivedValues)
+            cancellable.cancel()
+        }
+        wait(for: [expectation], timeout: 0.4)
     }
 }

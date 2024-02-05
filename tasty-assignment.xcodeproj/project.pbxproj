@@ -59,6 +59,7 @@
 		01B602482B69A60D00E6B7BB /* MyWatchlistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B602472B69A60D00E6B7BB /* MyWatchlistsViewController.swift */; };
 		01B6024A2B69A62B00E6B7BB /* MyWatchlistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B602492B69A62B00E6B7BB /* MyWatchlistsView.swift */; };
 		01B6024C2B69AA3E00E6B7BB /* MyWatchlistsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B6024B2B69AA3E00E6B7BB /* MyWatchlistsTableViewCell.swift */; };
+		01C2B2C52B70EEDC002EE686 /* CreateWatchlistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C2B2C42B70EEDC002EE686 /* CreateWatchlistViewModel.swift */; };
 		01D41D952B62B731004B6789 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D41D942B62B731004B6789 /* Typography.swift */; };
 		01F8208E2B6B0694006CE2BD /* MyWatchlistsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8208D2B6B0694006CE2BD /* MyWatchlistsViewModel.swift */; };
 		01F820922B6B13B9006CE2BD /* WatchlistStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F820912B6B13B9006CE2BD /* WatchlistStorage.swift */; };
@@ -136,6 +137,7 @@
 		01B602472B69A60D00E6B7BB /* MyWatchlistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWatchlistsViewController.swift; sourceTree = "<group>"; };
 		01B602492B69A62B00E6B7BB /* MyWatchlistsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWatchlistsView.swift; sourceTree = "<group>"; };
 		01B6024B2B69AA3E00E6B7BB /* MyWatchlistsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWatchlistsTableViewCell.swift; sourceTree = "<group>"; };
+		01C2B2C42B70EEDC002EE686 /* CreateWatchlistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWatchlistViewModel.swift; sourceTree = "<group>"; };
 		01D41D942B62B731004B6789 /* Typography.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		01F8208D2B6B0694006CE2BD /* MyWatchlistsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWatchlistsViewModel.swift; sourceTree = "<group>"; };
 		01F820912B6B13B9006CE2BD /* WatchlistStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistStorage.swift; sourceTree = "<group>"; };
@@ -423,6 +425,7 @@
 				01B602492B69A62B00E6B7BB /* MyWatchlistsView.swift */,
 				01B6024B2B69AA3E00E6B7BB /* MyWatchlistsTableViewCell.swift */,
 				01F8208D2B6B0694006CE2BD /* MyWatchlistsViewModel.swift */,
+				01C2B2C42B70EEDC002EE686 /* CreateWatchlistViewModel.swift */,
 			);
 			path = "My Watchlists";
 			sourceTree = "<group>";
@@ -620,6 +623,7 @@
 				01B602332B649C0900E6B7BB /* SymbolSearchResultTableViewCell.swift in Sources */,
 				01037B542B63316C005FEFC2 /* SymbolSearchView.swift in Sources */,
 				010D099E2B6028D200763897 /* StockQuoteResponse.swift in Sources */,
+				01C2B2C52B70EEDC002EE686 /* CreateWatchlistViewModel.swift in Sources */,
 				013171A32B6C08D100C0A0A8 /* StockChartDataRequest.swift in Sources */,
 				01B602412B65896C00E6B7BB /* SymbolDetailsView.swift in Sources */,
 				010D09A22B602F0F00763897 /* Request.swift in Sources */,

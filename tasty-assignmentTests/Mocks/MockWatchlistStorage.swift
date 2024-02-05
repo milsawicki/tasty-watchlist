@@ -14,13 +14,18 @@ class MockWatchlistStorage: WatchlistStorageProtocol {
     var addWatchlistCalled = false
     var addWatchlistReceivedName: String?
     var fetchSymbolsCalled = false
+    var removeAllCalled = false
     var fetchSymbolsReceivedId: UUID?
     var addSymbolReceivedWatchlistId: UUID?
     var addSymbolReceivedSymbol: String?
     var fetchSymbolsReturnValue: [String]?
     var removedWatchlistId: UUID?
+    var removeSymbolReceivedWatchlistId: UUID?
+    var removeSymbolReceivedSymbol: String?
     var addSymbolCalled = false
-    
+    var fetchWatchlistReceivedId: UUID?
+    var fetchWatchlistReturnedValue: Watchlist!
+
     func loadWatchlists() -> [Watchlist] {
         loadWatchlistsCalled = true
         return loadWatchlistsReturnValue
@@ -42,15 +47,17 @@ class MockWatchlistStorage: WatchlistStorageProtocol {
     }
 
     func removeSymbol(from watchlistId: UUID, symbol: String) {
-        fatalError()
+        removeSymbolReceivedWatchlistId = watchlistId
+        removeSymbolReceivedSymbol = symbol
     }
 
-    func fetchWatchlist(by id: UUID) -> tasty_assignment.Watchlist? {
-        fatalError()
+    func fetchWatchlist(by id: UUID) -> Watchlist? {
+        fetchWatchlistReceivedId = id
+        return fetchWatchlistReturnedValue
     }
 
     func removeAll() {
-        fatalError()
+        removeAllCalled = true
     }
 
     func fetchSymbols(fromWatchlist id: UUID) -> [String]? {

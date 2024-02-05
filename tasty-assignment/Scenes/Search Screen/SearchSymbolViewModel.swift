@@ -16,7 +16,7 @@ final class SearchSymbolViewModel {
     @Published var emptyPublisher: Bool = false
     /// An `AsyncResult` representing the state and data of the search operation.
     /// - SeeAlso: `AsyncResult`
-    @Published var searchResult: AsyncResult<[SearchSymbolResponse], APIError> = .success([])
+    @Published var searchResult: AsyncResult<[SearchSymbolResponse], APIError> = .pending
     ///  An integer representing the number of rows in the search result.
     var numberOfRows: Int {
         searchResult.value?.count ?? 0
@@ -54,18 +54,18 @@ final class SearchSymbolViewModel {
             queryPublisher.map { $0.isEmpty },
             $searchResult.compactMap { $0.value }.map { $0.isEmpty }
         )
-        .dropFirst()
         .map { isQueryEmpty, isResultEmpty in
             !isQueryEmpty && isResultEmpty
         }
         .assign(to: &$emptyPublisher)
 
         queryPublisher
-            .debounce(for: .milliseconds(200), scheduler: DispatchQueue.main)
+            .debounce(for: .milliseconds(300), scheduler: DispatchQueue.main)
             .flatMap { [weak self] symbol in
                 guard let self = self else { return ResultPublisher<[SearchSymbolResponse], APIError>(Empty()) }
                 return self.service.searchSymbol(for: symbol)
             }
+            .prepend(.pending)
             .assign(to: &$searchResult)
     }
 

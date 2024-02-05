@@ -28,7 +28,7 @@ class MyWatchlistsViewModelTests: XCTestCase {
         super.tearDown()
     }
 
-    func test_delete_watchlist_removes_correct_watchlist() {
+    func test_deleteWatchlist_shouldDeleteExepctedWatchlist() {
         // Given
         let watchlist = Watchlist(name: "test")
         mockStorage.loadWatchlistsReturnValue = [watchlist]

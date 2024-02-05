@@ -22,4 +22,12 @@ struct StockQuoteResponse: Codable, Hashable {
         case companyName
         case latestPrice
     }
+    
+    init(companyName: String, symbol: String, bidPrice: Double, askPrice: Double, latestPrice: Double) {
+        self.companyName = companyName
+        self.symbol = symbol
+        self.bidPrice = bidPrice
+        self.askPrice = askPrice
+        self.latestPrice = latestPrice
+    }
 }
