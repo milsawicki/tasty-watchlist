@@ -11,3 +11,5 @@
 **Views are created programatically.**
 Please, do not use xib and storyboards! In large teams or projects, merge conflicts with storyboard files can be a significant issue. Since storyboard changes are often represented as XML changes, resolving these conflicts can be difficult and error-prone. Code, on the other hand, is generally easier to merge and manage in version control systems. Snapkit for setting constraints is highly encouraged. 
 
+#Combine
+It simplifies state and data flow management in your application, especially when dealing with complex user interfaces or handling multiple asynchronous processes. Combine allows for a clear and concise way to handle asynchronous events and easly manipulate data (like filtering, mapping, reducing, etc) downstream.
