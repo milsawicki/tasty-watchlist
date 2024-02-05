@@ -51,9 +51,18 @@ This project uses several key dependencies:
 - **SnapKit**: A Swift Autolayout DSL for iOS & OS X.
 - **DGCharts**: A simple and effective chart library for iOS.
 - **XCoordinator**: A navigation framework for iOS applications written in Swift.
-- **Arkana**: Secret managing library. 
-## Coding guidelines
+- **Arkana**: Secret managing library.
 
+## Dark mode
+The app supports light/dark modes based on current iOS settings.
+![Simulator Screen Recording - iPhone 15 Pro Max - 2024-02-05 at 17 48 11](https://github.com/milsawicki/tasty-watchlist/assets/9397489/99606310-83d1-4a49-8dca-0fc1f9729ae8)
+
+## Future improvements
+- [ ] Configure CI (eg. GitHub Actions)
+- [ ] Implement Mock generating library for easier testing (eg. Sourcery)
+- [ ] Consider implementing DI tools (eg. Swinject)
+
+## Coding guideline
 - Respect Swift [API Design Guidelines](https://swift.org/documentation/api-design-guidelines/)
 - The code must be readable and self-explanatory - full variable names, meaningful methods, etc.
 - Don't leave any commented-out code.
