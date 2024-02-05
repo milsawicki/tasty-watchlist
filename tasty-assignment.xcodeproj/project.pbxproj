@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -41,6 +41,7 @@
 		015B51FC2B5EE123000F7071 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 015B51FA2B5EE123000F7071 /* LaunchScreen.storyboard */; };
 		015B52112B5EE124000F7071 /* tasty_assignmentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B52102B5EE124000F7071 /* tasty_assignmentUITests.swift */; };
 		015B52132B5EE124000F7071 /* tasty_assignmentUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B52122B5EE124000F7071 /* tasty_assignmentUITestsLaunchTests.swift */; };
+		015E9F732B705CB30036EE9C /* ArkanaKeys in Frameworks */ = {isa = PBXBuildFile; productRef = 015E9F722B705CB30036EE9C /* ArkanaKeys */; };
 		01B0B9C02B6DC80D00D60F15 /* MyWatchlistsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B0B9BF2B6DC80D00D60F15 /* MyWatchlistsViewModelTests.swift */; };
 		01B0B9C32B6F048500D60F15 /* MockWatchlistStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B0B9C22B6F048500D60F15 /* MockWatchlistStorage.swift */; };
 		01B0B9C52B6F061000D60F15 /* MockAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B0B9C42B6F061000D60F15 /* MockAppCoordinator.swift */; };
@@ -149,6 +150,7 @@
 				01F820972B6B177A006CE2BD /* XCoordinatorCombine in Frameworks */,
 				01B6023D2B65885400E6B7BB /* DGCharts in Frameworks */,
 				01037B4D2B62B7B4005FEFC2 /* SnapKit in Frameworks */,
+				015E9F732B705CB30036EE9C /* ArkanaKeys in Frameworks */,
 				01037B4F2B62B7B4005FEFC2 /* SnapKit-Dynamic in Frameworks */,
 				01B6023F2B65885400E6B7BB /* DGChartsDynamic in Frameworks */,
 				01F820952B6B177A006CE2BD /* XCoordinator in Frameworks */,
@@ -472,6 +474,7 @@
 				01B6023E2B65885400E6B7BB /* DGChartsDynamic */,
 				01F820942B6B177A006CE2BD /* XCoordinator */,
 				01F820962B6B177A006CE2BD /* XCoordinatorCombine */,
+				015E9F722B705CB30036EE9C /* ArkanaKeys */,
 			);
 			productName = "tasty-assignment";
 			productReference = 015B51EC2B5EE122000F7071 /* tasty-assignment.app */;
@@ -549,6 +552,7 @@
 				01037B4B2B62B7B4005FEFC2 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				01B6023B2B65885400E6B7BB /* XCRemoteSwiftPackageReference "Charts" */,
 				01F820932B6B177A006CE2BD /* XCRemoteSwiftPackageReference "XCoordinator" */,
+				015E9F712B705CB30036EE9C /* XCLocalSwiftPackageReference "ArkanaKeys/ArkanaKeys" */,
 			);
 			productRefGroup = 015B51ED2B5EE122000F7071 /* Products */;
 			projectDirPath = "";
@@ -981,6 +985,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		015E9F712B705CB30036EE9C /* XCLocalSwiftPackageReference "ArkanaKeys/ArkanaKeys" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ArkanaKeys/ArkanaKeys;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		01037B4B2B62B7B4005FEFC2 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -1018,6 +1029,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 01037B4B2B62B7B4005FEFC2 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = "SnapKit-Dynamic";
+		};
+		015E9F722B705CB30036EE9C /* ArkanaKeys */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ArkanaKeys;
 		};
 		01B6023C2B65885400E6B7BB /* DGCharts */ = {
 			isa = XCSwiftPackageProductDependency;

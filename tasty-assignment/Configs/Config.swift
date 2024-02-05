@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import ArkanaKeys
 struct Configs {
     struct Network {
         static let tastyApiBaseUrl = "api.tastyworks.com"
@@ -18,6 +18,6 @@ struct Configs {
     }
 
     struct Keys {
-        static let iex = "pk_c664ebeb66ca46b2b6926dd1ae3f6480"
+        static let iex = ArkanaKeys.Keys.Global().iEX_API_KEY
     }
 }

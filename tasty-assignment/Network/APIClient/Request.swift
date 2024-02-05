@@ -84,6 +84,6 @@ extension URL {
 
     /// Returns this URL with financial data token appended.
     func appendingFinancialDataToken() -> URL {
-        appending(parameter: "token", value: "pk_c664ebeb66ca46b2b6926dd1ae3f6480")
+        appending(parameter: "token", value: Configs.Keys.iex)
     }
 }
