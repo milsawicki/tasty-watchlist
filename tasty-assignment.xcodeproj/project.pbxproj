@@ -19,7 +19,7 @@
 		01037B632B63E32F005FEFC2 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01037B622B63E32F005FEFC2 /* APIError.swift */; };
 		010D09922B60155100763897 /* TypedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010D09912B60155100763897 /* TypedViewController.swift */; };
 		010D09962B601AA700763897 /* WatchlistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010D09952B601AA700763897 /* WatchlistViewModel.swift */; };
-		010D099B2B601C9600763897 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010D099A2B601C9600763897 /* APIClient.swift */; };
+		010D099B2B601C9600763897 /* APIClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010D099A2B601C9600763897 /* APIClientProtocol.swift */; };
 		010D099E2B6028D200763897 /* StockQuoteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010D099D2B6028D200763897 /* StockQuoteResponse.swift */; };
 		010D09A02B602B9A00763897 /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010D099F2B602B9A00763897 /* HttpMethod.swift */; };
 		010D09A22B602F0F00763897 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010D09A12B602F0F00763897 /* Request.swift */; };
@@ -60,6 +60,7 @@
 		01B6024A2B69A62B00E6B7BB /* MyWatchlistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B602492B69A62B00E6B7BB /* MyWatchlistsView.swift */; };
 		01B6024C2B69AA3E00E6B7BB /* MyWatchlistsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B6024B2B69AA3E00E6B7BB /* MyWatchlistsTableViewCell.swift */; };
 		01C2B2C52B70EEDC002EE686 /* CreateWatchlistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C2B2C42B70EEDC002EE686 /* CreateWatchlistViewModel.swift */; };
+		01C2B2CE2B7157C3002EE686 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C2B2CD2B7157C3002EE686 /* ServiceProvider.swift */; };
 		01D41D952B62B731004B6789 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D41D942B62B731004B6789 /* Typography.swift */; };
 		01F8208E2B6B0694006CE2BD /* MyWatchlistsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8208D2B6B0694006CE2BD /* MyWatchlistsViewModel.swift */; };
 		01F820922B6B13B9006CE2BD /* WatchlistStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F820912B6B13B9006CE2BD /* WatchlistStorage.swift */; };
@@ -96,7 +97,7 @@
 		01037B622B63E32F005FEFC2 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		010D09912B60155100763897 /* TypedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedViewController.swift; sourceTree = "<group>"; };
 		010D09952B601AA700763897 /* WatchlistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistViewModel.swift; sourceTree = "<group>"; };
-		010D099A2B601C9600763897 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		010D099A2B601C9600763897 /* APIClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientProtocol.swift; sourceTree = "<group>"; };
 		010D099D2B6028D200763897 /* StockQuoteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockQuoteResponse.swift; sourceTree = "<group>"; };
 		010D099F2B602B9A00763897 /* HttpMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
 		010D09A12B602F0F00763897 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
@@ -138,6 +139,7 @@
 		01B602492B69A62B00E6B7BB /* MyWatchlistsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWatchlistsView.swift; sourceTree = "<group>"; };
 		01B6024B2B69AA3E00E6B7BB /* MyWatchlistsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWatchlistsTableViewCell.swift; sourceTree = "<group>"; };
 		01C2B2C42B70EEDC002EE686 /* CreateWatchlistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWatchlistViewModel.swift; sourceTree = "<group>"; };
+		01C2B2CD2B7157C3002EE686 /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
 		01D41D942B62B731004B6789 /* Typography.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		01F8208D2B6B0694006CE2BD /* MyWatchlistsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWatchlistsViewModel.swift; sourceTree = "<group>"; };
 		01F820912B6B13B9006CE2BD /* WatchlistStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistStorage.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				01F820902B6B13B9006CE2BD /* Persistance */,
 				01037B572B63AD93005FEFC2 /* Extensions */,
 				010D09902B600FBF00763897 /* UI */,
+				01C2B2CD2B7157C3002EE686 /* ServiceProvider.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -259,7 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				014A633F2B6ACDE1008F4BE3 /* AsyncResult.swift */,
-				010D099A2B601C9600763897 /* APIClient.swift */,
+				010D099A2B601C9600763897 /* APIClientProtocol.swift */,
 				010D099F2B602B9A00763897 /* HttpMethod.swift */,
 				010D09A12B602F0F00763897 /* Request.swift */,
 				01037B602B63BC24005FEFC2 /* DataJSONDecoder.swift */,
@@ -605,7 +608,7 @@
 				01B602382B65874E00E6B7BB /* SymbolDetailsViewController.swift in Sources */,
 				01037B522B633148005FEFC2 /* SearchSymbolViewController.swift in Sources */,
 				01B602432B65930500E6B7BB /* QuotesStackView.swift in Sources */,
-				010D099B2B601C9600763897 /* APIClient.swift in Sources */,
+				010D099B2B601C9600763897 /* APIClientProtocol.swift in Sources */,
 				015B51F42B5EE122000F7071 /* WatchlistViewController.swift in Sources */,
 				01409AFB2B70737500572000 /* AnyPublisher+Utils.swift in Sources */,
 				01F8208E2B6B0694006CE2BD /* MyWatchlistsViewModel.swift in Sources */,
@@ -629,6 +632,7 @@
 				010D09A22B602F0F00763897 /* Request.swift in Sources */,
 				013171A52B6C0A9D00C0A0A8 /* StockChartDataResponse.swift in Sources */,
 				015B51F02B5EE122000F7071 /* AppDelegate.swift in Sources */,
+				01C2B2CE2B7157C3002EE686 /* ServiceProvider.swift in Sources */,
 				01B6024A2B69A62B00E6B7BB /* MyWatchlistsView.swift in Sources */,
 				013171AA2B6C58E200C0A0A8 /* Watchlist.swift in Sources */,
 				01F8209A2B6B1DFD006CE2BD /* AppCoordinator.swift in Sources */,

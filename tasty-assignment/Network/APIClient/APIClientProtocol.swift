@@ -9,7 +9,7 @@ import Combine
 import Foundation
 
 /// A protocol defining the requirements for an API client in the application.
-protocol APIClient {
+protocol APIClientProtocol {
     /// Executes a network request and returns a publisher for the response.
     ///  The `fetch` method is generic over a `Response` type that conforms to `Decodable`, allowing it to be used with a variety of response types. It takes a `Request` instance, which encapsulates all the necessary information for a network request, and returns a `ResultPublisher`. This publisher emits either the fetched data or an `APIError` in case of failure.
     /// - Parameters:
@@ -21,7 +21,7 @@ protocol APIClient {
 
 typealias ResultPublisher<T, E> = AnyPublisher<AsyncResult<T, E>, Never>
 
-final class DefaultAPIClient: APIClient {
+final class DefaultAPIClient: APIClientProtocol {
     let jsonDecoder: JSONDecoder
 
     init(jsonDecoder: JSONDecoder = JSONDecoder()) {

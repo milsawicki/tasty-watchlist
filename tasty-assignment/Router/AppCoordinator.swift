@@ -46,11 +46,10 @@ enum AppRoute: Route, Equatable {
 }
 
 final class AppCoordinator: NavigationCoordinator<AppRoute> {
-    let apiClient: APIClient = DefaultAPIClient()
-    lazy var watchlistService: WatchlistService = WatchlistService(apiClient: apiClient)
-    let watchlistStorage: WatchlistStorageProtocol = WatchlistStorage()
 
-    init() {
+    let serviceProvider: AppCoordinatorProvider
+    init(serviceProvider: ServiceProvider) {
+        self.serviceProvider = serviceProvider
         super.init(initialRoute: .manageWatchlists)
     }
 
@@ -61,24 +60,24 @@ final class AppCoordinator: NavigationCoordinator<AppRoute> {
         case let .showWatchlist(watchlist):
             let viewModel = WatchlistViewModel(
                 watchlistId: watchlist.id,
-                service: watchlistService,
-                watchlistStorage: watchlistStorage,
+                service: serviceProvider.watchlistService,
+                watchlistStorage: serviceProvider.watchlistStorage,
                 router: weakRouter
             )
             let viewController = WatchlistViewController(viewModel: viewModel)
             return .push(viewController)
         case .manageWatchlists:
-            let viewModel = MyWatchlistsViewModel(watchlistStorage: watchlistStorage, router: weakRouter)
+            let viewModel = MyWatchlistsViewModel(watchlistStorage: serviceProvider.watchlistStorage, router: weakRouter)
             let viewController = MyWatchlistsViewController(viewModel: viewModel)
             return .set([viewController])
         case let .symbolDetails(symbol):
-            let viewModel = SymbolDetailsViewModel(symbol: symbol, watchlistService: watchlistService)
+            let viewModel = SymbolDetailsViewModel(symbol: symbol, watchlistService: serviceProvider.watchlistService)
             let viewController = SymbolDetailsViewController(viewModel: viewModel)
             return .push(viewController)
         case let .addSymbolToWatchlist(uuid, completion):
             let viewModel = SearchSymbolViewModel(
-                service: watchlistService,
-                watchlistStorage: watchlistStorage,
+                service: serviceProvider.watchlistService,
+                watchlistStorage: serviceProvider.watchlistStorage,
                 router: weakRouter,
                 watchlistId: uuid,
                 addSymbolCompletion: completion
@@ -86,7 +85,7 @@ final class AppCoordinator: NavigationCoordinator<AppRoute> {
             let viewController = SearchSymbolViewController(viewModel: viewModel)
             return .present(viewController)
         case let .createWatchlist(completion):
-            let viewModel = CreateWatchlistViewModel(watchlistStorage: watchlistStorage)
+            let viewModel = CreateWatchlistViewModel(watchlistStorage: serviceProvider.watchlistStorage)
             let alertController = UIAlertController(title: "Create new watchlist", message: nil, preferredStyle: .alert)
             alertController.addTextField { textField in
                 textField.placeholder = "Watchlist name..."
@@ -105,8 +104,8 @@ final class AppCoordinator: NavigationCoordinator<AppRoute> {
         case let .disSelect(watchlist: watchlist):
             let viewModel = WatchlistViewModel(
                 watchlistId: watchlist.id,
-                service: watchlistService,
-                watchlistStorage: watchlistStorage,
+                service: serviceProvider.watchlistService,
+                watchlistStorage: serviceProvider.watchlistStorage,
                 router: weakRouter
             )
             let viewController = WatchlistViewController(viewModel: viewModel)
