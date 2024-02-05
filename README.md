@@ -50,7 +50,8 @@ This project uses several key dependencies:
 - **XCoordinator**: A powerful navigation library for iOS based on the coordinator pattern.
 - **SnapKit**: A Swift Autolayout DSL for iOS & OS X.
 - **DGCharts**: A simple and effective chart library for iOS.
-
+- **XCoordinator**: A navigation framework for iOS applications written in Swift.
+- **Arkana**: Secret managing library. 
 ## Coding guidelines
 
 - Respect Swift [API Design Guidelines](https://swift.org/documentation/api-design-guidelines/)
