@@ -5,8 +5,8 @@
 //  Created by Milan Sawicki on 27/01/2024.
 //
 
-import UIKit
 import DGCharts
+import UIKit
 
 class SymbolDetailsView: UIView {
     let chartView = ChartView()
@@ -45,6 +45,8 @@ class SymbolDetailsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    /// Updates the chart view with new data entries.
+    /// - Parameter entries: An array of `CandleChartDataEntry` items representing the new data to be displayed in the chart.
     func updateChart(with entries: [CandleChartDataEntry]) {
         chartView.updateChart(with: entries)
     }

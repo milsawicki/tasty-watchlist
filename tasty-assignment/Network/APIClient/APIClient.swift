@@ -8,7 +8,14 @@
 import Combine
 import Foundation
 
+/// A protocol defining the requirements for an API client in the application.
 protocol APIClient {
+    /// Executes a network request and returns a publisher for the response.
+    ///  The `fetch` method is generic over a `Response` type that conforms to `Decodable`, allowing it to be used with a variety of response types. It takes a `Request` instance, which encapsulates all the necessary information for a network request, and returns a `ResultPublisher`. This publisher emits either the fetched data or an `APIError` in case of failure.
+    /// - Parameters:
+    ///   - request: A `Request` instance containing all necessary information for the network request.
+    ///
+    /// - Returns: A `ResultPublisher<Response, APIError>` which is a type alias for `AnyPublisher<Result<Response, APIError>, Never>`. This publisher will emit either a successful response or an error, but never fail itself.
     func fetch<Response: Decodable>(request: Request) -> ResultPublisher<Response, APIError>
 }
 
@@ -21,15 +28,6 @@ final class DefaultAPIClient: APIClient {
         self.jsonDecoder = jsonDecoder
     }
 
-    /// Fetches data from a network request and decodes the JSON response into a specified `Codable` type.
-    ///
-    /// The function uses Combine's `AnyPublisher` to provide a stream of data or errors, allowing for clean and reactive data handling.
-    ///
-    /// - Parameters:
-    ///   - request: The network request to be executed. This should be an instance of a `Request` type, encapsulating all the necessary information for making the request (e.g., URL, HTTP method, headers).
-    ///   - hasTopLevelKey: A boolean indicating whether the JSON response contains a top-level key that should be omitted during the decoding process. Defaults to `false`.
-    ///
-    /// - Returns: A publisher emitting the decoded response object of type `T` or an error if the operation fails.
     func fetch<Response: Decodable>(request: Request) -> ResultPublisher<Response, APIError> {
         var urlRequest = request.asURLRequest()
 
@@ -59,17 +57,5 @@ final class DefaultAPIClient: APIClient {
             .prepend(AsyncResult.pending)
             .replaceError(with: .failure(.parsingError))
             .eraseToAnyPublisher()
-    }
-}
-
-extension AnyPublisher {
-    static func just(_ output: Output) -> Self {
-        Just(output)
-            .setFailureType(to: Failure.self)
-            .eraseToAnyPublisher()
-    }
-
-    static func fail(with error: Failure) -> Self {
-        Fail(error: error).eraseToAnyPublisher()
     }
 }

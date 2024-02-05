@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storage = WatchlistStorage()
         let defaultWatchlists = storage.loadWatchlists()
 
-//        storage.removeAll()
         if defaultWatchlists.isEmpty {
             let defaultWatchlist = Watchlist(name: "My first list", symbols: ["AAPL", "GOOGL", "MSFT"])
             storage.addWatchlist(defaultWatchlist)

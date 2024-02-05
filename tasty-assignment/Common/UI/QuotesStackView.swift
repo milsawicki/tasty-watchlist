@@ -91,6 +91,8 @@ class QuotesStackView: UIView {
         setupConstraints()
     }
 
+    /// Updates the view with the given stock quote data.
+    /// - Parameter item: The `StockQuoteResponse` containing the stock quote data to display.
     func decorate(with item: StockQuoteResponse) {
         bidPriceLabel.text = "\(item.bidPrice)"
         askPriceLabel.text = "\(item.askPrice)"

@@ -8,10 +8,7 @@
 import UIKit
 
 class MyWatchlistsTableViewCell: UITableViewCell {
-    private var watchlistNameLabel: UILabel = {
-        let label = UILabel()
-        return label
-    }()
+    private var watchlistNameLabel = UILabel()
 
     // - SeeAlso: UITableViewCell.init(style:reuseIdentifier)
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

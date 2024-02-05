@@ -13,6 +13,10 @@ protocol URLRequestConvertible {
     func asURLRequest() -> URLRequest
 }
 
+/// Represents the authorization types used within the app.
+///
+/// - `none`: No authorization is required. Use this case for features accessible without authentication.
+/// - `iex`: Specific authorization for 'iex'. Replace 'iex' with the actual authorization type needed for accessing certain features or data.
 enum AuthorizationType {
     case none
     case iex

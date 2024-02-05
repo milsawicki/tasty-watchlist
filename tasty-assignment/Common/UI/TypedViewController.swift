@@ -17,6 +17,7 @@ class TypedViewController<ViewType: UIView>: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
 
+    @available(*, unavailable, message: "Method unavailable. Use init method.")
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

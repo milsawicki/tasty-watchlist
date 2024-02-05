@@ -10,19 +10,24 @@ import UIKit
 import XCoordinator
 
 final class SearchSymbolViewModel {
+    /// A Boolean `@Published` property indicating whether a loading process is ongoing.
     @Published var loadingPublisher: Bool = false
+    /// A Boolean `@Published` property indicating whether the search results are empty.
     @Published var emptyPublisher: Bool = false
+    /// An `AsyncResult` representing the state and data of the search operation.
+    /// - SeeAlso: `AsyncResult`
     @Published var searchResult: AsyncResult<[SearchSymbolResponse], APIError> = .success([])
-    var queryPublisher = PassthroughSubject<String, Never>()
+    ///  An integer representing the number of rows in the search result.
+    var numberOfRows: Int {
+        searchResult.value?.count ?? 0
+    }
+
     private let service: WatchlistServiceProtocol
     private let watchlistStorage: WatchlistStorageProtocol
     private var cancellables = Set<AnyCancellable>()
     private var watchlistId: UUID
     private var router: WeakRouter<AppRoute>
     private var addSymbolCompletion: () -> Void
-    var numberOfRows: Int {
-        searchResult.value?.count ?? 0
-    }
 
     init(
         service: WatchlistServiceProtocol,
@@ -51,10 +56,10 @@ final class SearchSymbolViewModel {
         )
         .dropFirst()
         .map { isQueryEmpty, isResultEmpty in
-            return !isQueryEmpty && isResultEmpty
+            !isQueryEmpty && isResultEmpty
         }
         .assign(to: &$emptyPublisher)
-        
+
         queryPublisher
             .debounce(for: .milliseconds(200), scheduler: DispatchQueue.main)
             .flatMap { [weak self] symbol in

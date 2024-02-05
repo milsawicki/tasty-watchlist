@@ -20,6 +20,7 @@ class MyWatchlistsViewController: TypedViewController<MyWatchlistsView> {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Manage watchlists"
         viewModel.reloadData = { [weak self] in
             self?.customView.watchlistsTableView.reloadData()
         }

@@ -9,13 +9,22 @@ import Foundation
 import UIKit
 import XCoordinator
 
+/// This enum defines different navigational routes within the application, each associated with specific app functionalities. It conforms to `Route` and is `Equatable` to facilitate route comparisons.
 enum AppRoute: Route, Equatable {
+    /// Navigates to a screen showing the details of a specific watchlist.
     case showWatchlist(watchlist: Watchlist)
+    /// Navigates to a screen for managing all watchlists.
     case manageWatchlists
+    ///  Presents a UI to add a symbol to a watchlist, identified by `watchlistId`. The `completion` closure is called after the operation.
     case addSymbolToWatchlist(watchlistId: UUID, completion: () -> Void)
+    /// Displays details for a specific financial symbol.
     case symbolDetails(symbol: String)
+    /// Presents a UI to create a new watchlist. The `completion` closure is called after creating the watchlist.
     case createWatchlist(completion: () -> Void)
+    /// Used for deselecting or performing an action related to a specific watchlist.
+    /// - `dismiss`: Represents a route for dismissing the current view or screen.
     case disSelect(watchlist: Watchlist)
+    /// Represents a route for dismissing the current view or screen.
     case dismiss
     
     static func == (lhs: AppRoute, rhs: AppRoute) -> Bool {
@@ -40,8 +49,9 @@ final class AppCoordinator: NavigationCoordinator<AppRoute> {
     let apiClient: APIClient = DefaultAPIClient()
     lazy var watchlistService: WatchlistService = WatchlistService(apiClient: apiClient)
     let watchlistStorage: WatchlistStorageProtocol = WatchlistStorage()
+
     init() {
-        super.init(initialRoute: .showWatchlist(watchlist: watchlistStorage.loadWatchlists().first!))
+        super.init(initialRoute: .manageWatchlists)
     }
 
     override func prepareTransition(for route: AppRoute) -> NavigationTransition {
@@ -60,7 +70,7 @@ final class AppCoordinator: NavigationCoordinator<AppRoute> {
         case .manageWatchlists:
             let viewModel = MyWatchlistsViewModel(watchlistStorage: watchlistStorage, router: weakRouter)
             let viewController = MyWatchlistsViewController(viewModel: viewModel)
-            return .push(viewController)
+            return .set([viewController])
         case let .symbolDetails(symbol):
             let viewModel = SymbolDetailsViewModel(symbol: symbol, watchlistService: watchlistService)
             let viewController = SymbolDetailsViewController(viewModel: viewModel)

@@ -32,6 +32,7 @@
 		013171A52B6C0A9D00C0A0A8 /* StockChartDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013171A42B6C0A9D00C0A0A8 /* StockChartDataResponse.swift */; };
 		013171A82B6C571400C0A0A8 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013171A72B6C571400C0A0A8 /* Config.swift */; };
 		013171AA2B6C58E200C0A0A8 /* Watchlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013171A92B6C58E200C0A0A8 /* Watchlist.swift */; };
+		01409AFB2B70737500572000 /* AnyPublisher+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01409AFA2B70737500572000 /* AnyPublisher+Utils.swift */; };
 		014A633E2B6AC62C008F4BE3 /* WatchlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014A633D2B6AC62C008F4BE3 /* WatchlistView.swift */; };
 		014A63402B6ACDE1008F4BE3 /* AsyncResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014A633F2B6ACDE1008F4BE3 /* AsyncResult.swift */; };
 		015B51F02B5EE122000F7071 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B51EF2B5EE122000F7071 /* AppDelegate.swift */; };
@@ -55,7 +56,6 @@
 		01B6023F2B65885400E6B7BB /* DGChartsDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 01B6023E2B65885400E6B7BB /* DGChartsDynamic */; };
 		01B602412B65896C00E6B7BB /* SymbolDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B602402B65896C00E6B7BB /* SymbolDetailsView.swift */; };
 		01B602432B65930500E6B7BB /* QuotesStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B602422B65930500E6B7BB /* QuotesStackView.swift */; };
-		01B602452B65A4E800E6B7BB /* Publishers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B602442B65A4E800E6B7BB /* Publishers.swift */; };
 		01B602482B69A60D00E6B7BB /* MyWatchlistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B602472B69A60D00E6B7BB /* MyWatchlistsViewController.swift */; };
 		01B6024A2B69A62B00E6B7BB /* MyWatchlistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B602492B69A62B00E6B7BB /* MyWatchlistsView.swift */; };
 		01B6024C2B69AA3E00E6B7BB /* MyWatchlistsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B6024B2B69AA3E00E6B7BB /* MyWatchlistsTableViewCell.swift */; };
@@ -108,6 +108,7 @@
 		013171A42B6C0A9D00C0A0A8 /* StockChartDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockChartDataResponse.swift; sourceTree = "<group>"; };
 		013171A72B6C571400C0A0A8 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		013171A92B6C58E200C0A0A8 /* Watchlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watchlist.swift; sourceTree = "<group>"; };
+		01409AFA2B70737500572000 /* AnyPublisher+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyPublisher+Utils.swift"; sourceTree = "<group>"; };
 		014A633D2B6AC62C008F4BE3 /* WatchlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistView.swift; sourceTree = "<group>"; };
 		014A633F2B6ACDE1008F4BE3 /* AsyncResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncResult.swift; sourceTree = "<group>"; };
 		015B51EC2B5EE122000F7071 /* tasty-assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tasty-assignment.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,7 +133,6 @@
 		01B602392B6587F400E6B7BB /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		01B602402B65896C00E6B7BB /* SymbolDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolDetailsView.swift; sourceTree = "<group>"; };
 		01B602422B65930500E6B7BB /* QuotesStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotesStackView.swift; sourceTree = "<group>"; };
-		01B602442B65A4E800E6B7BB /* Publishers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publishers.swift; sourceTree = "<group>"; };
 		01B602472B69A60D00E6B7BB /* MyWatchlistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWatchlistsViewController.swift; sourceTree = "<group>"; };
 		01B602492B69A62B00E6B7BB /* MyWatchlistsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWatchlistsView.swift; sourceTree = "<group>"; };
 		01B6024B2B69AA3E00E6B7BB /* MyWatchlistsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWatchlistsTableViewCell.swift; sourceTree = "<group>"; };
@@ -189,7 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				01037B582B63ADA8005FEFC2 /* UITextField+Publisher.swift */,
-				01B602442B65A4E800E6B7BB /* Publishers.swift */,
+				01409AFA2B70737500572000 /* AnyPublisher+Utils.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -604,6 +604,7 @@
 				01B602432B65930500E6B7BB /* QuotesStackView.swift in Sources */,
 				010D099B2B601C9600763897 /* APIClient.swift in Sources */,
 				015B51F42B5EE122000F7071 /* WatchlistViewController.swift in Sources */,
+				01409AFB2B70737500572000 /* AnyPublisher+Utils.swift in Sources */,
 				01F8208E2B6B0694006CE2BD /* MyWatchlistsViewModel.swift in Sources */,
 				01B602482B69A60D00E6B7BB /* MyWatchlistsViewController.swift in Sources */,
 				01B6024C2B69AA3E00E6B7BB /* MyWatchlistsTableViewCell.swift in Sources */,
@@ -612,7 +613,6 @@
 				01037B5B2B63AFC8005FEFC2 /* SearchSymbolRequest.swift in Sources */,
 				010D09962B601AA700763897 /* WatchlistViewModel.swift in Sources */,
 				01F820922B6B13B9006CE2BD /* WatchlistStorage.swift in Sources */,
-				01B602452B65A4E800E6B7BB /* Publishers.swift in Sources */,
 				010D09A02B602B9A00763897 /* HttpMethod.swift in Sources */,
 				0131719F2B6BCC7200C0A0A8 /* EmptyStateView.swift in Sources */,
 				014A63402B6ACDE1008F4BE3 /* AsyncResult.swift in Sources */,

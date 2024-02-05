@@ -7,6 +7,7 @@
 
 import Foundation
 import ArkanaKeys
+
 struct Configs {
     struct Network {
         static let tastyApiBaseUrl = "api.tastyworks.com"
