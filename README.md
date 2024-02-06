@@ -36,7 +36,7 @@
     # or over SSH:
     git git@github.com:milsawicki/tasty-watchlist.git
     ```
-2. Remember to include .env file in project catalog! Secret variables can be found in .env.sample. You can insert your keys there, or ask the project administrator to share them. Secrets are read and provided to the project using [Arkana](https://github.com/rogerluan/arkana) 
+2. Remember to include `.env` file in project catalog! You can find .env template file in the root project directory named `.env.sample`. **Remember to fill them**. Secrets are read and provided to the project using [Arkana](https://github.com/rogerluan/arkana) 
 
 3. Run `bundle install` to install the required Ruby gems, including specific versions of tools like Arkana mentioned above.
 
