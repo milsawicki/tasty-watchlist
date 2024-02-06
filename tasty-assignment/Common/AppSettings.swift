@@ -11,7 +11,7 @@ protocol AppSettingsProtocol {
     var hasLaunchedBefore: Bool { get set }
 }
 
-class AppSettings {
+class AppSettings: AppSettingsProtocol {
     @UserDefaultsWrapper(key: Configs.UserDefaultsKeys.hasLaunchedBefore, defaultValue: false)
     var hasLaunchedBefore: Bool
 }

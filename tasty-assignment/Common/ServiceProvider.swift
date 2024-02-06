@@ -16,6 +16,7 @@ class ServiceProvider {
     internal let watchlistStorage: WatchlistStorageProtocol
     internal let apiClient: APIClientProtocol
     internal let userDefaults: UserDefaultsProtocol
+    internal var appSettings: AppSettingsProtocol
     /// Initializes a new `ServiceProvider` instance with specified services and storage.
     /// - Parameters:
     ///   - watchlistService: A service to manage watchlist-related functionalities.
@@ -26,12 +27,14 @@ class ServiceProvider {
         watchlistService: WatchlistServiceProtocol,
         wastchlistStorage: WatchlistStorageProtocol,
         apiClient: APIClientProtocol,
-        userDefaults: UserDefaultsProtocol
+        userDefaults: UserDefaultsProtocol,
+        appSettings: AppSettingsProtocol
     ) {
         self.watchlistService = watchlistService
         self.watchlistStorage = wastchlistStorage
         self.apiClient = apiClient
         self.userDefaults = userDefaults
+        self.appSettings = appSettings
     }
 }
 
@@ -44,7 +47,8 @@ extension ServiceProvider {
             watchlistService: WatchlistService(apiClient: apiClient),
             wastchlistStorage: WatchlistStorage(userDefaults: defaults),
             apiClient: apiClient,
-            userDefaults: defaults
+            userDefaults: defaults,
+            appSettings: AppSettings()
         )
     }
 }
@@ -55,6 +59,7 @@ protocol AppCoordinatorProvider {
     var watchlistService: WatchlistServiceProtocol { get }
     var userDefaults: UserDefaultsProtocol { get }
     var watchlistStorage: WatchlistStorageProtocol { get }
+    var appSettings: AppSettingsProtocol { get set }
 }
 
 /// Extending `ServiceProvider` to conform to `AppCoordinatorProvider` ensures that  it can be used by coordinators within the application.

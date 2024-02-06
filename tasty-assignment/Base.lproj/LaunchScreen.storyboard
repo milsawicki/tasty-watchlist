@@ -17,9 +17,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="📈 Tasty 🍒" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jvd-mU-dfF">
-                                <rect key="frame" x="32" y="402.66666666666669" width="329" height="72"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍒" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jvd-mU-dfF">
+                                <rect key="frame" x="70" y="299.33333333333337" width="253" height="278.33333333333337"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="233"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -29,8 +29,6 @@
                         <constraints>
                             <constraint firstItem="Jvd-mU-dfF" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="2qG-UH-HWE"/>
                             <constraint firstItem="Jvd-mU-dfF" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="dtW-sg-NtA"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Jvd-mU-dfF" secondAttribute="trailing" constant="32" id="iUA-jM-JaE"/>
-                            <constraint firstItem="Jvd-mU-dfF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="kzR-QJ-erS"/>
                         </constraints>
                     </view>
                 </viewController>

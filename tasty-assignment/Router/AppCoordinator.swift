@@ -47,14 +47,18 @@ enum AppRoute: Route, Equatable {
 
 final class AppCoordinator: NavigationCoordinator<AppRoute> {
 
-    let serviceProvider: AppCoordinatorProvider
-    init(serviceProvider: ServiceProvider) {
+    private let serviceProvider: AppCoordinatorProvider
+    private var appSettings: AppSettingsProtocol
+    init(serviceProvider: AppCoordinatorProvider) {
         self.serviceProvider = serviceProvider
+        self.appSettings = serviceProvider.appSettings
         super.init(initialRoute: .manageWatchlists)
-//        self.setInitialState()
+        self.setInitialState()
     }
 
     private func setInitialState() {
+        guard !appSettings.hasLaunchedBefore else { return }
+        appSettings.hasLaunchedBefore = true
         serviceProvider.watchlistStorage.addWatchlist(name: "My first list", with: ["AAPL", "MSFT", "GOOG"])
     }
     

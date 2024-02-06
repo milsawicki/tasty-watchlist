@@ -66,10 +66,10 @@ class SymbolSearchResultTableViewCell: UITableViewCell {
         descriptionLabel.text = searchResult.description
         listedMarketLabel.text = searchResult.listedMarket
         typeLabel.text = searchResult.instrumentType
-        symbolNameLabel.textColor = isOnWatchlist ? .lightGray : .black
-        descriptionLabel.textColor = isOnWatchlist ? .lightGray : .black
-        listedMarketLabel.textColor = isOnWatchlist ? .lightGray : .black
-        typeLabel.textColor = isOnWatchlist ? .lightGray : .black
+        symbolNameLabel.textColor = isOnWatchlist ? .lightGray : .label
+        descriptionLabel.textColor = isOnWatchlist ? .lightGray : .label
+        listedMarketLabel.textColor = isOnWatchlist ? .lightGray : .label
+        typeLabel.textColor = isOnWatchlist ? .lightGray : .label
     }
 }
 
