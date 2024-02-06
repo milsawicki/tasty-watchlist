@@ -60,8 +60,8 @@ The app supports light/dark modes based on current iOS settings.
 ## Future improvements
 - [ ] Configure CI (eg. GitHub Actions)
 - [ ] Implement Mock generating library for easier testing (eg. Sourcery)
-- [ ] Consider implementing DI tools (eg. Swinject)
-
+- [ ] Consider implementing DI tools (eg. Swinject). Discuss with team.
+- [ ] Test APIClient
 ## Coding guideline
 - Respect Swift [API Design Guidelines](https://swift.org/documentation/api-design-guidelines/)
 - The code must be readable and self-explanatory - full variable names, meaningful methods, etc.
