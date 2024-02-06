@@ -51,7 +51,7 @@ final class AppCoordinator: NavigationCoordinator<AppRoute> {
     init(serviceProvider: ServiceProvider) {
         self.serviceProvider = serviceProvider
         super.init(initialRoute: .manageWatchlists)
-        self.setInitialState()
+//        self.setInitialState()
     }
 
     private func setInitialState() {

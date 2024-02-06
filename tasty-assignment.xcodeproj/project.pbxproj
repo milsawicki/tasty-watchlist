@@ -45,7 +45,6 @@
 		015B52132B5EE124000F7071 /* tasty_assignmentUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015B52122B5EE124000F7071 /* tasty_assignmentUITestsLaunchTests.swift */; };
 		015E9F732B705CB30036EE9C /* ArkanaKeys in Frameworks */ = {isa = PBXBuildFile; productRef = 015E9F722B705CB30036EE9C /* ArkanaKeys */; };
 		01B0B9C02B6DC80D00D60F15 /* MyWatchlistsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B0B9BF2B6DC80D00D60F15 /* MyWatchlistsViewModelTests.swift */; };
-		01B0B9C32B6F048500D60F15 /* MockWatchlistStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B0B9C22B6F048500D60F15 /* MockWatchlistStorage.swift */; };
 		01B0B9C52B6F061000D60F15 /* MockAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B0B9C42B6F061000D60F15 /* MockAppCoordinator.swift */; };
 		01B0B9CD2B6F317400D60F15 /* SearchSymbolViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B0B9CC2B6F317400D60F15 /* SearchSymbolViewModelTests.swift */; };
 		01B0B9CF2B6F320600D60F15 /* MockWatchlistService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B0B9CE2B6F320600D60F15 /* MockWatchlistService.swift */; };
@@ -116,6 +115,7 @@
 		013171A72B6C571400C0A0A8 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		013171A92B6C58E200C0A0A8 /* Watchlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watchlist.swift; sourceTree = "<group>"; };
 		01397BB22B718E1A00BBB55B /* WatchlistStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistStorageTests.swift; sourceTree = "<group>"; };
+		01397BB42B71A93400BBB55B /* Production.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Production.xctestplan; sourceTree = "<group>"; };
 		01409AFA2B70737500572000 /* AnyPublisher+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyPublisher+Utils.swift"; sourceTree = "<group>"; };
 		014A633D2B6AC62C008F4BE3 /* WatchlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistView.swift; sourceTree = "<group>"; };
 		014A633F2B6ACDE1008F4BE3 /* AsyncResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncResult.swift; sourceTree = "<group>"; };
@@ -131,7 +131,6 @@
 		015B52102B5EE124000F7071 /* tasty_assignmentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tasty_assignmentUITests.swift; sourceTree = "<group>"; };
 		015B52122B5EE124000F7071 /* tasty_assignmentUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tasty_assignmentUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		01B0B9BF2B6DC80D00D60F15 /* MyWatchlistsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWatchlistsViewModelTests.swift; sourceTree = "<group>"; };
-		01B0B9C22B6F048500D60F15 /* MockWatchlistStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWatchlistStorage.swift; sourceTree = "<group>"; };
 		01B0B9C42B6F061000D60F15 /* MockAppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAppCoordinator.swift; sourceTree = "<group>"; };
 		01B0B9CC2B6F317400D60F15 /* SearchSymbolViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSymbolViewModelTests.swift; sourceTree = "<group>"; };
 		01B0B9CE2B6F320600D60F15 /* MockWatchlistService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWatchlistService.swift; sourceTree = "<group>"; };
@@ -338,6 +337,7 @@
 		015B51E32B5EE122000F7071 = {
 			isa = PBXGroup;
 			children = (
+				01397BB42B71A93400BBB55B /* Production.xctestplan */,
 				015B51EE2B5EE122000F7071 /* tasty-assignment */,
 				015B52052B5EE124000F7071 /* tasty-assignmentTests */,
 				015B520F2B5EE124000F7071 /* tasty-assignmentUITests */,
@@ -397,7 +397,6 @@
 		01B0B9C12B6F047C00D60F15 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				01B0B9C22B6F048500D60F15 /* MockWatchlistStorage.swift */,
 				01B0B9C42B6F061000D60F15 /* MockAppCoordinator.swift */,
 				01B0B9CE2B6F320600D60F15 /* MockWatchlistService.swift */,
 				01C2B2D72B71630B002EE686 /* MockUserDefaults.swift */,
@@ -701,7 +700,6 @@
 				01B0B9D12B701C0800D60F15 /* WatchlistViewModelTests.swift in Sources */,
 				01B0B9CF2B6F320600D60F15 /* MockWatchlistService.swift in Sources */,
 				01B0B9C52B6F061000D60F15 /* MockAppCoordinator.swift in Sources */,
-				01B0B9C32B6F048500D60F15 /* MockWatchlistStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

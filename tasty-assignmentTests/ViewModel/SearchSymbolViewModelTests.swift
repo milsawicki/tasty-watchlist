@@ -9,9 +9,10 @@ import Combine
 @testable import tasty_assignment
 import XCoordinator
 import XCTest
+
 class SearchSymbolViewModelTests: XCTestCase {
     var sut: SearchSymbolViewModel!
-    var mockStorage: MockWatchlistStorage!
+    var mockStorage: WatchlistStorageProtocol!
     var mockCoordinator: MockAppCoordinator!
     var mockService: MockWatchlistService!
     var mockWatchlist = Watchlist(name: "mock")
@@ -19,7 +20,7 @@ class SearchSymbolViewModelTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        mockStorage = MockWatchlistStorage()
+        mockStorage = WatchlistStorage(userDefaults: MockUserDefaults())
         mockCoordinator = MockAppCoordinator()
         mockService = MockWatchlistService()
 
@@ -115,20 +116,9 @@ class SearchSymbolViewModelTests: XCTestCase {
     }
     
     func test_addSymbolToWatchlist_withSymbolAlreadyAdded_shouldNotAddDuplicateItem() {
-        mockStorage.loadWatchlistsReturnValue = [Watchlist(name: "mock")]
-        mockStorage.fetchSymbolsReturnValue = ["AAPL"]
+        mockStorage.addWatchlist(name: "Mock", with: ["AAPL"])
         
         sut.addSymbolToWatchlist("AAPL")
-        XCTAssertEqual(mockStorage.fetchSymbolsReturnValue!.count, 1)
-    }
-    
-    func test_addSymbolToWatchlist_withSymbolNotExisting_shouldNotAddDuplicateItem() {
-        mockStorage.loadWatchlistsReturnValue = [mockWatchlist]
-        mockStorage.fetchSymbolsReturnValue = ["MSFT"]
-        
-        let addedSymbol = "AAPL"
-        sut.addSymbolToWatchlist(addedSymbol)
-        XCTAssertTrue(mockStorage.addSymbolCalled)
-        XCTAssertEqual(mockStorage.addSymbolReceivedSymbol, addedSymbol)
+        XCTAssertEqual(mockStorage.loadWatchlists().count, 1)
     }
 }

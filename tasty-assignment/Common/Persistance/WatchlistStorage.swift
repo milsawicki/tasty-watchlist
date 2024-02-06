@@ -18,6 +18,10 @@ protocol WatchlistStorageProtocol {
     /// - Returns: An array of `Watchlist` objects representing all current watchlists.
     func loadWatchlists() -> [Watchlist]
 
+    /// Adds a new watchlist with to the storage.
+    /// - Parameter watchlist: The watchlist for that will be added to storage.
+    func addWatchlist(_ watchlist: Watchlist)
+
     /// Adds a new watchlist with the given name.
     ///
     /// - Parameter name: The name for the new watchlist.

@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "9BE833A9-32CD-4AB7-83F3-53EC913A4D0D",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:tasty-assignment.xcodeproj",
+      "identifier" : "015B51EB2B5EE122000F7071",
+      "name" : "tasty-assignment"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:tasty-assignment.xcodeproj",
+        "identifier" : "015B52012B5EE124000F7071",
+        "name" : "tasty-assignmentTests"
+      }
+    }
+  ],
+  "version" : 1
+}

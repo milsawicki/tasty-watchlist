@@ -11,12 +11,12 @@ import XCTest
 
 class MyWatchlistsViewModelTests: XCTestCase {
     var sut: MyWatchlistsViewModel!
-    var mockStorage: MockWatchlistStorage!
+    var mockStorage: WatchlistStorageProtocol!
     var mockCoordinator: MockAppCoordinator!
 
     override func setUp() {
         super.setUp()
-        mockStorage = MockWatchlistStorage()
+        mockStorage = WatchlistStorage(userDefaults: MockUserDefaults())
         mockCoordinator = MockAppCoordinator()
         sut = MyWatchlistsViewModel(watchlistStorage: mockStorage, router: mockCoordinator.weakRouter)
     }
@@ -28,41 +28,36 @@ class MyWatchlistsViewModelTests: XCTestCase {
         super.tearDown()
     }
 
-    func test_deleteWatchlist_shouldDeleteExepctedWatchlist() {
-        // Given
-        let watchlist = Watchlist(name: "test")
-        mockStorage.loadWatchlistsReturnValue = [watchlist]
+    func test_deleteWatchlist_withValidWatchlist_shouldCallReloadData() {
+        mockStorage.addWatchlist(name: "Watchlist", with: [])
+        var reloadDataCalled = false
+        sut.reloadData = { reloadDataCalled = true }
 
-        // When
-        sut.delete(watchlist: watchlist)
+        sut.delete(watchlist: mockStorage.loadWatchlists().first!)
 
-        // Then
-        XCTAssertEqual(mockStorage.removedWatchlistId, watchlist.id)
+        XCTAssertTrue(reloadDataCalled, "Reload data should be called after deletion.")
+        XCTAssertEqual(mockStorage.loadWatchlists().count, 0, "Watchlist should be empty.")
     }
 
-    func test_watchlist_selection_triggers_correct_route() {
-        // given
+    func test_shouldAllowDelete_whenMultipleWatchlists_shouldReturnTrue() {
+        mockStorage.addWatchlist(name: "Watchlist 1")
+        mockStorage.addWatchlist(name: "Watchlist 2")
+        XCTAssertTrue(sut.shouldAllowDelete, "Deletion should be allowed with multiple watchlists")
+    }
+
+    func test_didSelectWatchlist_withValidWatchlist_shouldTriggerRouter() {
         let watchlist = Watchlist(name: "testWatchlist")
-
-        // When
         sut.didSelect(watchlist: watchlist)
-
-        // Then
         XCTAssertEqual(
             mockCoordinator.lastCalledRoute,
             .disSelect(watchlist: watchlist), "Correct route should be triggered on watchlist selection"
         )
     }
 
-    func test_watchlist_for_index_returns_correct_item() {
-        // Given
+    func test_watchlistForRowIndex_withValidIndex_shouldReturnCorrectWatchlist() {
         let expectedWatchlist = Watchlist(name: "b")
-
-        // When
-        mockStorage.loadWatchlistsReturnValue = [Watchlist(name: "a"), expectedWatchlist, Watchlist(name: "c")]
-
-        // Then
-        XCTAssertEqual(sut.watchlist(for: 1).name, expectedWatchlist.name)
-        XCTAssertEqual(sut.watchlist(for: 1).id, expectedWatchlist.id)
+        mockStorage.addWatchlist(expectedWatchlist)
+        XCTAssertEqual(sut.watchlist(for: 0).name, expectedWatchlist.name, "Should return the correct watchlist for given row index")
+        XCTAssertEqual(sut.watchlist(for: 0).id, expectedWatchlist.id, "Should return the correct watchlist for given row index")
     }
 }
